@@ -23,12 +23,6 @@ namespace Cesium.Respository
             _dbConnection = ConnectionFactory.CreateConnection(_dbOption.DbType, _dbOption.ConnectionString);
         }
 
-        //public BaseRepository(IOptions<DbOption> options)
-        //{
-        //    _dbOption = options.Value;
-        //    _dbConnection = ConnectionFactory.CreateConnection(_dbOption.DbType, _dbOption.ConnectionString);
-        //}
-
         #region 同步
 
         public T Get(TKey id) => _dbConnection.Get<T>(id);
