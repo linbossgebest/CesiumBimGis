@@ -1,0 +1,11 @@
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\Cesium.ViewModels.deps.json
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\Cesium.ViewModels.dll
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\ref\Cesium.ViewModels.dll
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\Cesium.ViewModels.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.GeneratedMSBuildEditorConfig.editorconfig
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.AssemblyInfoInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.AssemblyInfo.cs
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.csproj.CoreCompileInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.dll
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\ref\Cesium.ViewModels.dll
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.pdb

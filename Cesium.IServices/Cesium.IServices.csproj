@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cesium.Models\Cesium.Models.csproj" />
+    <ProjectReference Include="..\Cesium.ViewModels\Cesium.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

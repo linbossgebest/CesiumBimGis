@@ -1,0 +1,11 @@
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\bin\Debug\net5.0\Cesium.Repository.SqlServer.deps.json
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\bin\Debug\net5.0\Cesium.Repository.SqlServer.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\bin\Debug\net5.0\ref\Cesium.Repository.SqlServer.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\bin\Debug\net5.0\Cesium.Repository.SqlServer.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\obj\Debug\net5.0\Cesium.Repository.SqlServer.GeneratedMSBuildEditorConfig.editorconfig
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\obj\Debug\net5.0\Cesium.Repository.SqlServer.AssemblyInfoInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\obj\Debug\net5.0\Cesium.Repository.SqlServer.AssemblyInfo.cs
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\obj\Debug\net5.0\Cesium.Repository.SqlServer.csproj.CoreCompileInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\obj\Debug\net5.0\Cesium.Repository.SqlServer.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\obj\Debug\net5.0\ref\Cesium.Repository.SqlServer.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.SqlServer\obj\Debug\net5.0\Cesium.Repository.SqlServer.pdb

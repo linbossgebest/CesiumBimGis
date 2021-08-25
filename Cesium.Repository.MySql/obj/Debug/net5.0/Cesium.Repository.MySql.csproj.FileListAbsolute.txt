@@ -1,0 +1,11 @@
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\bin\Debug\net5.0\Cesium.Repository.MySql.deps.json
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\bin\Debug\net5.0\Cesium.Repository.MySql.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\bin\Debug\net5.0\ref\Cesium.Repository.MySql.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\bin\Debug\net5.0\Cesium.Repository.MySql.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\obj\Debug\net5.0\Cesium.Repository.MySql.GeneratedMSBuildEditorConfig.editorconfig
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\obj\Debug\net5.0\Cesium.Repository.MySql.AssemblyInfoInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\obj\Debug\net5.0\Cesium.Repository.MySql.AssemblyInfo.cs
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\obj\Debug\net5.0\Cesium.Repository.MySql.csproj.CoreCompileInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\obj\Debug\net5.0\Cesium.Repository.MySql.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\obj\Debug\net5.0\ref\Cesium.Repository.MySql.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Repository.MySql\obj\Debug\net5.0\Cesium.Repository.MySql.pdb
