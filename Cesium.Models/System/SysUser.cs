@@ -41,6 +41,6 @@ namespace Cesium.Models.System
         /// <summary>
         /// 用户是否可用
         /// </summary>
-        public bool IsEnabled { get; set; }
+        public int IsEnabled { get; set; }
     }
 }

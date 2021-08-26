@@ -43,12 +43,14 @@ namespace Cesium.Services
                 if (await _modelComponentCommentRepository.InsertAsync(comment) > 0)
                 {
                     result.IsSuccess = true;
-                    result.Message = "操作成功";
+                    result.Code = ResultCodeMsg.CommonSuccessCode;
+                    result.Message = ResultCodeMsg.CommonSuccessMsg;
                 }
                 else
                 {
                     result.IsSuccess = false;
-                    result.Message = "操作失败";
+                    result.Code = ResultCodeMsg.CommonFailCode;
+                    result.Message = ResultCodeMsg.CommonFailMsg;
                 }     
             }
             return result;

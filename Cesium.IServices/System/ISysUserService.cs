@@ -24,8 +24,9 @@ namespace Cesium.IServices
         /// 添加用户
         /// </summary>
         /// <param name="model"></param>
+        /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        Task<BaseResult> AddUserAsync(UserModel model);
+        Task<BaseResult> AddUserAsync(UserModel model, TokenInfo tokenInfo);
 
     }
 }

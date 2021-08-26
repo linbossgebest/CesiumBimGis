@@ -4,6 +4,7 @@ using Cesium.Core.Options;
 using Cesium.IServices;
 using Cesium.ViewModels.ResultModel;
 using Cesium.ViewModels.System;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,20 +40,23 @@ namespace CesiumBimGisApi.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("Login")]
-        public async Task<string> Login(LoginModel model)
+        public async Task<string> Login([FromBody]LoginModel model)
         {
             BaseResult result = new BaseResult();
             var user = await _userService.SignInAsync(model);
             if (user == null)
             {
                 result.IsSuccess = false;
-                result.Message = "登录失败";
+                result.Code = ResultCodeMsg.CommonFailCode;
+                result.Message = ResultCodeMsg.CommonFailMsg;
             }
             else
             {
                 result.IsSuccess = true;
-                result.Message = "登录成功";
+                result.Code = ResultCodeMsg.CommonSuccessCode;
+                result.Message = ResultCodeMsg.CommonSuccessMsg;
             }
 
             return JsonHelper.ObjectToJSON(result);
@@ -62,13 +66,19 @@ namespace CesiumBimGisApi.Controllers
         [Route("Add")]
         public async Task<string> AddUser(UserModel model)
         {
-            var result = await _userService.AddUserAsync(model);
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            TokenInfo tokenInfo = new() {
+                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            };
+            var result = await _userService.AddUserAsync(model, tokenInfo);
             return JsonHelper.ObjectToJSON(result);
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("RequestToken")]
-        public async Task<string> RequestToken(LoginModel model)
+        public async Task<string> RequestToken([FromBody]LoginModel model)
         {
             BaseResult result = new BaseResult();
             var user = await _userService.SignInAsync(model);
@@ -77,7 +87,8 @@ namespace CesiumBimGisApi.Controllers
                 var claims = new[]
                {
                    new Claim(ClaimTypes.Name, user.UserName),
-                   new Claim("UserId", user.Id.ToString())
+                   new Claim("UserId", user.Id.ToString()),
+                   new Claim(ClaimTypes.Role, user.RoleId.ToString())
                };
                 //sign the token using a secret key.This secret will be shared between your API and anything that needs to check that the token is legit.
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecurityKey"]));
@@ -111,22 +122,24 @@ namespace CesiumBimGisApi.Controllers
                 };
 
                 result.IsSuccess = true;
-                result.Message = "获取token";
+                result.Code = ResultCodeMsg.CommonSuccessCode;
+                result.Message = ResultCodeMsg.CommonSuccessMsg;
                 result.Data = JsonHelper.ObjectToJSON(data);
 
             }
             else
             {
                 result.IsSuccess = false;
-                result.Message = "获取token失败，用户名或密码错误";
+                result.Code = ResultCodeMsg.SignInPasswordOrUserNameErrorCode;
+                result.Message = ResultCodeMsg.SignInPasswordOrUserNameErrorMsg;
             }
             return JsonHelper.ObjectToJSON(result);
         }
 
         [HttpGet]
-        [Authorize]//添加Authorize标签
         public IEnumerable<string> Get()
         {
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             return new string[] { "value1", "value2" };
         }
 

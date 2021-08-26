@@ -34,8 +34,18 @@ namespace Cesium.Models.System
         public string Description { get; set; }
 
         /// <summary>
+        ///图标
+        /// </summary>
+        public string Icon { get; set; }
+
+        /// <summary>
         /// 排序编号
         /// </summary>
         public int? OrderNo { get; set; }
+
+        /// <summary>
+        /// 是否可用
+        /// </summary>
+        public int IsEnabled { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace Cesium.Models
         /// <summary>
         /// 构件所属的模型id
         /// </summary>
-        public string ModelId { get; set; }
+        public int ModelId { get; set; }
 
         /// <summary>
         /// 施工状态

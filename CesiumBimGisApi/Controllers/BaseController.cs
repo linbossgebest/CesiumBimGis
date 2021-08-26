@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 namespace CesiumBimGisApi.Controllers
 {
     /// <summary>
-    /// 基类控制器
+    /// 抽象基类控制器
     /// </summary>
-    public class BaseController: ControllerBase
+    [Authorize]//添加Authorize标签
+    public abstract class BaseController: ControllerBase
     {
     }
 }

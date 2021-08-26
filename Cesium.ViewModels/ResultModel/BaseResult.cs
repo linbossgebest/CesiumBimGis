@@ -19,6 +19,11 @@ namespace Cesium.ViewModels.ResultModel
         //public bool IsLogin { get; set; }
 
         /// <summary>
+        /// 结果编码
+        /// </summary>
+        public int Code { get; set; }
+
+        /// <summary>
         /// 结果消息
         /// </summary>
         public string Message { get; set; }

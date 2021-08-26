@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cesium.IRepository
 {
-    public interface IModelInfoRepository : IDependency, IBaseRepository<ModelInfo, string>
+    public interface IModelInfoRepository : IDependency, IBaseRepository<ModelInfo, int>
     {
     }
 }

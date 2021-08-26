@@ -16,7 +16,7 @@ namespace Cesium.Services
     public class SysUserService : ISysUserService, IDependency
     {
         private readonly ISysUserRepository _sysUserRepository;
-         
+
         public SysUserService(ISysUserRepository sysUserRepository)
         {
             _sysUserRepository = sysUserRepository;
@@ -42,33 +42,36 @@ namespace Cesium.Services
         /// 添加用户
         /// </summary>
         /// <param name="model"></param>
+        /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        public async Task<BaseResult> AddUserAsync(UserModel model)
+        public async Task<BaseResult> AddUserAsync(UserModel model, TokenInfo tokenInfo)
         {
             var result = new BaseResult();
-            if (model.Id == 0)
-            {
-                SysUser user = new SysUser();
-                user.UserName = model.UserName;
-                user.PassWord= AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys);
-                user.Mobile = model.Mobile;
-                user.Email = model.Email;
-                user.CreateTime = DateTime.Now;
-                user.CreatorId = 1;
-                user.CreatorName = "admin";
-                
 
-                if (await _sysUserRepository.InsertAsync(user) > 0)
-                {
-                    result.IsSuccess = true;
-                    result.Message = "操作成功";
-                }
-                else
-                {
-                    result.IsSuccess = false;
-                    result.Message = "操作失败";
-                }
+            SysUser user = new SysUser
+            {
+                UserName = model.UserName,
+                PassWord = AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys),
+                Mobile = model.Mobile,
+                Email = model.Email,
+                CreateTime = DateTime.Now,
+                CreatorId = tokenInfo.UserId,
+                CreatorName = tokenInfo.UserName
+            };
+
+            if (await _sysUserRepository.InsertAsync(user) > 0)
+            {
+                result.IsSuccess = true;
+                result.Code = ResultCodeMsg.CommonSuccessCode;
+                result.Message = ResultCodeMsg.CommonSuccessMsg;
             }
+            else
+            {
+                result.IsSuccess = false;
+                result.Code = ResultCodeMsg.CommonFailCode;
+                result.Message = ResultCodeMsg.CommonFailMsg;
+            }
+
 
             return result;
         }

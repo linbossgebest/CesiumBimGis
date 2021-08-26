@@ -16,7 +16,7 @@ namespace Cesium.Models
         /// <summary>
         /// 模型Id
         /// </summary>
-        public string ModelId { get; set; }
+        public int ModelId { get; set; }
 
         /// <summary>
         /// 模型名称

@@ -9,12 +9,12 @@ namespace Cesium.Models
     /// <summary>
     /// 模型信息
     /// </summary>
-    public class ModelInfo
+    public class ModelInfo: BaseEntity
     {
         /// <summary>
         /// 模型id
         /// </summary>
-        public string ModelId { get; set; }
+        public int ModelId { get; set; }
 
         /// <summary>
         /// 模型名称
@@ -24,7 +24,7 @@ namespace Cesium.Models
         /// <summary>
         /// 项目id
         /// </summary>
-        public string ProjectId { get; set; }
+        public int ProjectId { get; set; }
 
         /// <summary>
         /// 项目名称
@@ -32,18 +32,8 @@ namespace Cesium.Models
         public string ProjectName { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 状态
         /// </summary>
-        public DateTime CreateTime { get; set; }
-
-        /// <summary>
-        /// 创建人编号
-        /// </summary>
-        public int CreatorId { get; set; }
-
-        /// <summary>
-        /// 创建人名称
-        /// </summary>
-        public string CreatorName { get; set; }
+        public int Status { get; set; }
     }
 }
