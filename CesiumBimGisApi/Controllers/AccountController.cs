@@ -22,7 +22,7 @@ namespace CesiumBimGisApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseController
     {
         private readonly ISysUserService _userService;
         private readonly IConfiguration _configuration;
@@ -76,7 +76,8 @@ namespace CesiumBimGisApi.Controllers
             {
                 var claims = new[]
                {
-                   new Claim(ClaimTypes.Name, user.UserName)
+                   new Claim(ClaimTypes.Name, user.UserName),
+                   new Claim("UserId", user.Id.ToString())
                };
                 //sign the token using a secret key.This secret will be shared between your API and anything that needs to check that the token is legit.
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecurityKey"]));
@@ -114,7 +115,7 @@ namespace CesiumBimGisApi.Controllers
                 result.Data = JsonHelper.ObjectToJSON(data);
 
             }
-            else 
+            else
             {
                 result.IsSuccess = false;
                 result.Message = "获取token失败，用户名或密码错误";

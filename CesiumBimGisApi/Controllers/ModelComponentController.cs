@@ -12,7 +12,7 @@ namespace CesiumBimGisApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ModelComponentController : ControllerBase
+    public class ModelComponentController : BaseController
     {
         private readonly IModelComponentCommentService _modelComponentCommentService;
 
