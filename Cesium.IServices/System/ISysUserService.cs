@@ -28,5 +28,8 @@ namespace Cesium.IServices
         /// <returns></returns>
         Task<BaseResult> AddUserAsync(UserModel model, TokenInfo tokenInfo);
 
+
+        Task<SysUser> GetUserInfoAsync(TokenInfo tokenInfo);
+
     }
 }

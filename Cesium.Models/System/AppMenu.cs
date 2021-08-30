@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cesium.Models.System
 {
-    public class SysMenu : BaseEntity
+    public class AppMenu: BaseEntity
     {
         /// <summary>
         /// 菜单Id
@@ -37,6 +37,11 @@ namespace Cesium.Models.System
         /// 图标
         /// </summary>
         public string Icon { get; set; }
+
+        /// <summary>
+        /// 对应操作
+        /// </summary>
+        public string Action { get; set; }
 
         /// <summary>
         /// 排序编号

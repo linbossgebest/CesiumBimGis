@@ -42,7 +42,7 @@ namespace CesiumBimGisApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("Login")]
-        public async Task<string> Login([FromBody]LoginModel model)
+        public async Task<string> Login([FromBody] LoginModel model)
         {
             BaseResult result = new BaseResult();
             var user = await _userService.SignInAsync(model);
@@ -67,7 +67,8 @@ namespace CesiumBimGisApi.Controllers
         public async Task<string> AddUser(UserModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
-            TokenInfo tokenInfo = new() {
+            TokenInfo tokenInfo = new()
+            {
                 UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
                 UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
             };
@@ -75,10 +76,60 @@ namespace CesiumBimGisApi.Controllers
             return JsonHelper.ObjectToJSON(result);
         }
 
+        [HttpGet]
+        [Route("GetUserInfo")]
+        public async Task<BaseResult> GetUserInfo()
+        {
+            BaseResult result = new BaseResult();
+            //var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            //TokenInfo tokenInfo = new()
+            //{
+            //    UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+            //    UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            //};
+            //var user = await _userService.GetUserInfoAsync(tokenInfo);
+            //if (user != null)
+            //{
+            //    var data = new
+            //    {
+            //        name = user.UserName,
+            //        roles = user.RoleId,
+            //    };
+
+            //    result.IsSuccess = true;
+            //    result.Code = ResultCodeMsg.CommonSuccessCode;
+            //    result.Message = ResultCodeMsg.CommonSuccessMsg;
+            //    result.Data = JsonHelper.ObjectToJSON(data);
+
+            //}
+            //else
+            //{
+            //    result.IsSuccess = false;
+            //    result.Code = ResultCodeMsg.CommonFailCode;
+            //    result.Message = ResultCodeMsg.CommonFailMsg;
+            //}
+
+            var data = new
+            {
+                name = "linyong",
+                roles = new List<string>() {"admin","test" },
+            };
+
+            result.IsSuccess = true;
+            result.Code = ResultCodeMsg.CommonSuccessCode;
+            result.Message = ResultCodeMsg.CommonSuccessMsg;
+            result.Data = JsonHelper.ObjectToJSON(data);
+
+
+            //return JsonHelper.ObjectToJSON(result);
+            return result;
+
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [Route("RequestToken")]
-        public async Task<string> RequestToken([FromBody]LoginModel model)
+        public async Task<BaseResult> RequestToken([FromBody] LoginModel model)
         {
             BaseResult result = new BaseResult();
             var user = await _userService.SignInAsync(model);
@@ -116,8 +167,8 @@ namespace CesiumBimGisApi.Controllers
 
                 var data = new
                 {
-                    username = model.UserName,
-                    access_token = accessToken,
+                    username = model.username,
+                    token = accessToken,
                     expires_in = 1800
                 };
 
@@ -133,7 +184,8 @@ namespace CesiumBimGisApi.Controllers
                 result.Code = ResultCodeMsg.SignInPasswordOrUserNameErrorCode;
                 result.Message = ResultCodeMsg.SignInPasswordOrUserNameErrorMsg;
             }
-            return JsonHelper.ObjectToJSON(result);
+            //return JsonHelper.ObjectToJSON(result);
+            return result;
         }
 
         [HttpGet]

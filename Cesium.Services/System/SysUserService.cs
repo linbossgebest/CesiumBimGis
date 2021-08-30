@@ -29,11 +29,23 @@ namespace Cesium.Services
         /// <returns></returns>
         public async Task<SysUser> SignInAsync(LoginModel model)
         {
-            model.Password = AESEncryptHelper.Encode(model.Password.Trim(), CesiumKeys.AesEncryptKeys);
-            model.UserName = model.UserName.Trim();
+            model.password = AESEncryptHelper.Encode(model.password.Trim(), CesiumKeys.AesEncryptKeys);
+            model.username = model.username.Trim();
             string conditions = $"select * from {nameof(SysUser)} where IsEnabled=1 ";//可用用户
             conditions += $"and (UserName = @UserName or Mobile =@UserName or Email =@UserName) and Password=@Password";
             var user = await _sysUserRepository.GetAsync(conditions, model);
+
+            return user;
+        }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="tokenInfo"></param>
+        /// <returns></returns>
+        public async Task<SysUser> GetUserInfoAsync(TokenInfo tokenInfo) 
+        {
+            var user = await _sysUserRepository.GetAsync(tokenInfo.UserId);
 
             return user;
         }

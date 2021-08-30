@@ -43,6 +43,7 @@ namespace CesiumBimGisApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             //services.AddOptions();
             services.Configure<DbOption>("DbOption", Configuration.GetSection("DbOption"));
             services.Configure<JWTOption>("JWTOption", Configuration.GetSection("JWTConfigurations"));
@@ -76,6 +77,17 @@ namespace CesiumBimGisApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CesiumBimGisApi", Version = "v1" });
             });
+
+            //添加cors 服务 配置跨域处理            
+            services.AddCors(options =>
+            {
+                options.AddPolicy("any", builder =>
+                {
+                    builder.AllowAnyOrigin() //允许任何来源的主机访问
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -99,7 +111,7 @@ namespace CesiumBimGisApi
 
             app.UseAuthorization();
 
-            app.UseCors("cors");
+            app.UseCors("any");
 
             app.UseEndpoints(endpoints =>
                {
