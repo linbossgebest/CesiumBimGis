@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9C6wUpJ4As/zVn8UKUtfIXDJN5of8k9l4UZ59/qiwiplcIe9G4pxsaZSGXf04B3lV5hocCGNVBE88T57eQeCZA==",
+  "dgSpecHash": "Cz9iUE980VnAcHTYaGQY+4rLKHRqxlTihi+q8jN3piyr0RXmFghkcy7w12p4KZ3vIjkWla8vfFfppyrnaZWpfQ==",
   "success": true,
   "projectFilePath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.IServices\\Cesium.IServices.csproj",
   "expectedPackageFiles": [

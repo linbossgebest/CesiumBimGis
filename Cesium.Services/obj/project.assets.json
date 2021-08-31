@@ -586,6 +586,9 @@
       "Cesium.ViewModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Cesium.Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Cesium.ViewModels.dll": {}
         },

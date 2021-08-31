@@ -39,13 +39,13 @@ namespace Cesium.Services
         }
 
         /// <summary>
-        /// 获取用户信息
+        /// 通过用户编号获取用户信息
         /// </summary>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        public async Task<SysUser> GetUserInfoAsync(TokenInfo tokenInfo) 
+        public async Task<SysUser> GetUserInfoAsync(int userId) 
         {
-            var user = await _sysUserRepository.GetAsync(tokenInfo.UserId);
+            var user = await _sysUserRepository.GetAsync(userId);
 
             return user;
         }

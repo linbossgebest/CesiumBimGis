@@ -10,3 +10,8 @@ E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.d
 E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\ref\Cesium.ViewModels.dll
 E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.pdb
 E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.csproj.AssemblyReference.cache
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\Cesium.Core.dll
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\Cesium.Models.dll
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\Cesium.Models.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\Cesium.Core.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.csproj.CopyComplete

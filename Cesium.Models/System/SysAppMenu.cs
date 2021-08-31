@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cesium.Models.System
 {
-    public class AppMenu: BaseEntity
+    public class SysAppMenu: BaseEntity
     {
         /// <summary>
         /// 菜单Id

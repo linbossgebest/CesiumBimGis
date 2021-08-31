@@ -258,7 +258,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj": {
+                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

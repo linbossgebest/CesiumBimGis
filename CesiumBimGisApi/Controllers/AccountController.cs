@@ -2,6 +2,7 @@
 using Cesium.Core.Helper;
 using Cesium.Core.Options;
 using Cesium.IServices;
+using Cesium.IServices.System;
 using Cesium.ViewModels.ResultModel;
 using Cesium.ViewModels.System;
 using Microsoft.AspNetCore.Authentication;
@@ -26,17 +27,21 @@ namespace CesiumBimGisApi.Controllers
     public class AccountController : BaseController
     {
         private readonly ISysUserService _userService;
+        private readonly ISysRoleService _roleService;
+        private readonly ISysAuthMenuService _sysAuthMenuService;
         private readonly IConfiguration _configuration;
         private readonly DbOption _option;
         private readonly JWTOption _JWToption;
 
-        public AccountController(ISysUserService userService, IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
+        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
         {
             _userService = userService;
+            _roleService = roleService;
+            _sysAuthMenuService = sysAuthMenuService;
             _option = option.Get("DbOption");
-            _configuration = configuration;
             _JWToption = JWToption.Get("JWTOption");
-
+            _configuration = configuration;
+           
         }
 
         [HttpPost]
@@ -81,49 +86,32 @@ namespace CesiumBimGisApi.Controllers
         public async Task<BaseResult> GetUserInfo()
         {
             BaseResult result = new BaseResult();
-            //var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
-            //TokenInfo tokenInfo = new()
-            //{
-            //    UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
-            //    UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
-            //};
-            //var user = await _userService.GetUserInfoAsync(tokenInfo);
-            //if (user != null)
-            //{
-            //    var data = new
-            //    {
-            //        name = user.UserName,
-            //        roles = user.RoleId,
-            //    };
-
-            //    result.IsSuccess = true;
-            //    result.Code = ResultCodeMsg.CommonSuccessCode;
-            //    result.Message = ResultCodeMsg.CommonSuccessMsg;
-            //    result.Data = JsonHelper.ObjectToJSON(data);
-
-            //}
-            //else
-            //{
-            //    result.IsSuccess = false;
-            //    result.Code = ResultCodeMsg.CommonFailCode;
-            //    result.Message = ResultCodeMsg.CommonFailMsg;
-            //}
-
-            var data = new
+            var claimInfo = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            var userId = Int32.Parse(claimInfo.FirstOrDefault(f => f.Type.Equals("UserId")).Value);
+            var roleId = Int32.Parse(claimInfo.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Role)).Value);
+            var user = await _userService.GetUserInfoAsync(userId);
+            var role = await _roleService.GetRoleInfoByUserId(roleId);
+            if (user != null && role != null)
             {
-                name = "linyong",
-                roles = new List<string>() {"admin","test" },
-            };
+                var data = new
+                {
+                    name = user.UserName,
+                    roles = new List<string>() { role.RoleName },
+                };
 
-            result.IsSuccess = true;
-            result.Code = ResultCodeMsg.CommonSuccessCode;
-            result.Message = ResultCodeMsg.CommonSuccessMsg;
-            result.Data = JsonHelper.ObjectToJSON(data);
+                result.IsSuccess = true;
+                result.Code = ResultCodeMsg.CommonSuccessCode;
+                result.Message = ResultCodeMsg.CommonSuccessMsg;
+                result.Data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.IsSuccess = false;
+                result.Code = ResultCodeMsg.CommonFailCode;
+                result.Message = ResultCodeMsg.CommonFailMsg;
+            }
 
-
-            //return JsonHelper.ObjectToJSON(result);
             return result;
-
         }
 
         [HttpPost]
@@ -188,12 +176,71 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 获取菜单信息
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("GetMenuInfo")]
+        public async Task<BaseResult> GetMenuInfo()
         {
-            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
-            return new string[] { "value1", "value2" };
+            BaseResult result = new BaseResult();
+
+            var menu=await _sysAuthMenuService.GetMenuInfo();
+
+            if (menu != null)
+            {
+                var data = new
+                {
+                    menu
+                };
+
+                result.IsSuccess = true;
+                result.Code = ResultCodeMsg.CommonSuccessCode;
+                result.Message = ResultCodeMsg.CommonSuccessMsg;
+                result.Data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.IsSuccess = false;
+                result.Code = ResultCodeMsg.CommonFailCode;
+                result.Message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
         }
 
+
+        [HttpGet]
+        [Route("GetMenuTree")]
+        [AllowAnonymous]
+        public async Task<BaseResult> GetMenuTree()
+        {
+            BaseResult result = new BaseResult();
+
+            var menu = await _sysAuthMenuService.GetMenuInfo();
+            var menuTree = await _sysAuthMenuService.GetMenuTree(menu.ToList());
+
+            if (menuTree != null)
+            {
+                var data = new
+                {
+                    menuTree
+                };
+
+                result.IsSuccess = true;
+                result.Code = ResultCodeMsg.CommonSuccessCode;
+                result.Message = ResultCodeMsg.CommonSuccessMsg;
+                result.Data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.IsSuccess = false;
+                result.Code = ResultCodeMsg.CommonFailCode;
+                result.Message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
     }
 }
