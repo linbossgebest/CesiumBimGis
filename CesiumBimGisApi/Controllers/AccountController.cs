@@ -67,9 +67,16 @@ namespace CesiumBimGisApi.Controllers
             return JsonHelper.ObjectToJSON(result);
         }
 
+        #region 用户信息
+
+        /// <summary>
+        /// 添加用户或者修改用户信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
-        [Route("Add")]
-        public async Task<string> AddUser(UserModel model)
+        [Route("AddUser")]
+        public async Task<string> AddOrModifyUser(UserModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             TokenInfo tokenInfo = new()
@@ -77,10 +84,51 @@ namespace CesiumBimGisApi.Controllers
                 UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
                 UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
             };
-            var result = await _userService.AddUserAsync(model, tokenInfo);
+            var result = await _userService.AddOrModifyUserAsync(model, tokenInfo);
             return JsonHelper.ObjectToJSON(result);
         }
 
+        /// <summary>
+        /// 获取所有用户信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetUserList")]
+        public async Task<BaseResult> GetUserInfoList()
+        {
+            BaseResult result = new BaseResult();
+            var users = await _userService.GetUsersAsync();
+
+            var data = new
+            {
+                items = users,
+                total = users.Count()
+            };
+
+            result.IsSuccess = true;
+            result.Code = ResultCodeMsg.CommonSuccessCode;
+            result.Message = ResultCodeMsg.CommonSuccessMsg;
+            result.Data = JsonHelper.ObjectToJSON(data);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 通过userid删除用户信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteUser")]
+        public async Task<BaseResult> DeleteUserInfo(int userId)
+        {
+            return await _userService.DeleteUserInfo(userId);
+        }
+
+        /// <summary>
+        /// 获取单个用户信息
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetUserInfo")]
         public async Task<BaseResult> GetUserInfo()
@@ -114,6 +162,11 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 用户登录获取bearer token
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [Route("RequestToken")]
@@ -175,6 +228,8 @@ namespace CesiumBimGisApi.Controllers
             //return JsonHelper.ObjectToJSON(result);
             return result;
         }
+
+        #endregion
 
         /// <summary>
         /// 获取菜单信息

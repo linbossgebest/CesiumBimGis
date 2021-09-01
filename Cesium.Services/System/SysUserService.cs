@@ -43,7 +43,7 @@ namespace Cesium.Services
         /// </summary>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        public async Task<SysUser> GetUserInfoAsync(int userId) 
+        public async Task<SysUser> GetUserInfoAsync(int userId)
         {
             var user = await _sysUserRepository.GetAsync(userId);
 
@@ -51,27 +51,90 @@ namespace Cesium.Services
         }
 
         /// <summary>
-        /// 添加用户
+        /// 添加或修改用户
         /// </summary>
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        public async Task<BaseResult> AddUserAsync(UserModel model, TokenInfo tokenInfo)
+        public async Task<BaseResult> AddOrModifyUserAsync(UserModel model, TokenInfo tokenInfo)
         {
             var result = new BaseResult();
-
-            SysUser user = new SysUser
+            SysUser user;
+            if (model.Id == 0)
             {
-                UserName = model.UserName,
-                PassWord = AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys),
-                Mobile = model.Mobile,
-                Email = model.Email,
-                CreateTime = DateTime.Now,
-                CreatorId = tokenInfo.UserId,
-                CreatorName = tokenInfo.UserName
-            };
+                user = new SysUser
+                {
+                    UserName = model.UserName,
+                    PassWord = AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys),
+                    Mobile = model.Mobile,
+                    Email = model.Email,
+                    CreateTime = DateTime.Now,
+                    CreatorId = tokenInfo.UserId,
+                    CreatorName = tokenInfo.UserName
+                };
+                if (await _sysUserRepository.InsertAsync(user) > 0)
+                {
+                    result.IsSuccess = true;
+                    result.Code = ResultCodeMsg.CommonSuccessCode;
+                    result.Message = ResultCodeMsg.CommonSuccessMsg;
+                }
+                else
+                {
+                    result.IsSuccess = false;
+                    result.Code = ResultCodeMsg.CommonFailCode;
+                    result.Message = ResultCodeMsg.CommonFailMsg;
+                }
+            }
+            else
+            {
+                user = new SysUser
+                {
+                    Id= model.Id,
+                    UserName = model.UserName,
+                    PassWord = AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys),
+                    Mobile = model.Mobile,
+                    Email = model.Email,
+                    ModifyTime = DateTime.Now,
+                    ModifyId = tokenInfo.UserId,
+                    ModifyName = tokenInfo.UserName
+                };
+                if (await _sysUserRepository.UpdateAsync(user) > 0)
+                {
+                    result.IsSuccess = true;
+                    result.Code = ResultCodeMsg.CommonSuccessCode;
+                    result.Message = ResultCodeMsg.CommonSuccessMsg;
+                }
+                else
+                {
+                    result.IsSuccess = false;
+                    result.Code = ResultCodeMsg.CommonFailCode;
+                    result.Message = ResultCodeMsg.CommonFailMsg;
+                }
+            }
 
-            if (await _sysUserRepository.InsertAsync(user) > 0)
+            return result;
+        }
+
+        /// <summary>
+        /// 获取所有用户信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<SysUser>> GetUsersAsync()
+        {
+            var users = await _sysUserRepository.GetListAsync();
+
+            return users;
+        }
+
+        /// <summary>
+        /// 通过用户编号删除用户信息
+        /// </summary>
+        /// <param name="userId">用户编号</param>
+        /// <returns></returns>
+        public async Task<BaseResult> DeleteUserInfo(int userId)
+        {
+            var result = new BaseResult();
+            if (await _sysUserRepository.DeleteAsync(userId) > 0)
             {
                 result.IsSuccess = true;
                 result.Code = ResultCodeMsg.CommonSuccessCode;
@@ -84,10 +147,8 @@ namespace Cesium.Services
                 result.Message = ResultCodeMsg.CommonFailMsg;
             }
 
-
             return result;
         }
-
 
     }
 }
