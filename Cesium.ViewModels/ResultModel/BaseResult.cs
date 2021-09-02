@@ -11,7 +11,7 @@ namespace Cesium.ViewModels.ResultModel
         /// <summary>
         /// 是否操作成功
         /// </summary>
-        public bool IsSuccess { get; set; }
+        public bool isSuccess { get; set; }
 
         /// <summary>
         /// 是否登录
@@ -21,16 +21,16 @@ namespace Cesium.ViewModels.ResultModel
         /// <summary>
         /// 结果编码
         /// </summary>
-        public int Code { get; set; }
+        public int code { get; set; }
 
         /// <summary>
         /// 结果消息
         /// </summary>
-        public string Message { get; set; }
+        public string message { get; set; }
 
         /// <summary>
         /// 传递的数据
         /// </summary>
-        public string Data { get; set; }
+        public string data { get; set; }
     }
 }

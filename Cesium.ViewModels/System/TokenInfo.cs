@@ -8,7 +8,14 @@ namespace Cesium.ViewModels.System
 {
     public class TokenInfo
     {
+        /// <summary>
+        /// 用户编号
+        /// </summary>
         public int UserId { get; set; }
+
+        /// <summary>
+        /// 用户名称
+        /// </summary>
         public string UserName { get; set; }
     }
 }

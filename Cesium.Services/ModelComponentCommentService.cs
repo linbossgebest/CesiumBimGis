@@ -28,7 +28,7 @@ namespace Cesium.Services
         public async Task<BaseResult> AddCommentAsync(CommentModel model)
         {
             var result = new BaseResult();
-            if (model.Id == 0) 
+            if (model.Id == 0)
             {
                 ModelComponentComment comment = new ModelComponentComment();
                 comment.ModelId = model.ModelId;
@@ -42,16 +42,16 @@ namespace Cesium.Services
 
                 if (await _modelComponentCommentRepository.InsertAsync(comment) > 0)
                 {
-                    result.IsSuccess = true;
-                    result.Code = ResultCodeMsg.CommonSuccessCode;
-                    result.Message = ResultCodeMsg.CommonSuccessMsg;
+                    result.isSuccess = true;
+                    result.code = ResultCodeMsg.CommonSuccessCode;
+                    result.message = ResultCodeMsg.CommonSuccessMsg;
                 }
                 else
                 {
-                    result.IsSuccess = false;
-                    result.Code = ResultCodeMsg.CommonFailCode;
-                    result.Message = ResultCodeMsg.CommonFailMsg;
-                }     
+                    result.isSuccess = false;
+                    result.code = ResultCodeMsg.CommonFailCode;
+                    result.message = ResultCodeMsg.CommonFailMsg;
+                }
             }
             return result;
         }

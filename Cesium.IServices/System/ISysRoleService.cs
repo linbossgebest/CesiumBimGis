@@ -1,5 +1,6 @@
 ﻿using Cesium.Core.Extensions;
 using Cesium.Models.System;
+using Cesium.ViewModels.ResultModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,18 @@ namespace Cesium.IServices.System
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<SysRole> GetRoleInfoByUserId(int roleId);
+
+        /// <summary>
+        /// 获取所有角色信息
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<SysRole>> GetRolesAsync();
+
+        /// <summary>
+        /// 删除角色信息
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        Task<BaseResult> DeleteRoleInfo(int roleId);
     }
 }

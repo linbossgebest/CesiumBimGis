@@ -30,15 +30,15 @@ namespace Cesium.Services
             var result = new BaseResult();
             if (await _modelComponentRepository.AddListAsync(list) > 0)
             {
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
+                result.isSuccess = true;
+               result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
             }
             else
             {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.CommonFailCode;
-                result.Message = ResultCodeMsg.CommonFailMsg;
+                result.isSuccess = false;
+               result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
             }
 
             return result;
@@ -54,15 +54,15 @@ namespace Cesium.Services
             var result = new BaseResult();
             if (await _modelComponentRepository.InsertAsync(model) > 0)
             {
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
+                result.isSuccess = true;
+               result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
             }
             else
             {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.CommonFailCode;
-                result.Message = ResultCodeMsg.CommonFailMsg;
+                result.isSuccess = false;
+               result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
             }
 
             return result;

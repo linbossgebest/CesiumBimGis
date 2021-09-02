@@ -33,7 +33,7 @@ namespace CesiumBimGisApi.Controllers
         private readonly DbOption _option;
         private readonly JWTOption _JWToption;
 
-        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
+        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
         {
             _userService = userService;
             _roleService = roleService;
@@ -41,30 +41,7 @@ namespace CesiumBimGisApi.Controllers
             _option = option.Get("DbOption");
             _JWToption = JWToption.Get("JWTOption");
             _configuration = configuration;
-           
-        }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("Login")]
-        public async Task<string> Login([FromBody] LoginModel model)
-        {
-            BaseResult result = new BaseResult();
-            var user = await _userService.SignInAsync(model);
-            if (user == null)
-            {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.CommonFailCode;
-                result.Message = ResultCodeMsg.CommonFailMsg;
-            }
-            else
-            {
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
-            }
-
-            return JsonHelper.ObjectToJSON(result);
         }
 
         #region 用户信息
@@ -88,27 +65,33 @@ namespace CesiumBimGisApi.Controllers
             return JsonHelper.ObjectToJSON(result);
         }
 
+
         /// <summary>
         /// 获取所有用户信息
         /// </summary>
+        /// <param name="pageIndex">第几页</param>
+        /// <param name="pageSize">每页的数量</param>
         /// <returns></returns>
         [HttpGet]
         [Route("GetUserList")]
-        public async Task<BaseResult> GetUserInfoList()
+        public async Task<BaseResult> GetUserInfoList(int pageIndex, int pageSize)
         {
             BaseResult result = new BaseResult();
             var users = await _userService.GetUsersAsync();
+            var total = users.Count();
+
+            users = users.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
             var data = new
             {
                 items = users,
-                total = users.Count()
+                total = total
             };
 
-            result.IsSuccess = true;
-            result.Code = ResultCodeMsg.CommonSuccessCode;
-            result.Message = ResultCodeMsg.CommonSuccessMsg;
-            result.Data = JsonHelper.ObjectToJSON(data);
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
 
             return result;
         }
@@ -147,16 +130,16 @@ namespace CesiumBimGisApi.Controllers
                     roles = new List<string>() { role.RoleName },
                 };
 
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
-                result.Data = JsonHelper.ObjectToJSON(data);
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
             }
             else
             {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.CommonFailCode;
-                result.Message = ResultCodeMsg.CommonFailMsg;
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
             }
 
             return result;
@@ -213,23 +196,66 @@ namespace CesiumBimGisApi.Controllers
                     expires_in = 1800
                 };
 
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
-                result.Data = JsonHelper.ObjectToJSON(data);
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
 
             }
             else
             {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.SignInPasswordOrUserNameErrorCode;
-                result.Message = ResultCodeMsg.SignInPasswordOrUserNameErrorMsg;
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.SignInPasswordOrUserNameErrorCode;
+                result.message = ResultCodeMsg.SignInPasswordOrUserNameErrorMsg;
             }
             //return JsonHelper.ObjectToJSON(result);
             return result;
         }
 
         #endregion
+
+        #region 角色信息
+
+        /// <summary>
+        /// 获取所有角色信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetRoleList")]
+        public async Task<BaseResult> GetRoleInfoList()
+        {
+            BaseResult result = new BaseResult();
+            var roles = await _roleService.GetRolesAsync();
+
+            var data = new
+            {
+                items = roles,
+                total = roles.Count()
+            };
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 删除角色信息
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteRole")]
+        public async Task<BaseResult> DeleteRoleInfo(int roleId)
+        {
+            return await _roleService.DeleteRoleInfo(roleId);
+        }
+
+        #endregion
+
+        #region 菜单信息
 
         /// <summary>
         /// 获取菜单信息
@@ -241,7 +267,7 @@ namespace CesiumBimGisApi.Controllers
         {
             BaseResult result = new BaseResult();
 
-            var menu=await _sysAuthMenuService.GetMenuInfo();
+            var menu = await _sysAuthMenuService.GetMenuInfo();
 
             if (menu != null)
             {
@@ -250,16 +276,16 @@ namespace CesiumBimGisApi.Controllers
                     menu
                 };
 
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
-                result.Data = JsonHelper.ObjectToJSON(data);
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
             }
             else
             {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.CommonFailCode;
-                result.Message = ResultCodeMsg.CommonFailMsg;
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
             }
 
             return result;
@@ -283,19 +309,22 @@ namespace CesiumBimGisApi.Controllers
                     menuTree
                 };
 
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
-                result.Data = JsonHelper.ObjectToJSON(data);
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
             }
             else
             {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.CommonFailCode;
-                result.Message = ResultCodeMsg.CommonFailMsg;
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
             }
 
             return result;
         }
+
+        #endregion
+
     }
 }

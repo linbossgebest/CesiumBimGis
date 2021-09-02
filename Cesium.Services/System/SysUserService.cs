@@ -68,48 +68,55 @@ namespace Cesium.Services
                     PassWord = AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys),
                     Mobile = model.Mobile,
                     Email = model.Email,
+                    RoleId = model.RoleId,
                     CreateTime = DateTime.Now,
                     CreatorId = tokenInfo.UserId,
                     CreatorName = tokenInfo.UserName
                 };
                 if (await _sysUserRepository.InsertAsync(user) > 0)
                 {
-                    result.IsSuccess = true;
-                    result.Code = ResultCodeMsg.CommonSuccessCode;
-                    result.Message = ResultCodeMsg.CommonSuccessMsg;
+                    result.isSuccess = true;
+                    result.code = ResultCodeMsg.CommonSuccessCode;
+                    result.message = ResultCodeMsg.CommonSuccessMsg;
                 }
                 else
                 {
-                    result.IsSuccess = false;
-                    result.Code = ResultCodeMsg.CommonFailCode;
-                    result.Message = ResultCodeMsg.CommonFailMsg;
+                    result.isSuccess = false;
+                    result.code = ResultCodeMsg.CommonFailCode;
+                    result.message = ResultCodeMsg.CommonFailMsg;
                 }
             }
             else
             {
-                user = new SysUser
+                user = await _sysUserRepository.GetAsync(model.Id);
+                if (user != null)
                 {
-                    Id= model.Id,
-                    UserName = model.UserName,
-                    PassWord = AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys),
-                    Mobile = model.Mobile,
-                    Email = model.Email,
-                    ModifyTime = DateTime.Now,
-                    ModifyId = tokenInfo.UserId,
-                    ModifyName = tokenInfo.UserName
-                };
-                if (await _sysUserRepository.UpdateAsync(user) > 0)
-                {
-                    result.IsSuccess = true;
-                    result.Code = ResultCodeMsg.CommonSuccessCode;
-                    result.Message = ResultCodeMsg.CommonSuccessMsg;
+                    user.RoleId = model.RoleId;
+                    user.Mobile = model.Mobile;
+                    user.Email = model.Email;
+                    user.ModifyTime = DateTime.Now;
+                    user.ModifyId = tokenInfo.UserId;
+                    user.ModifyName = tokenInfo.UserName;
+                    if (await _sysUserRepository.UpdateAsync(user) > 0)
+                    {
+                        result.isSuccess = true;
+                        result.code = ResultCodeMsg.CommonSuccessCode;
+                        result.message = ResultCodeMsg.CommonSuccessMsg;
+                    }
+                    else
+                    {
+                        result.isSuccess = false;
+                        result.code = ResultCodeMsg.CommonFailCode;
+                        result.message = ResultCodeMsg.CommonFailMsg;
+                    }
                 }
                 else
                 {
-                    result.IsSuccess = false;
-                    result.Code = ResultCodeMsg.CommonFailCode;
-                    result.Message = ResultCodeMsg.CommonFailMsg;
+                    result.isSuccess = false;
+                    result.code = ResultCodeMsg.CommonFailCode;
+                    result.message = ResultCodeMsg.CommonFailMsg;
                 }
+
             }
 
             return result;
@@ -136,15 +143,15 @@ namespace Cesium.Services
             var result = new BaseResult();
             if (await _sysUserRepository.DeleteAsync(userId) > 0)
             {
-                result.IsSuccess = true;
-                result.Code = ResultCodeMsg.CommonSuccessCode;
-                result.Message = ResultCodeMsg.CommonSuccessMsg;
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
             }
             else
             {
-                result.IsSuccess = false;
-                result.Code = ResultCodeMsg.CommonFailCode;
-                result.Message = ResultCodeMsg.CommonFailMsg;
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
             }
 
             return result;
