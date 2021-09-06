@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cesium.ViewModels.System
+namespace Cesium.Models.System
 {
     public class MenuTree
     {

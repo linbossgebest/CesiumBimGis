@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cesium.Core.CustomEnum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +15,19 @@ namespace Cesium.Models.System
         public int Id { get; set; }
 
         /// <summary>
-        /// 父菜单Id
-        /// </summary>
-        public int ParentId { get; set; }
-
-        /// <summary>
         /// 菜单名称
         /// </summary>
         public string MenuName { get; set; }
 
         /// <summary>
-        /// 地址
+        /// 菜单类型
         /// </summary>
-        public string Url { get; set; }
+        public AppMenuType MenuType { get; set; }
+
+        ///// <summary>
+        ///// 地址
+        ///// </summary>
+        //public string Url { get; set; }
 
         /// <summary>
         /// 描述

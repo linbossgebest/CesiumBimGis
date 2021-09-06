@@ -3,6 +3,7 @@ using Cesium.Core.Helper;
 using Cesium.IServices;
 using Cesium.Models;
 using Cesium.ViewModels;
+using Cesium.ViewModels.ResultModel;
 using Cesium.ViewModels.System;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -24,22 +25,113 @@ namespace CesiumBimGisApi.Controllers
         private readonly IModelComponentCommentService _modelComponentCommentService;
         private readonly IModelInfoService _modelInfoService;
         private readonly IModelComponentService _modelComponentService;
+        private readonly IModelComponentDataSourceService _modelComponentDataSourceService;
 
-        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService)
+        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService)
         {
             _modelComponentCommentService = modelComponentCommentService;
             _modelInfoService = modelInfoService;
             _modelComponentService = modelComponentService;
+            _modelComponentDataSourceService = modelComponentDataSourceService;
         }
 
+        #region 构件菜单
+
+        /// <summary>
+        /// 根据构件Id获取构件菜单
+        /// </summary>
+        /// <param name="componentId">构件编号</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetComponentMenu")]
+        [AllowAnonymous]
+        public async Task<BaseResult> GetComponentDataSourceList(string componentId)
+        {
+            BaseResult result = new BaseResult();
+
+            var list = await _modelComponentDataSourceService.GetComponentDataSourceListAsync(componentId);
+
+            if (list != null)
+            {
+                var data = new
+                {
+                    list
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 获取所有构件菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetAllComponentMenu")]
+        public async Task<BaseResult> GetAllComponentDataSourceList()
+        {
+            BaseResult result = new BaseResult();
+
+            var list = await _modelComponentDataSourceService.GetAllComponentDataSourceListAsync();
+
+            if (list != null)
+            {
+                var data = new
+                {
+                    list
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region 构件评论
+
+        /// <summary>
+        /// 添加评论
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AddComment")]
-        public async Task<string> AddComment([FromBody]CommentModel model)
+        public async Task<string> AddComment([FromBody] CommentModel model)
         {
             var result = await _modelComponentCommentService.AddCommentAsync(model);
             return JsonHelper.ObjectToJSON(result);
         }
 
+        #endregion
+
+
+        /// <summary>
+        /// 添加模型
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("AddModel")]
         public async Task<string> AddModelInfo([FromBody] ModelInfo model)

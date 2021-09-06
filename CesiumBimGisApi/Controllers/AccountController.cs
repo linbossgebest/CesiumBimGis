@@ -30,14 +30,16 @@ namespace CesiumBimGisApi.Controllers
         private readonly ISysRoleService _roleService;
         private readonly ISysAuthMenuService _sysAuthMenuService;
         private readonly IConfiguration _configuration;
+        private readonly ISysAppMenuService _sysAppMenuService;
         private readonly DbOption _option;
         private readonly JWTOption _JWToption;
 
-        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
+        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
         {
             _userService = userService;
             _roleService = roleService;
             _sysAuthMenuService = sysAuthMenuService;
+            _sysAppMenuService = sysAppMenuService;
             _option = option.Get("DbOption");
             _JWToption = JWToption.Get("JWTOption");
             _configuration = configuration;
@@ -307,6 +309,75 @@ namespace CesiumBimGisApi.Controllers
                 var data = new
                 {
                     menuTree
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        [HttpGet]
+        [Route("GetAppMenu")]
+        [AllowAnonymous]
+        public async Task<BaseResult> GetAppMenuList(int type)
+        {
+            BaseResult result = new BaseResult();
+
+            var menu = await _sysAppMenuService.GetSysAppMenu(type);
+
+            if (menu != null)
+            {
+                var data = new
+                {
+                    menu
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 查询所有App菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetAllAppMenu")]
+        public async Task<BaseResult> GetAllAppMenuList(int pageIndex, int pageSize)
+        {
+            BaseResult result = new BaseResult();
+
+            var menus = await _sysAppMenuService.GetAllSysAppMenu();
+            var total = menus.Count();
+
+            menus = menus.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            if (menus != null)
+            {
+                var data = new
+                {
+                    items = menus,
+                    total = total
                 };
 
                 result.isSuccess = true;

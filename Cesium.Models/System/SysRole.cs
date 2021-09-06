@@ -32,5 +32,10 @@ namespace Cesium.Models.System
         /// 是否可用
         /// </summary>
         public int IsEnabled { get; set; }
+
+        /// <summary>
+        /// 角色对应菜单
+        /// </summary>
+        public List<MenuTree> Menus { get; set; }
     }
 }
