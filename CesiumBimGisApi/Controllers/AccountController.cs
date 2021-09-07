@@ -358,7 +358,7 @@ namespace CesiumBimGisApi.Controllers
         }
 
         /// <summary>
-        /// 查询所有App菜单
+        /// 查询所有App菜单l
         /// </summary>
         /// <returns></returns>
         [HttpGet]

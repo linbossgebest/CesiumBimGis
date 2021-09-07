@@ -1,4 +1,5 @@
 ﻿using Cesium.Core.CustomEnum;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Cesium.Models
         /// <summary>
         /// 构件id
         /// </summary>
+        [Key]
         public string ComponentId { get; set; }
 
         /// <summary>
@@ -43,9 +45,9 @@ namespace Cesium.Models
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 构件类型
+        /// 构件类型编号
         /// </summary>
-        public ComponentType Type { get; set; }
+        public int ComponentTypeId { get; set; }
 
     }
 }

@@ -32,9 +32,9 @@ namespace Cesium.Services
         /// 获取模型构件菜单数据资源
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListAsync(string componentId)
+        public async Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListAsync(int componentTypeId)
         {
-            return await _modelComponentDataSourceRepository.GetComponentDataSourceListAsync(componentId);
+            return await _modelComponentDataSourceRepository.GetComponentDataSourceListAsync(componentTypeId);
         }
     }
 }

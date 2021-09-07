@@ -13,9 +13,9 @@ namespace Cesium.IRepository
         /// <summary>
         /// 根据构件Id获取构件动态信息
         /// </summary>
-        /// <param name="componentId">构件编号</param>
+        /// <param name="componentId">构件类型编号</param>
         /// <returns></returns>
-        Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListAsync(string componentId);
+        Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListAsync(int componentTypeId);
 
         /// <summary>
         /// 获取所有构件动态信息

@@ -25,7 +25,18 @@ namespace Cesium.IServices
         /// <returns></returns>
         Task<BaseResult> InsertModelComponentAsync(ModelComponent model);
 
-        
+        /// <summary>
+        /// 通过构件编号获取构件信息
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        Task<ModelComponent> GetComponentInfoAsync(string componentId);
+
+        /// <summary>
+        /// 获取所有构件信息
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<ModelComponent>> GetComponentsAsync(string componentId, string componentName);
 
     }
 }

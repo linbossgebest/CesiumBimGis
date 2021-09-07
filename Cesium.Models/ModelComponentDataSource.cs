@@ -14,7 +14,12 @@ namespace Cesium.Models
         /// <summary>
         /// 构件编号
         /// </summary>
-        public string ComponentId { get; set; }
+        //public string ComponentId { get; set; }
+
+        /// <summary>
+        /// 构件类型编号
+        /// </summary>
+        public int ComponentTypeId { get; set; }
 
         /// <summary>
         /// 对应的app显示菜单Id

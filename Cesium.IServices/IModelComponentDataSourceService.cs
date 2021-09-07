@@ -11,10 +11,10 @@ namespace Cesium.IServices
     public interface IModelComponentDataSourceService: IDependency
     {
         /// <summary>
-        /// 根据构件Id获取模型构件菜单数据资源
+        /// 根据构件类型编号获取模型构件菜单数据资源
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListAsync(string componentId);
+        Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListAsync(int componentTypeId);
 
         /// <summary>
         /// 获取所有模型构件菜单数据资源

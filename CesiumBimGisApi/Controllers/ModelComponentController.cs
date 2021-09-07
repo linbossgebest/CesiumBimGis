@@ -9,12 +9,14 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using static Cesium.ViewModels.SceneTreeModel;
 
 namespace CesiumBimGisApi.Controllers
 {
@@ -38,7 +40,7 @@ namespace CesiumBimGisApi.Controllers
         #region 构件菜单
 
         /// <summary>
-        /// 根据构件Id获取构件菜单
+        /// 根据构件类型编号获取构件菜单
         /// </summary>
         /// <param name="componentId">构件编号</param>
         /// <returns></returns>
@@ -49,19 +51,31 @@ namespace CesiumBimGisApi.Controllers
         {
             BaseResult result = new BaseResult();
 
-            var list = await _modelComponentDataSourceService.GetComponentDataSourceListAsync(componentId);
+            var component = await _modelComponentService.GetComponentInfoAsync(componentId);
 
-            if (list != null)
+            if (component != null)
             {
-                var data = new
-                {
-                    list
-                };
+                var componentTypeId = component.ComponentTypeId;//获取该构件的构件类型编号
+                var list = await _modelComponentDataSourceService.GetComponentDataSourceListAsync(componentTypeId);
 
-                result.isSuccess = true;
-                result.code = ResultCodeMsg.CommonSuccessCode;
-                result.message = ResultCodeMsg.CommonSuccessMsg;
-                result.data = JsonHelper.ObjectToJSON(data);
+                if (list != null)
+                {
+                    var data = new
+                    {
+                        list
+                    };
+
+                    result.isSuccess = true;
+                    result.code = ResultCodeMsg.CommonSuccessCode;
+                    result.message = ResultCodeMsg.CommonSuccessMsg;
+                    result.data = JsonHelper.ObjectToJSON(data);
+                }
+                else
+                {
+                    result.isSuccess = false;
+                    result.code = ResultCodeMsg.CommonFailCode;
+                    result.message = ResultCodeMsg.CommonFailMsg;
+                }
             }
             else
             {
@@ -126,6 +140,73 @@ namespace CesiumBimGisApi.Controllers
 
         #endregion
 
+        #region 构件信息
+
+        /// <summary>
+        /// 查询所有构件信息
+        /// </summary>
+        /// <param name="pageIndex">第几页</param>
+        /// <param name="pageSize">每页的数量</param>
+        /// <param name="componentId">构件编号</param>
+        /// <param name="componentName">构件名称</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetComponents")]
+        [AllowAnonymous]
+        public async Task<BaseResult> GetAllComponents(string componentId, string componentName, int pageIndex, int pageSize)
+        {
+            BaseResult result = new BaseResult();
+            var components = await _modelComponentService.GetComponentsAsync(componentId, componentName);
+            var total = components.Count();
+
+            components = components.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            if (components != null)
+            {
+                var data = new
+                {
+                    items = components,
+                    total = total
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 上传构件json文件
+        /// </summary>
+        /// <param name="fileinput"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UploadComponents")]
+        [AllowAnonymous]
+        public async Task<string> UploadComponentFile(IFormFile fileinput)
+        {
+            var stream = fileinput.OpenReadStream();
+            string json = "";
+            using (StreamReader sr = new StreamReader(stream))
+            {
+                json = sr.ReadToEnd().ToString();
+            }
+
+            var list = Json2Models(json);
+            var result = await _modelComponentService.AddModelComponentListAsync(list);
+
+            return JsonHelper.ObjectToJSON(result);
+        }
+
+        #endregion
 
         /// <summary>
         /// 添加模型
@@ -162,8 +243,7 @@ namespace CesiumBimGisApi.Controllers
                     Status = ComponentStatus.InProgress,
                     CompletedTime = DateTime.Now,
                     ParentId = "0",
-                    Type = ComponentType.node
-
+                    ComponentTypeId = 1
                 };
                 list.Add(item);
             }
@@ -171,5 +251,52 @@ namespace CesiumBimGisApi.Controllers
             var result = await _modelComponentService.AddModelComponentListAsync(list);
             return JsonHelper.ObjectToJSON(result);
         }
+
+
+
+        #region private method
+
+        private List<ModelComponent> Json2Models(string json)
+        {
+            List<ModelComponent> modelComponents = new List<ModelComponent>();
+            Rootobject root = JsonConvert.DeserializeObject<Rootobject>(json);//反序列化对象
+            foreach (Scene scene in root.scenes)
+            {
+                foreach (Child child in scene.children)
+                {
+                    HasChild(child, modelComponents, scene.id);
+                }
+            }
+
+            return modelComponents;
+        }
+
+        private static bool HasChild(Child child, List<ModelComponent> modelComponents, string ParentId)
+        {
+            if (child.children != null)
+            {
+                var children = child.children;
+                foreach (Child childItem in children)
+                {
+                    HasChild(childItem, modelComponents, child.id);
+                }
+            }
+            ModelComponent modelComponent = new ModelComponent();
+            modelComponent.ComponentId = child.id;
+            modelComponent.ComponentName = child.name;
+            modelComponent.ComponentTypeId = 1;
+            modelComponent.ParentId = ParentId;
+            modelComponent.Status = ComponentStatus.InProgress;
+            modelComponent.ModelId = 99999;
+            modelComponents.Add(modelComponent);
+
+            return true;
+        }
+
+
+
+        #endregion
+
+
     }
 }

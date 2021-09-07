@@ -20,8 +20,8 @@ namespace Cesium.Respository
 
         public async Task<int> AddListAsync(List<ModelComponent> list)
         {
-            string sql = @" INSERT INTO ModelComponent (ComponentId,ComponentName,ModelId,Status,CompletedTime,ParentId,Type)
-             VALUES(@ComponentId,@ComponentName,@ModelId,@Status,@CompletedTime,@ParentId,@Type); ";
+            string sql = @" INSERT INTO ModelComponent (ComponentId,ComponentName,ModelId,Status,CompletedTime,ParentId,ComponentTypeId)
+             VALUES(@ComponentId,@ComponentName,@ModelId,@Status,@CompletedTime,@ParentId,@ComponentTypeId); ";
             return await _dbConnection.ExecuteAsync(sql, list);
         }
     }
