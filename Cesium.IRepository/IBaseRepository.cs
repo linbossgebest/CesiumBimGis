@@ -149,6 +149,15 @@ namespace Cesium.IRepository
         /// <param name="entity"></param>
         /// <returns></returns>
         Task<int?> InsertAsync(T entity);
+
+        /// <summary>
+        /// 插入一条记录并返回主键值(主键不是int类型时使用)
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<TKey> InsertByKeyAsync(T entity);
+
         /// <summary>
         /// 更新一条数据并返回影响的行数
         /// </summary>

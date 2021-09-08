@@ -45,5 +45,14 @@ namespace Cesium.ViewModels.ResultModel
         /// 用户名或者密码错误
         /// </summary>
         public const string SignInPasswordOrUserNameErrorMsg = "对不起，您输入的用户名或者密码错误";
+
+        /// <summary>
+        /// 编号重复
+        /// </summary>
+        public const int DuplicateNumberCode = 4;
+        /// <summary>
+        /// 编号重复
+        /// </summary>
+        public const string DuplicateNumberErrorMsg = "编号已存在,请确认输入信息";
     }
 }

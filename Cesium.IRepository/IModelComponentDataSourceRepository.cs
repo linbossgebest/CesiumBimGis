@@ -11,7 +11,7 @@ namespace Cesium.IRepository
     public interface IModelComponentDataSourceRepository : IDependency, IBaseRepository<ModelComponentDataSource, int>
     {
         /// <summary>
-        /// 根据构件Id获取构件动态信息
+        /// 根据构件类型Id获取构件动态信息
         /// </summary>
         /// <param name="componentId">构件类型编号</param>
         /// <returns></returns>

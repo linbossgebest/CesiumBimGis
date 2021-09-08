@@ -357,9 +357,12 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
+
         /// <summary>
-        /// 查询所有App菜单l
+        /// 查询所有App菜单
         /// </summary>
+        /// <param name="pageIndex">第几页</param>
+        /// <param name="pageSize">每页的数量</param>
         /// <returns></returns>
         [HttpGet]
         [Route("GetAllAppMenu")]
@@ -395,6 +398,7 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
+    
         #endregion
 
     }

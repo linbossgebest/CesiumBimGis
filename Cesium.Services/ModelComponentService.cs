@@ -3,6 +3,7 @@ using Cesium.IRepository;
 using Cesium.IServices;
 using Cesium.Models;
 using Cesium.ViewModels.ResultModel;
+using Cesium.ViewModels.System;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -82,14 +83,74 @@ namespace Cesium.Services
         }
 
         /// <summary>
-        /// 单个模型构件添加
+        /// 新增模型构件
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<BaseResult> InsertModelComponentAsync(ModelComponent model)
+        public async Task<BaseResult> AddModelComponentAsync(ModelComponent model)
         {
             var result = new BaseResult();
-            if (await _modelComponentRepository.InsertAsync(model) > 0)
+            var existComponent =await _modelComponentRepository.GetAsync(model.ComponentId);
+
+            if (existComponent != null)
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.DuplicateNumberCode;
+                result.message = ResultCodeMsg.DuplicateNumberErrorMsg;
+            }
+            else
+            {
+                if (!(await _modelComponentRepository.InsertByKeyAsync(model)).IsNullOrWhiteSpace())
+                {
+                    result.isSuccess = true;
+                    result.code = ResultCodeMsg.CommonSuccessCode;
+                    result.message = ResultCodeMsg.CommonSuccessMsg;
+                }
+                else
+                {
+                    result.isSuccess = false;
+                    result.code = ResultCodeMsg.CommonFailCode;
+                    result.message = ResultCodeMsg.CommonFailMsg;
+                }
+            }
+          
+
+            return result;
+        }
+
+        /// <summary>
+        /// 修改模型构件
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<BaseResult> UpdateModelComponentAsync(ModelComponent model)
+        {
+            var result = new BaseResult();
+            if (await _modelComponentRepository.UpdateAsync(model) > 0)
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 删除构件数据
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        public async Task<BaseResult> DeleteModelComponent(string componentId)
+        {
+            var result = new BaseResult();
+            if (await _modelComponentRepository.DeleteAsync(componentId) > 0)
             {
                 result.isSuccess = true;
                 result.code = ResultCodeMsg.CommonSuccessCode;

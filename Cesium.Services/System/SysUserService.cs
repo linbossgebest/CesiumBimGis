@@ -91,6 +91,7 @@ namespace Cesium.Services
                 user = await _sysUserRepository.GetAsync(model.Id);
                 if (user != null)
                 {
+                    user.UserName = model.UserName;
                     user.RoleId = model.RoleId;
                     user.Mobile = model.Mobile;
                     user.Email = model.Email;

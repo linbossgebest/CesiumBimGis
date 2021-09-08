@@ -2,6 +2,9 @@
 using Cesium.IRepository;
 using Cesium.IServices;
 using Cesium.Models;
+using Cesium.ViewModels;
+using Cesium.ViewModels.ResultModel;
+using Cesium.ViewModels.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +20,85 @@ namespace Cesium.Services
         public ModelComponentDataSourceService(IModelComponentDataSourceRepository modelComponentDataSourceRepository)
         {
             _modelComponentDataSourceRepository = modelComponentDataSourceRepository;
+        }
+
+        public async Task<BaseResult> AddOrModifyComponentDataSourceAsync(ComponentMenuModel model, TokenInfo tokenInfo)
+        {
+            var result = new BaseResult();
+            ModelComponentDataSource source;
+            if (model.Id == 0)//新增
+            {
+                source = new ModelComponentDataSource
+                {
+                    ComponentTypeId = model.ComponentTypeId,
+                    AppMenuId = model.AppMenuId,
+                    CustomMenuName = model.CustomMenuName,
+                    CustomMenuSrc = model.CustomMenuSrc,
+                };
+                if (await _modelComponentDataSourceRepository.InsertAsync(source) > 0)
+                {
+                    result.isSuccess = true;
+                    result.code = ResultCodeMsg.CommonSuccessCode;
+                    result.message = ResultCodeMsg.CommonSuccessMsg;
+                }
+                else
+                {
+                    result.isSuccess = false;
+                    result.code = ResultCodeMsg.CommonFailCode;
+                    result.message = ResultCodeMsg.CommonFailMsg;
+                }
+            }
+            else//修改
+            {
+                source = await _modelComponentDataSourceRepository.GetAsync(model.Id);
+                if (source != null)
+                {
+                    source.ComponentTypeId = model.ComponentTypeId;
+                    source.AppMenuId = model.AppMenuId;
+                    source.CustomMenuName = model.CustomMenuName;
+                    source.CustomMenuSrc = model.CustomMenuSrc;
+                    if (await _modelComponentDataSourceRepository.UpdateAsync(source) > 0)
+                    {
+                        result.isSuccess = true;
+                        result.code = ResultCodeMsg.CommonSuccessCode;
+                        result.message = ResultCodeMsg.CommonSuccessMsg;
+                    }
+                    else
+                    {
+                        result.isSuccess = false;
+                        result.code = ResultCodeMsg.CommonFailCode;
+                        result.message = ResultCodeMsg.CommonFailMsg;
+                    }
+                }
+                else
+                {
+                    result.isSuccess = false;
+                    result.code = ResultCodeMsg.CommonFailCode;
+                    result.message = ResultCodeMsg.CommonFailMsg;
+                }
+
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResult> DeleteComponentDataSource(int id)
+        {
+            var result = new BaseResult();
+            if (await _modelComponentDataSourceRepository.DeleteAsync(id) > 0)
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
         }
 
         /// <summary>

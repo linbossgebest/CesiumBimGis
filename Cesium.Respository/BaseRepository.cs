@@ -85,6 +85,12 @@ namespace Cesium.Respository
         {
             return _dbConnection.GetListPagedAsync<T>(pageNumber, rowsPerPage, conditions, orderby, parameters);
         }
+
+        public Task<TKey> InsertByKeyAsync(T entity)
+        {
+            return _dbConnection.InsertAsync<TKey, T>(entity);
+        }
+
         public Task<int?> InsertAsync(T entity)
         {
             return _dbConnection.InsertAsync(entity);

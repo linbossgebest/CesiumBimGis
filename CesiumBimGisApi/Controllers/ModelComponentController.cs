@@ -28,19 +28,21 @@ namespace CesiumBimGisApi.Controllers
         private readonly IModelInfoService _modelInfoService;
         private readonly IModelComponentService _modelComponentService;
         private readonly IModelComponentDataSourceService _modelComponentDataSourceService;
+        private readonly IModelComponentTypeService _modelComponentTypeService;
 
-        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService)
+        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService, IModelComponentTypeService modelComponentTypeService)
         {
             _modelComponentCommentService = modelComponentCommentService;
             _modelInfoService = modelInfoService;
             _modelComponentService = modelComponentService;
             _modelComponentDataSourceService = modelComponentDataSourceService;
+            _modelComponentTypeService = modelComponentTypeService;
         }
 
         #region 构件菜单
 
         /// <summary>
-        /// 根据构件类型编号获取构件菜单
+        /// 根据构件编号获取构件菜单
         /// </summary>
         /// <param name="componentId">构件编号</param>
         /// <returns></returns>
@@ -51,7 +53,7 @@ namespace CesiumBimGisApi.Controllers
         {
             BaseResult result = new BaseResult();
 
-            var component = await _modelComponentService.GetComponentInfoAsync(componentId);
+            var component = await _modelComponentService.GetComponentInfoAsync(componentId);//获取构件信息
 
             if (component != null)
             {
@@ -90,20 +92,25 @@ namespace CesiumBimGisApi.Controllers
         /// <summary>
         /// 获取所有构件菜单
         /// </summary>
+        /// <param name="pageIndex">第几页</param>
+        /// <param name="pageSize">每页的数量</param>
         /// <returns></returns>
         [HttpGet]
         [Route("GetAllComponentMenu")]
-        public async Task<BaseResult> GetAllComponentDataSourceList()
+        public async Task<BaseResult> GetAllComponentDataSourceList(int pageIndex, int pageSize)
         {
             BaseResult result = new BaseResult();
 
             var list = await _modelComponentDataSourceService.GetAllComponentDataSourceListAsync();
+            var total = list.Count();
+            list = list.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
             if (list != null)
             {
                 var data = new
                 {
-                    list
+                    items = list,
+                    total = total
                 };
 
                 result.isSuccess = true;
@@ -119,6 +126,103 @@ namespace CesiumBimGisApi.Controllers
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// 新增修改构件菜单信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AddComponentMenu")]
+        public async Task<string> AddOrModifyComponentDataSource(ComponentMenuModel model)
+        {
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            TokenInfo tokenInfo = new()
+            {
+                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            };
+            var result = await _modelComponentDataSourceService.AddOrModifyComponentDataSourceAsync(model, tokenInfo);
+            return JsonHelper.ObjectToJSON(result);
+        }
+
+        /// <summary>
+        /// 删除构件菜单信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteComponentMenu")]
+        public async Task<BaseResult> DeleteComponentDataSource(int id)
+        {
+            return await _modelComponentDataSourceService.DeleteComponentDataSource(id);
+        }
+
+        #endregion
+
+        #region 构件菜单类型
+
+        /// <summary>
+        /// 添加或修改构件菜单类型信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AddComponentType")]
+        public async Task<string> AddOrModifyComponentType(ComponentTypeModel model)
+        {
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            TokenInfo tokenInfo = new()
+            {
+                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            };
+            var result = await _modelComponentTypeService.AddOrModifyComponentTypeAsync(model, tokenInfo);
+            return JsonHelper.ObjectToJSON(result);
+        }
+
+        /// <summary>
+        /// 查询所有构件类型
+        /// </summary>
+        /// <param name="pageIndex">第几页</param>
+        /// <param name="pageSize">每页的数量</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetComponentTypes")]
+        public async Task<BaseResult> GetComponentTypeList(int pageIndex, int pageSize)
+        {
+            BaseResult result = new BaseResult();
+            var types = await _modelComponentTypeService.GetComponentTypesAsync();
+            var total = types.Count();
+
+            types = types.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            var data = new
+            {
+                items = types,
+                total = total
+            };
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// 根据类型Id删除类型信息
+        /// </summary>
+        /// <param name="typeId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteComponentType")]
+        public async Task<BaseResult> DeleteComponentTypeInfo(int typeId)
+        {
+            return await _modelComponentTypeService.DeleteComponentType(typeId);
         }
 
         #endregion
@@ -141,6 +245,42 @@ namespace CesiumBimGisApi.Controllers
         #endregion
 
         #region 构件信息
+
+        /// <summary>
+        /// 新增构件信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AddComponent")]
+        public async Task<BaseResult> AddComponentInfo(ModelComponent model)
+        {
+            return await _modelComponentService.AddModelComponentAsync(model);
+        }
+
+        /// <summary>
+        /// 修改构件信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UpdateComponent")]
+        public async Task<BaseResult> UpdateComponentInfo(ModelComponent model)
+        {
+            return await _modelComponentService.UpdateModelComponentAsync(model);
+        }
+
+        /// <summary>
+        /// 删除构件信息
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteComponent")]
+        public async Task<BaseResult> DeleteComponentInfo(string componentId)
+        {
+            return await _modelComponentService.DeleteModelComponent(componentId);
+        }
 
         /// <summary>
         /// 查询所有构件信息
@@ -183,6 +323,7 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
+
         /// <summary>
         /// 上传构件json文件
         /// </summary>
@@ -208,6 +349,7 @@ namespace CesiumBimGisApi.Controllers
 
         #endregion
 
+       
         /// <summary>
         /// 添加模型
         /// </summary>
