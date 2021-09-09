@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace Cesium.Services.System
 {
-    public class SysPermissionService : ISysPermissionService, IDependency
+    public class SysRoleMenuService : ISysRoleMenuService, IDependency
     {
-        private readonly ISysPermissionRepository _sysPermissionRepository;
+        private readonly ISysRoleMenuRepository _sysRoleMenuRepository;
 
-        public SysPermissionService(ISysPermissionRepository sysPermissionRepository)
+        public SysRoleMenuService(ISysRoleMenuRepository sysRoleMenuRepository)
         {
-            _sysPermissionRepository = sysPermissionRepository;
+            _sysRoleMenuRepository = sysRoleMenuRepository;
         }
 
         /// <summary>
         /// 查询所有权限信息
         /// </summary>
         /// <returns></returns>
-        public Task<IEnumerable<SysPermission>> GetPermissionInfo()
+        public Task<IEnumerable<SysRoleMenu>> GetSysRoleMenuInfo()
         {
-           return _sysPermissionRepository.GetListAsync();
+           return _sysRoleMenuRepository.GetListAsync();
         }
 
         /// <summary>
@@ -33,9 +33,9 @@ namespace Cesium.Services.System
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public Task<IEnumerable<SysPermission>> GetPermissionInfoByRole(int roleId)
+        public Task<IEnumerable<SysRoleMenu>> GetSysRoleMenuByRole(int roleId)
         {
-            return _sysPermissionRepository.GetListAsync(new { RoleId = roleId });
+            return _sysRoleMenuRepository.GetListAsync(new { RoleId = roleId });
         }
     }
 }

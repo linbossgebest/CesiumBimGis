@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Cesium.IRepository.System
 {
-    public interface ISysPermissionRepository: IDependency, IBaseRepository<SysPermission, int>
+    public interface ISysUserRoleRepository : IDependency, IBaseRepository<SysUserRole, int>
     {
     }
 }

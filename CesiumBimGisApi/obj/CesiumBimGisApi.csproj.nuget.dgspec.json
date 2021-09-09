@@ -134,6 +134,9 @@
             "projectReferences": {
               "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj": {
                 "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj"
+              },
+              "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj": {
+                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj"
               }
             }
           }

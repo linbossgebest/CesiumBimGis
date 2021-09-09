@@ -560,7 +560,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Cesium.Models": "1.0.0"
+          "Cesium.Models": "1.0.0",
+          "Cesium.ViewModels": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Cesium.IRepository.dll": {}
@@ -580,6 +581,19 @@
         },
         "runtime": {
           "bin/placeholder/Cesium.Models.dll": {}
+        }
+      },
+      "Cesium.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Cesium.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Cesium.ViewModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Cesium.ViewModels.dll": {}
         }
       }
     }
@@ -1773,6 +1787,11 @@
       "type": "project",
       "path": "../Cesium.Models/Cesium.Models.csproj",
       "msbuildProject": "../Cesium.Models/Cesium.Models.csproj"
+    },
+    "Cesium.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../Cesium.ViewModels/Cesium.ViewModels.csproj",
+      "msbuildProject": "../Cesium.ViewModels/Cesium.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -135,7 +135,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddComponentMenu")]
-        public async Task<string> AddOrModifyComponentDataSource(ComponentMenuModel model)
+        public async Task<string> AddOrModifyComponentDataSource([FromBody] ComponentMenuModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             TokenInfo tokenInfo = new()
@@ -170,7 +170,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddComponentType")]
-        public async Task<string> AddOrModifyComponentType(ComponentTypeModel model)
+        public async Task<string> AddOrModifyComponentType([FromBody] ComponentTypeModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             TokenInfo tokenInfo = new()
@@ -253,7 +253,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddComponent")]
-        public async Task<BaseResult> AddComponentInfo(ModelComponent model)
+        public async Task<BaseResult> AddComponentInfo([FromBody] ModelComponent model)
         {
             return await _modelComponentService.AddModelComponentAsync(model);
         }
@@ -265,7 +265,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("UpdateComponent")]
-        public async Task<BaseResult> UpdateComponentInfo(ModelComponent model)
+        public async Task<BaseResult> UpdateComponentInfo([FromBody] ModelComponent model)
         {
             return await _modelComponentService.UpdateModelComponentAsync(model);
         }
@@ -349,7 +349,7 @@ namespace CesiumBimGisApi.Controllers
 
         #endregion
 
-       
+
         /// <summary>
         /// 添加模型
         /// </summary>

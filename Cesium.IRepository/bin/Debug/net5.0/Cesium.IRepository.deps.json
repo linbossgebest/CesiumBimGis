@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v5.0": {
       "Cesium.IRepository/1.0.0": {
         "dependencies": {
-          "Cesium.Models": "1.0.0"
+          "Cesium.Models": "1.0.0",
+          "Cesium.ViewModels": "1.0.0"
         },
         "runtime": {
           "Cesium.IRepository.dll": {}
@@ -426,6 +427,14 @@
         "runtime": {
           "Cesium.Models.dll": {}
         }
+      },
+      "Cesium.ViewModels/1.0.0": {
+        "dependencies": {
+          "Cesium.Models": "1.0.0"
+        },
+        "runtime": {
+          "Cesium.ViewModels.dll": {}
+        }
       }
     }
   },
@@ -721,6 +730,11 @@
       "sha512": ""
     },
     "Cesium.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Cesium.ViewModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

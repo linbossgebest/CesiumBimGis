@@ -24,9 +24,9 @@ namespace Cesium.ViewModels.System
         public string PassWord { get; set; }
 
         /// <summary>
-        /// 角色Id
+        /// 角色Id数组
         /// </summary>
-        public int RoleId { get; set; }
+        public List<int> RoleIds { get; set; }
 
         /// <summary>
         /// 手机号码

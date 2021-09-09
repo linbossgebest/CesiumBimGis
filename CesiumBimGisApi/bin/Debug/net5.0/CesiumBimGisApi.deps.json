@@ -883,7 +883,8 @@
       },
       "Cesium.IRepository/1.0.0": {
         "dependencies": {
-          "Cesium.Models": "1.0.0"
+          "Cesium.Models": "1.0.0",
+          "Cesium.ViewModels": "1.0.0"
         },
         "runtime": {
           "Cesium.IRepository.dll": {}

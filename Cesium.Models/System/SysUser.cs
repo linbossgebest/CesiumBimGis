@@ -26,7 +26,7 @@ namespace Cesium.Models.System
         /// <summary>
         /// 角色Id
         /// </summary>
-        public int RoleId { get; set; }
+        //public int RoleId { get; set; }
 
         /// <summary>
         /// 手机号码

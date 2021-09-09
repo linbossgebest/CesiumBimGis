@@ -31,15 +31,17 @@ namespace CesiumBimGisApi.Controllers
         private readonly ISysAuthMenuService _sysAuthMenuService;
         private readonly IConfiguration _configuration;
         private readonly ISysAppMenuService _sysAppMenuService;
+        private readonly ISysUserRoleService _sysUserRoleService;
         private readonly DbOption _option;
         private readonly JWTOption _JWToption;
 
-        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
+        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService, ISysUserRoleService sysUserRoleService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
         {
             _userService = userService;
             _roleService = roleService;
             _sysAuthMenuService = sysAuthMenuService;
             _sysAppMenuService = sysAppMenuService;
+            _sysUserRoleService = sysUserRoleService;
             _option = option.Get("DbOption");
             _JWToption = JWToption.Get("JWTOption");
             _configuration = configuration;
@@ -55,7 +57,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddUser")]
-        public async Task<string> AddOrModifyUser(UserModel model)
+        public async Task<string> AddOrModifyUser([FromBody] UserModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             TokenInfo tokenInfo = new()
@@ -121,15 +123,21 @@ namespace CesiumBimGisApi.Controllers
             BaseResult result = new BaseResult();
             var claimInfo = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             var userId = Int32.Parse(claimInfo.FirstOrDefault(f => f.Type.Equals("UserId")).Value);
-            var roleId = Int32.Parse(claimInfo.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Role)).Value);
+            //var roleId = Int32.Parse(claimInfo.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Role)).Value);
             var user = await _userService.GetUserInfoAsync(userId);
-            var role = await _roleService.GetRoleInfoByUserId(roleId);
-            if (user != null && role != null)
+            var userRoles = await _sysUserRoleService.GetUserRoleListAsync(userId);
+            List<int> roles = new List<int>();
+            foreach (var item in userRoles)
+            {
+                roles.Add(item.RoleId);
+            }
+            //var role = await _roleService.GetRoleInfoByUserId(roleId);
+            if (user != null)
             {
                 var data = new
                 {
                     name = user.UserName,
-                    roles = new List<string>() { role.RoleName },
+                    roles = roles,
                 };
 
                 result.isSuccess = true;
@@ -165,7 +173,7 @@ namespace CesiumBimGisApi.Controllers
                {
                    new Claim(ClaimTypes.Name, user.UserName),
                    new Claim("UserId", user.Id.ToString()),
-                   new Claim(ClaimTypes.Role, user.RoleId.ToString())
+                  // new Claim(ClaimTypes.Role, user.RoleId.ToString())
                };
                 //sign the token using a secret key.This secret will be shared between your API and anything that needs to check that the token is legit.
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecurityKey"]));

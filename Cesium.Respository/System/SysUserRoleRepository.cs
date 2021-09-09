@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Cesium.Respository.System
 {
-    public class SysPermissionRepository : BaseRepository<SysPermission, int>, IDependency, ISysPermissionRepository
+    public class SysUserRoleRepository : BaseRepository<SysUserRole, int>, IDependency, ISysUserRoleRepository
     {
-        public SysPermissionRepository(IOptionsSnapshot<DbOption> options) : base(options.Get("DbOption"))
+        public SysUserRoleRepository(IOptionsSnapshot<DbOption> options) : base(options.Get("DbOption"))
         {
         }
     }
