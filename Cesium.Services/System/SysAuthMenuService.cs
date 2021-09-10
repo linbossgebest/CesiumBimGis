@@ -31,6 +31,17 @@ namespace Cesium.Services.System
         }
 
         /// <summary>
+        /// 通过menuIds获取对应的菜单信息
+        /// </summary>
+        /// <param name="menuIds"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<SysAuthMenu>> GetMenuInfo(List<int> menuIds)
+        {
+            var result = await _sysAuthMenuRepository.GetSysAuthMenuListAsync(menuIds);
+            return result;
+        }
+
+        /// <summary>
         /// 根据菜单信息生成菜单树
         /// </summary>
         /// <returns></returns>

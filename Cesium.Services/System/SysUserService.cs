@@ -73,70 +73,6 @@ namespace Cesium.Services
             }
 
             return result;
-
-
-            //SysUser user;
-            //if (model.Id == 0)
-            //{
-            //    user = new SysUser
-            //    {
-            //        UserName = model.UserName,
-            //        PassWord = AESEncryptHelper.Encode(model.PassWord.Trim(), CesiumKeys.AesEncryptKeys),
-            //        Mobile = model.Mobile,
-            //        Email = model.Email,
-            //       // RoleId = model.RoleId,
-            //        CreateTime = DateTime.Now,
-            //        CreatorId = tokenInfo.UserId,
-            //        CreatorName = tokenInfo.UserName
-            //    };
-            //    if (await _sysUserRepository.InsertAsync(user) > 0)
-            //    {
-            //        result.isSuccess = true;
-            //        result.code = ResultCodeMsg.CommonSuccessCode;
-            //        result.message = ResultCodeMsg.CommonSuccessMsg;
-            //    }
-            //    else
-            //    {
-            //        result.isSuccess = false;
-            //        result.code = ResultCodeMsg.CommonFailCode;
-            //        result.message = ResultCodeMsg.CommonFailMsg;
-            //    }
-            //}
-            //else
-            //{
-            //    user = await _sysUserRepository.GetAsync(model.Id);
-            //    if (user != null)
-            //    {
-            //        user.UserName = model.UserName;
-            //       // user.RoleId = model.RoleId;
-            //        user.Mobile = model.Mobile;
-            //        user.Email = model.Email;
-            //        user.ModifyTime = DateTime.Now;
-            //        user.ModifyId = tokenInfo.UserId;
-            //        user.ModifyName = tokenInfo.UserName;
-            //        if (await _sysUserRepository.UpdateAsync(user) > 0)
-            //        {
-            //            result.isSuccess = true;
-            //            result.code = ResultCodeMsg.CommonSuccessCode;
-            //            result.message = ResultCodeMsg.CommonSuccessMsg;
-            //        }
-            //        else
-            //        {
-            //            result.isSuccess = false;
-            //            result.code = ResultCodeMsg.CommonFailCode;
-            //            result.message = ResultCodeMsg.CommonFailMsg;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        result.isSuccess = false;
-            //        result.code = ResultCodeMsg.CommonFailCode;
-            //        result.message = ResultCodeMsg.CommonFailMsg;
-            //    }
-
-            //}
-
-
         }
 
         /// <summary>
@@ -158,7 +94,7 @@ namespace Cesium.Services
         public async Task<BaseResult> DeleteUserInfo(int userId)
         {
             var result = new BaseResult();
-            if (await _sysUserRepository.DeleteAsync(userId) > 0)
+            if (await _sysUserRepository.DeleteUserInfo(userId))
             {
                 result.isSuccess = true;
                 result.code = ResultCodeMsg.CommonSuccessCode;

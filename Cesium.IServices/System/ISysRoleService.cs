@@ -1,6 +1,7 @@
 ﻿using Cesium.Core.Extensions;
 using Cesium.Models.System;
 using Cesium.ViewModels.ResultModel;
+using Cesium.ViewModels.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ namespace Cesium.IServices.System
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<SysRole>> GetRolesAsync();
+
+        /// <summary>
+        /// 添加或修改角色信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="tokenInfo"></param>
+        /// <returns></returns>
+        Task<BaseResult> AddOrModifyRoleAsync(RoleModel model, TokenInfo tokenInfo);
 
         /// <summary>
         /// 删除角色信息

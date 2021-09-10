@@ -15,5 +15,12 @@ namespace Cesium.IRepository.System
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<SysAuthMenu>> GetSysAuthMenuListAsync();
+
+        /// <summary>
+        /// 根据条件自定义获取菜单信息
+        /// </summary>
+        /// <param name="menuIds"></param>
+        /// <returns></returns>
+        Task<IEnumerable<SysAuthMenu>> GetSysAuthMenuListAsync(List<int> menuIds);
     }
 }

@@ -44,7 +44,7 @@ namespace Cesium.Respository
 
         public async Task<IEnumerable<ModelComponentDataSource>> GetAllComponentDataSourceListAsync()
         {
-            string sql = "SELECT * FROM ModelComponentDataSource mcds INNER JOIN SysAppMenu sam ON mcds.AppMenuId = sam.Id ORDER BY OrderNo";
+            string sql = "SELECT * FROM ModelComponentDataSource mcds INNER JOIN SysAppMenu sam ON mcds.AppMenuId = sam.Id ";
             HashSet<ModelComponentDataSource> list = new();
             ModelComponentDataSource item = null;
             var result = await _dbConnection.QueryAsync<ModelComponentDataSource, SysAppMenu, ModelComponentDataSource>(sql, (componentDataSource, sysAppMenu) =>

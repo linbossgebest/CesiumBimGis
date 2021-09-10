@@ -19,6 +19,12 @@ namespace Cesium.IServices.System
         Task<IEnumerable<SysUserRole>> GetUserRoleListAsync(int userId);
 
         /// <summary>
+        /// 获取所有用户角色信息
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<SysUserRole>> GetUserRoleListAsync();
+
+        /// <summary>
         /// 添加用户角色信息
         /// </summary>
         /// <param name="userId"></param>

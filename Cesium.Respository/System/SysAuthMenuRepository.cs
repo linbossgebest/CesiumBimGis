@@ -39,5 +39,27 @@ namespace Cesium.Respository.System
             return list;
         }
 
+        public async Task<IEnumerable<SysAuthMenu>> GetSysAuthMenuListAsync(List<int> menuIds)
+        {
+            string sql = "SELECT * FROM SysAuthMenu sam INNER JOIN SysAuthMenuMeta samm ON sam.Id = samm.MenuId WHERE sam.Id in @menuIds";
+            HashSet<SysAuthMenu> list = new();
+            SysAuthMenu item = null;
+            var result = await _dbConnection.QueryAsync<SysAuthMenu, SysAuthMenuMeta, SysAuthMenu>(sql, (sysAuthMenu, sysAuthMenuMeta) =>
+            {
+                if (item == null || item.Id != sysAuthMenu.Id)
+                    item = sysAuthMenu;
+
+                if (sysAuthMenuMeta != null)
+                    item.Meta = sysAuthMenuMeta;
+
+                if (!list.Any(m => m.Id == item.Id))
+                    list.Add(item);
+
+                return null;
+            }, new { menuIds = menuIds });
+
+            return list;
+        }
+
     }
 }

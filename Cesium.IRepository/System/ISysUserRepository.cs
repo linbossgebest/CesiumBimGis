@@ -18,5 +18,13 @@ namespace Cesium.IRepository
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
         bool AddOrUpdate(UserModel model, TokenInfo tokenInfo);
+
+
+        /// <summary>
+        /// 事务执行 删除用户信息以及删除用户角色表关联信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<bool> DeleteUserInfo(int userId);
     }
 }

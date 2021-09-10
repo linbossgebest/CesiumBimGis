@@ -3,6 +3,7 @@ using Cesium.IRepository.System;
 using Cesium.IServices.System;
 using Cesium.Models.System;
 using Cesium.ViewModels.ResultModel;
+using Cesium.ViewModels.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace Cesium.Services.System
     public class SysRoleService : ISysRoleService, IDependency
     {
         private readonly ISysRoleRepository _sysRoleRepository;
+        private readonly ISysRoleMenuService _sysRoleMenuService
 
-        public SysRoleService(ISysRoleRepository sysRoleRepository)
+        public SysRoleService(ISysRoleRepository sysRoleRepository, ISysRoleMenuService sysRoleMenuService)
         {
             _sysRoleRepository = sysRoleRepository;
+            _sysRoleMenuService = sysRoleMenuService;
         }
 
 
@@ -55,6 +58,25 @@ namespace Cesium.Services.System
         {
             var result = new BaseResult();
             if (await _sysRoleRepository.DeleteAsync(roleId) > 0)
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResult> AddOrModifyRoleAsync(RoleModel model, TokenInfo tokenInfo)
+        {
+            var result = new BaseResult();
+            if (await _sysRoleRepository.AddOrUpdate(model, tokenInfo))
             {
                 result.isSuccess = true;
                 result.code = ResultCodeMsg.CommonSuccessCode;

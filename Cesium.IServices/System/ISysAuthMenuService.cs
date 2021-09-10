@@ -18,6 +18,13 @@ namespace Cesium.IServices.System
         Task<IEnumerable<SysAuthMenu>> GetMenuInfo();
 
         /// <summary>
+        /// 通过menuIds获取对应的菜单信息
+        /// </summary>
+        /// <param name="menuIds"></param>
+        /// <returns></returns>
+        Task<IEnumerable<SysAuthMenu>> GetMenuInfo(List<int> menuIds);
+
+        /// <summary>
         /// 生成菜单树
         /// </summary>
         /// <returns></returns>

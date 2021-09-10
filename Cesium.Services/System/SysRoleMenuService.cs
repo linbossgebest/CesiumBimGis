@@ -2,6 +2,7 @@
 using Cesium.IRepository.System;
 using Cesium.IServices.System;
 using Cesium.Models.System;
+using Cesium.ViewModels.ResultModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,9 @@ namespace Cesium.Services.System
         /// 查询所有权限信息
         /// </summary>
         /// <returns></returns>
-        public Task<IEnumerable<SysRoleMenu>> GetSysRoleMenuInfo()
+        public async Task<IEnumerable<SysRoleMenu>> GetSysRoleMenuInfo()
         {
-           return _sysRoleMenuRepository.GetListAsync();
+           return await _sysRoleMenuRepository.GetListAsync();
         }
 
         /// <summary>
@@ -33,9 +34,27 @@ namespace Cesium.Services.System
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public Task<IEnumerable<SysRoleMenu>> GetSysRoleMenuByRole(int roleId)
+        public async Task<IEnumerable<SysRoleMenu>> GetSysRoleMenuByRole(int roleId)
         {
-            return _sysRoleMenuRepository.GetListAsync(new { RoleId = roleId });
+            return await _sysRoleMenuRepository.GetListAsync(new { RoleId = roleId });
+        }
+
+
+        public async Task<BaseResult> AddSysRoleMenuListAsync(List<SysRoleMenu> list)
+        {
+            var result = new BaseResult();
+
+            var roleId = list.FirstOrDefault().RoleId;
+            //先删除信息 再添加信息
+            await _sysRoleMenuRepository.DeleteListAsync(new { RoleId= roleId });
+
+            await _sysRoleMenuRepository.AddListAsync(list);
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+
+            return result;
         }
     }
 }

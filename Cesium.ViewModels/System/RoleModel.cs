@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cesium.Models.System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,5 +28,10 @@ namespace Cesium.ViewModels.System
         /// 排序编号
         /// </summary>
         public int? OrderNo { get; set; }
+
+        /// <summary>
+        /// 角色菜单信息
+        /// </summary>
+        public List<SysRoleMenu> SysRoleMenus { get; set; }
     }
 }

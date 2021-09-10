@@ -3,6 +3,7 @@ using Cesium.Core.Helper;
 using Cesium.Core.Options;
 using Cesium.IServices;
 using Cesium.IServices.System;
+using Cesium.Models.System;
 using Cesium.ViewModels.ResultModel;
 using Cesium.ViewModels.System;
 using Microsoft.AspNetCore.Authentication;
@@ -32,16 +33,18 @@ namespace CesiumBimGisApi.Controllers
         private readonly IConfiguration _configuration;
         private readonly ISysAppMenuService _sysAppMenuService;
         private readonly ISysUserRoleService _sysUserRoleService;
+        private readonly ISysRoleMenuService _sysRoleMenuService;
         private readonly DbOption _option;
         private readonly JWTOption _JWToption;
 
-        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService, ISysUserRoleService sysUserRoleService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
+        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService, ISysUserRoleService sysUserRoleService, ISysRoleMenuService sysRoleMenuService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
         {
             _userService = userService;
             _roleService = roleService;
             _sysAuthMenuService = sysAuthMenuService;
             _sysAppMenuService = sysAppMenuService;
             _sysUserRoleService = sysUserRoleService;
+            _sysRoleMenuService = sysRoleMenuService;
             _option = option.Get("DbOption");
             _JWToption = JWToption.Get("JWTOption");
             _configuration = configuration;
@@ -101,7 +104,7 @@ namespace CesiumBimGisApi.Controllers
         }
 
         /// <summary>
-        /// 通过userid删除用户信息
+        /// 根据userid删除用户信息
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -178,7 +181,6 @@ namespace CesiumBimGisApi.Controllers
                 //sign the token using a secret key.This secret will be shared between your API and anything that needs to check that the token is legit.
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecurityKey"]));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                //.NET Core’s JwtSecurityToken class takes on the heavy lifting and actually creates the token.
                 /**
                  * Claims (Payload)
                     Claims 部分包含了一些跟这个 token 有关的重要信息。 JWT 标准规定了一些字段，下面节选一些字段:
@@ -224,6 +226,79 @@ namespace CesiumBimGisApi.Controllers
 
         #endregion
 
+        #region 用户角色信息
+
+        /// <summary>
+        /// 获取所有用户角色信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetUserRoleList")]
+        public async Task<BaseResult> GetUserRoleInfoList()
+        {
+            BaseResult result = new BaseResult();
+            var userRoles = await _sysUserRoleService.GetUserRoleListAsync();
+
+            if (userRoles != null)
+            {
+                var data = new
+                {
+                    items = userRoles,
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+     
+
+            return result;
+        }
+
+        /// <summary>
+        /// 根据用户编号获取用户角色信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetUserRoleListById")]
+        public async Task<BaseResult> GetUserRoleInfoByUserId(int userId)
+        {
+            BaseResult result = new BaseResult();
+            var userRoles = await _sysUserRoleService.GetUserRoleListAsync(userId);
+
+            if (userRoles != null)
+            {
+                var data = new
+                {
+                    items = userRoles,
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+
+            return result;
+        }
+
+        #endregion
+
         #region 角色信息
 
         /// <summary>
@@ -237,16 +312,26 @@ namespace CesiumBimGisApi.Controllers
             BaseResult result = new BaseResult();
             var roles = await _roleService.GetRolesAsync();
 
-            var data = new
+            if (roles != null)
             {
-                items = roles,
-                total = roles.Count()
-            };
+                var data = new
+                {
+                    items = roles,
+                    total = roles.Count()
+                };
 
-            result.isSuccess = true;
-            result.code = ResultCodeMsg.CommonSuccessCode;
-            result.message = ResultCodeMsg.CommonSuccessMsg;
-            result.data = JsonHelper.ObjectToJSON(data);
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
 
             return result;
         }
@@ -297,6 +382,47 @@ namespace CesiumBimGisApi.Controllers
                 result.code = ResultCodeMsg.CommonFailCode;
                 result.message = ResultCodeMsg.CommonFailMsg;
             }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 根据角色Id获取菜单tree
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetMenuTreeByRole")]
+        public async Task<BaseResult> GetMenuTreeByRole(int roleId)
+        {
+            BaseResult result = new BaseResult();
+            List<int> menuIds = new List<int>();
+            List<MenuTree> menuTree = new List<MenuTree>();
+
+            var roleMenus = await _sysRoleMenuService.GetSysRoleMenuByRole(roleId);
+            if (roleMenus != null && roleMenus.Any())
+            {
+                foreach (var item in roleMenus)
+                {
+                    menuIds.Add(item.MenuId);
+                }
+            }
+
+            if (menuIds.Count > 0)
+            {
+                var menu = await _sysAuthMenuService.GetMenuInfo(menuIds);
+                menuTree = await _sysAuthMenuService.GetMenuTree(menu.ToList());
+            }
+
+            var data = new
+            {
+                menuTree
+            };
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
 
             return result;
         }

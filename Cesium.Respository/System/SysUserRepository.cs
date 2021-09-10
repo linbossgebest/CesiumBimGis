@@ -66,10 +66,10 @@ namespace Cesium.Respository
                         };
                         sysUserRoles.Add(sysUserRole);
                     }
-                    string sql = @" INSERT INTO SysUserRole (UserId,RoleId) VALUES (@UserId,@RoleId); ";
+                    string sql = @"INSERT INTO SysUserRole (UserId,RoleId) VALUES (@UserId,@RoleId); ";
 
                     _dbConnection.DeleteList<SysUserRole>(new { UserId = user.Id });//删除该用户角色信息
-                   int nums= _dbConnection.Execute(sql, sysUserRoles);//添加该用户角色信息
+                    int nums = _dbConnection.Execute(sql, sysUserRoles);//添加该用户角色信息
 
                     transaction.Commit();
                     return true;
@@ -82,5 +82,30 @@ namespace Cesium.Respository
             }
         }
 
+        /// <summary>
+        /// 删除用户信息
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<bool> DeleteUserInfo(int userId)
+        {
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    //删除用户信息
+                    await _dbConnection.DeleteAsync<SysUser>(userId);
+                    //删除该用户对应的用户-角色表关联信息
+                    await _dbConnection.DeleteListAsync<SysUserRole>(new { UserId = userId });
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return false;
+                }
+            }
+        }
     }
 }

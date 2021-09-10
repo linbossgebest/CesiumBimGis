@@ -1,5 +1,6 @@
 ﻿using Cesium.Core.Extensions;
 using Cesium.Models.System;
+using Cesium.ViewModels.ResultModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,12 @@ namespace Cesium.IServices.System
         /// <param name="roleId"></param>
         /// <returns></returns>
         Task<IEnumerable<SysRoleMenu>> GetSysRoleMenuByRole(int roleId);
+
+        /// <summary>
+        /// 添加角色菜单对应信息
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        Task<BaseResult> AddSysRoleMenuListAsync(List<SysRoleMenu> list);
     }
 }
