@@ -37,7 +37,7 @@ namespace Cesium.Respository.System
                             CreatorId = tokenInfo.UserId,
                             CreatorName = tokenInfo.UserName
                         };
-                        await _dbConnection.InsertAsync<SysRole>(role);
+                        model.Id= (int)await _dbConnection.InsertAsync<SysRole>(role);
                     }
                     else
                     {
@@ -51,9 +51,17 @@ namespace Cesium.Respository.System
 
                         await _dbConnection.UpdateAsync<SysRole>(role);
                     }
+                    foreach (var item in model.SysRoleMenus)
+                    {
+                        item.RoleId = model.Id;
+                        item.CreateTime = DateTime.Now;
+                        item.CreatorId = tokenInfo.UserId;
+                        item.CreatorName = tokenInfo.UserName;
+                    }
 
-                    string sql = @"INSERT INTO SysRoleMenu (RoleId,MenuId,CreateTime,CreatorId,CreatorName,ModifyTime,ModifyId,ModifyName) VALUES (@RoleId,@MenuId,@CreateTime,@CreatorId,@CreatorName,@ModifyTime,@ModifyId,@ModifyName); ";
+                    string sql = @"INSERT INTO SysRoleMenu (RoleId,MenuId,CreateTime,CreatorId,CreatorName) VALUES (@RoleId,@MenuId,@CreateTime,@CreatorId,@CreatorName); ";
 
+                    _dbConnection.DeleteList<SysRoleMenu>(new { RoleId = model.Id });//删除该角色菜单信息
                     _dbConnection.Execute(sql, model.SysRoleMenus);//添加该用户角色信息
 
                     transaction.Commit();

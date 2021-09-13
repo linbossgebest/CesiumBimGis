@@ -37,5 +37,10 @@ namespace Cesium.ViewModels.System
         /// 邮箱地址
         /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// 用户是否可用
+        /// </summary>
+        public int IsEnabled { get; set; }
     }
 }

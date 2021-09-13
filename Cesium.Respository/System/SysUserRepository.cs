@@ -40,7 +40,8 @@ namespace Cesium.Respository
                             Email = model.Email,
                             CreateTime = DateTime.Now,
                             CreatorId = tokenInfo.UserId,
-                            CreatorName = tokenInfo.UserName
+                            CreatorName = tokenInfo.UserName,
+                            IsEnabled = 1
                         };
 
                         user.Id = (int)_dbConnection.Insert(user);//新增用户信息

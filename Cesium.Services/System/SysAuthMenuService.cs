@@ -60,7 +60,7 @@ namespace Cesium.Services.System
         private List<MenuTree> GetMenuTree(List<SysAuthMenu> menus,int parentId)
         {
             List<MenuTree> tree = new List<MenuTree>();
-            List<SysAuthMenu> children = menus.Where(f => f.ParentId == parentId).ToList();
+            List<SysAuthMenu> children = menus.Where(f => f.ParentId == parentId).OrderBy(f=>f.OrderNo).ToList();
             if (children.Count > 0)
             {
                 for (int i = 0; i < children.Count; i++)

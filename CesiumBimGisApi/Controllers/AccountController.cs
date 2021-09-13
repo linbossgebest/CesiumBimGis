@@ -411,7 +411,7 @@ namespace CesiumBimGisApi.Controllers
             if (menuIds.Count > 0)
             {
                 var menu = await _sysAuthMenuService.GetMenuInfo(menuIds);
-                menuTree = await _sysAuthMenuService.GetMenuTree(menu.ToList());
+                menuTree = await _sysAuthMenuService.GetMenuTree(menu.OrderBy(f=>f.OrderNo).ToList());
             }
 
             var data = new
@@ -424,6 +424,20 @@ namespace CesiumBimGisApi.Controllers
             result.message = ResultCodeMsg.CommonSuccessMsg;
             result.data = JsonHelper.ObjectToJSON(data);
 
+            return result;
+        }
+
+        [HttpPost]
+        [Route("AddRole")]
+        public async Task<BaseResult> AddOrUpdateSysRole(RoleModel model)
+        {
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            TokenInfo tokenInfo = new()
+            {
+                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            };
+            var result = await _roleService.AddOrModifyRoleAsync(model, tokenInfo);
             return result;
         }
 

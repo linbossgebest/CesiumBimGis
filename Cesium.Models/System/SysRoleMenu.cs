@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cesium.Models.System
 {
-    public class SysRoleMenu:BaseEntity
+    public class SysRoleMenu
     {
         public int Id { get; set; }
 
@@ -19,5 +19,21 @@ namespace Cesium.Models.System
         /// 菜单Id
         /// </summary>
         public int MenuId { get; set; }
+
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 创建人编号
+        /// </summary>
+        public int CreatorId { get; set; }
+
+        /// <summary>
+        /// 创建人名称
+        /// </summary>
+        public string CreatorName { get; set; }
+
     }
 }

@@ -15,12 +15,12 @@ namespace Cesium.Services.System
     public class SysRoleService : ISysRoleService, IDependency
     {
         private readonly ISysRoleRepository _sysRoleRepository;
-        private readonly ISysRoleMenuService _sysRoleMenuService
+        private readonly ISysRoleMenuRepository _sysRoleMenuRepository;
 
-        public SysRoleService(ISysRoleRepository sysRoleRepository, ISysRoleMenuService sysRoleMenuService)
+        public SysRoleService(ISysRoleRepository sysRoleRepository, ISysRoleMenuRepository sysRoleMenuRepository)
         {
             _sysRoleRepository = sysRoleRepository;
-            _sysRoleMenuService = sysRoleMenuService;
+            _sysRoleMenuRepository = sysRoleMenuRepository;
         }
 
 
@@ -57,8 +57,10 @@ namespace Cesium.Services.System
         public async Task<BaseResult> DeleteRoleInfo(int roleId)
         {
             var result = new BaseResult();
+            
             if (await _sysRoleRepository.DeleteAsync(roleId) > 0)
             {
+                await _sysRoleMenuRepository.DeleteListAsync(new { RoleId = roleId });
                 result.isSuccess = true;
                 result.code = ResultCodeMsg.CommonSuccessCode;
                 result.message = ResultCodeMsg.CommonSuccessMsg;
@@ -91,5 +93,7 @@ namespace Cesium.Services.System
 
             return result;
         }
+
+  
     }
 }
