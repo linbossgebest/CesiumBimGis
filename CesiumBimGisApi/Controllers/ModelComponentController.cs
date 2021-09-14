@@ -347,6 +347,23 @@ namespace CesiumBimGisApi.Controllers
             return JsonHelper.ObjectToJSON(result);
         }
 
+        /// <summary>
+        /// 上传excel文件
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UploadComponentsExcel")]
+        [AllowAnonymous]
+        public async Task<string> UploadComponentFileExcel(IFormFile file)
+        {
+           List<ModelComponent> components= ImportExcelUtil<ModelComponent>.InputExcel(file);
+
+            var result = await _modelComponentService.AddModelComponentListAsync(components);
+
+            return JsonHelper.ObjectToJSON(result);
+        }
+
         #endregion
 
 
