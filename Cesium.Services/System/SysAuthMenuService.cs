@@ -2,6 +2,7 @@
 using Cesium.IRepository.System;
 using Cesium.IServices.System;
 using Cesium.Models.System;
+using Cesium.ViewModels.ResultModel;
 using Cesium.ViewModels.System;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,50 @@ namespace Cesium.Services.System
     public class SysAuthMenuService : ISysAuthMenuService, IDependency
     {
         private readonly ISysAuthMenuRepository _sysAuthMenuRepository;
+ 
 
         public SysAuthMenuService(ISysAuthMenuRepository sysAuthMenuRepository)
         {
             _sysAuthMenuRepository = sysAuthMenuRepository;
+        }
+
+        public async Task<BaseResult> AddOrModifyMenuAsync(SysAuthMenu model, TokenInfo tokenInfo)
+        {
+            var result = new BaseResult();
+            if (await _sysAuthMenuRepository.AddOrUpdate(model, tokenInfo))
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        public async Task<BaseResult> DelelteMenuInfo(int menuId)
+        {
+            var result = new BaseResult();
+
+            if (await _sysAuthMenuRepository.DeleteMenuInfo(menuId))
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
         }
 
         /// <summary>

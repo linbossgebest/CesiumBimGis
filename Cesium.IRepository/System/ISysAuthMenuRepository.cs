@@ -1,5 +1,6 @@
 ﻿using Cesium.Core.Extensions;
 using Cesium.Models.System;
+using Cesium.ViewModels.System;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,5 +23,20 @@ namespace Cesium.IRepository.System
         /// <param name="menuIds"></param>
         /// <returns></returns>
         Task<IEnumerable<SysAuthMenu>> GetSysAuthMenuListAsync(List<int> menuIds);
+
+        /// <summary>
+        /// 添加或修改菜单信息（SysAuthMenu表，SysAuthMenuMeta表）
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="tokenInfo"></param>
+        /// <returns></returns>
+        Task<bool> AddOrUpdate(SysAuthMenu model, TokenInfo tokenInfo);
+
+        /// <summary>
+        /// 删除菜单信息以及关联的子菜单信息
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        Task<bool> DeleteMenuInfo(int menuId);
     }
 }

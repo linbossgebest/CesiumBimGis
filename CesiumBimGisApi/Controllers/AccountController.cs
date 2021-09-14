@@ -348,9 +348,56 @@ namespace CesiumBimGisApi.Controllers
             return await _roleService.DeleteRoleInfo(roleId);
         }
 
+        [HttpPost]
+        [Route("AddRole")]
+        public async Task<BaseResult> AddOrUpdateSysRole(RoleModel model)
+        {
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            TokenInfo tokenInfo = new()
+            {
+                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            };
+            var result = await _roleService.AddOrModifyRoleAsync(model, tokenInfo);
+            return result;
+        }
+
+
         #endregion
 
         #region 菜单信息
+
+        /// <summary>
+        /// 新增或修改菜单信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AddMenu")]
+        public async Task<BaseResult> AddOrModifyMenuInfo([FromBody] SysAuthMenu model)
+        {
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            TokenInfo tokenInfo = new()
+            {
+                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            };
+            var result = await _sysAuthMenuService.AddOrModifyMenuAsync(model, tokenInfo);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 删除菜单及对应子菜单信息
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteMenu")]
+        public async Task<BaseResult> DeleteMenuInfo(int menuId)
+        {
+            return await _sysAuthMenuService.DelelteMenuInfo(menuId);
+        }
 
         /// <summary>
         /// 获取菜单信息
@@ -427,20 +474,7 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
-        [HttpPost]
-        [Route("AddRole")]
-        public async Task<BaseResult> AddOrUpdateSysRole(RoleModel model)
-        {
-            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
-            TokenInfo tokenInfo = new()
-            {
-                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
-                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
-            };
-            var result = await _roleService.AddOrModifyRoleAsync(model, tokenInfo);
-            return result;
-        }
-
+      
 
         [HttpGet]
         [Route("GetMenuTree")]
@@ -546,7 +580,9 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
-    
+
+
+
         #endregion
 
     }

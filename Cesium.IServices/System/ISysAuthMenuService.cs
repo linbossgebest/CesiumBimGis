@@ -1,5 +1,6 @@
 ﻿using Cesium.Core.Extensions;
 using Cesium.Models.System;
+using Cesium.ViewModels.ResultModel;
 using Cesium.ViewModels.System;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,18 @@ namespace Cesium.IServices.System
         /// </summary>
         /// <returns></returns>
         Task<List<MenuTree>> GetMenuTree(List<SysAuthMenu> menus);
+
+        /// <summary>
+        /// 添加或修改菜单信息
+        /// </summary>
+        /// <returns></returns>
+        Task<BaseResult> AddOrModifyMenuAsync(SysAuthMenu model, TokenInfo tokenInfo);
+
+        /// <summary>
+        /// 通过菜单编号删除菜单以及关联的子菜单
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <returns></returns>
+        Task<BaseResult> DelelteMenuInfo(int menuId);
     }
 }
