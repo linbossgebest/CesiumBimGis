@@ -17,7 +17,7 @@ namespace Cesium.IRepository
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        bool AddOrUpdate(UserModel model, TokenInfo tokenInfo);
+        Task<bool> AddOrUpdate(UserModel model, TokenInfo tokenInfo);
 
 
         /// <summary>

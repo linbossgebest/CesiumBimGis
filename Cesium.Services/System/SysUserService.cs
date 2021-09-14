@@ -59,7 +59,7 @@ namespace Cesium.Services
         public async Task<BaseResult> AddOrModifyUserAsync(UserModel model, TokenInfo tokenInfo)
         {
             var result = new BaseResult();
-            if (_sysUserRepository.AddOrUpdate(model, tokenInfo))
+            if (await _sysUserRepository.AddOrUpdate(model, tokenInfo))
             {
                 result.isSuccess = true;
                 result.code = ResultCodeMsg.CommonSuccessCode;

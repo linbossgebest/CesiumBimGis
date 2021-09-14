@@ -22,7 +22,7 @@ namespace Cesium.Respository
         {
         }
 
-        public bool AddOrUpdate(UserModel model, TokenInfo tokenInfo)
+        public async Task<bool> AddOrUpdate(UserModel model, TokenInfo tokenInfo)
         {
             using (var transaction = _dbConnection.BeginTransaction())
             {
@@ -44,11 +44,11 @@ namespace Cesium.Respository
                             IsEnabled = 1
                         };
 
-                        user.Id = (int)_dbConnection.Insert(user);//新增用户信息
+                        user.Id = (int)await _dbConnection.InsertAsync(user, transaction);//新增用户信息
                     }
                     else
                     {
-                        user = _dbConnection.Get<SysUser>(model.Id);
+                        user = await _dbConnection.GetAsync<SysUser>(model.Id);
                         user.UserName = model.UserName;
                         user.Mobile = model.Mobile;
                         user.Email = model.Email;
@@ -56,7 +56,7 @@ namespace Cesium.Respository
                         user.ModifyId = tokenInfo.UserId;
                         user.ModifyName = tokenInfo.UserName;
 
-                        _dbConnection.Update(user);//修改用户信息
+                        await _dbConnection.UpdateAsync(user, transaction);//修改用户信息
                     }
                     foreach (var item in model.RoleIds)
                     {
@@ -69,8 +69,8 @@ namespace Cesium.Respository
                     }
                     string sql = @"INSERT INTO SysUserRole (UserId,RoleId) VALUES (@UserId,@RoleId); ";
 
-                    _dbConnection.DeleteList<SysUserRole>(new { UserId = user.Id });//删除该用户角色信息
-                    int nums = _dbConnection.Execute(sql, sysUserRoles);//添加该用户角色信息
+                    await _dbConnection.DeleteListAsync<SysUserRole>(new { UserId = user.Id }, transaction);//删除该用户角色信息
+                    await _dbConnection.ExecuteAsync(sql, sysUserRoles, transaction);//添加该用户角色信息
 
                     transaction.Commit();
                     return true;
@@ -95,9 +95,9 @@ namespace Cesium.Respository
                 try
                 {
                     //删除用户信息
-                    await _dbConnection.DeleteAsync<SysUser>(userId);
+                    await _dbConnection.DeleteAsync<SysUser>(userId, transaction);
                     //删除该用户对应的用户-角色表关联信息
-                    await _dbConnection.DeleteListAsync<SysUserRole>(new { UserId = userId });
+                    await _dbConnection.DeleteListAsync<SysUserRole>(new { UserId = userId }, transaction);
                     transaction.Commit();
                     return true;
                 }

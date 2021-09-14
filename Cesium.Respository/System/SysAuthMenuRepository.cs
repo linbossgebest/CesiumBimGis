@@ -48,7 +48,7 @@ namespace Cesium.Respository.System
                             CreatorId = tokenInfo.UserId,
                             CreatorName = tokenInfo.UserName,
                         };
-                        sysAuthMenu.Id = (int)await _dbConnection.InsertAsync(sysAuthMenu);
+                        sysAuthMenu.Id = (int)await _dbConnection.InsertAsync(sysAuthMenu, transaction);
                     }
                     else
                     {
@@ -65,10 +65,10 @@ namespace Cesium.Respository.System
                         sysAuthMenu.ModifyId = tokenInfo.UserId;
                         sysAuthMenu.ModifyName = tokenInfo.UserName;
 
-                        await _dbConnection.UpdateAsync(sysAuthMenu); 
+                        await _dbConnection.UpdateAsync(sysAuthMenu, transaction); 
                     }
                     SysAuthMenuMeta sysAuthMenuMeta = model.Meta;
-                    await _dbConnection.InsertAsync(sysAuthMenuMeta);//插入菜单对应的元数据
+                    await _dbConnection.InsertAsync(sysAuthMenuMeta, transaction);//插入菜单对应的元数据
 
                     transaction.Commit();
                     return true;
@@ -92,8 +92,8 @@ namespace Cesium.Respository.System
             {
                 try
                 {
-                    await _dbConnection.DeleteAsync<SysAuthMenuMeta>(menuId);
-                    await _dbConnection.DeleteListAsync<SysAuthMenuMeta>(new { ParentId = menuId });
+                    await _dbConnection.DeleteAsync<SysAuthMenuMeta>(menuId, transaction);
+                    await _dbConnection.DeleteListAsync<SysAuthMenuMeta>(new { ParentId = menuId }, transaction);
 
                     transaction.Commit();
                     return true;
