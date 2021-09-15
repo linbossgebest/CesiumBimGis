@@ -82,7 +82,6 @@
           "Microsoft.AspNetCore.Http.Connections": "5.0.0.0",
           "Microsoft.AspNetCore.Http": "5.0.0.0",
           "Microsoft.AspNetCore.Http.Extensions": "5.0.0.0",
-          "Microsoft.AspNetCore.Http.Features": "5.0.0.0",
           "Microsoft.AspNetCore.HttpOverrides": "5.0.0.0",
           "Microsoft.AspNetCore.HttpsPolicy": "5.0.0.0",
           "Microsoft.AspNetCore.Identity": "5.0.0.0",
@@ -166,7 +165,6 @@
           "Microsoft.Extensions.Options.ConfigurationExtensions": "5.0.0.0",
           "Microsoft.Extensions.Options.DataAnnotations": "5.0.0.0",
           "Microsoft.Extensions.Options.Reference": "5.0.0.0",
-          "Microsoft.Extensions.Primitives.Reference": "5.0.0.0",
           "Microsoft.Extensions.WebEncoders": "5.0.0.0",
           "Microsoft.JSInterop": "5.0.0.0",
           "Microsoft.Net.Http.Headers": "5.0.0.0",
@@ -225,7 +223,6 @@
           "System.IO.FileSystem.Watcher": "5.0.0.0",
           "System.IO.IsolatedStorage": "5.0.0.0",
           "System.IO.MemoryMappedFiles": "5.0.0.0",
-          "System.IO.Pipelines": "5.0.0.0",
           "System.IO.Pipes": "5.0.0.0",
           "System.IO.UnmanagedMemoryStream": "5.0.0.0",
           "System.Linq": "5.0.0.0",
@@ -435,6 +432,66 @@
           "lib/netstandard2.0/Dapper.SimpleCRUD.dll": {}
         }
       },
+      "DotNetCore.NPOI/1.2.3": {
+        "dependencies": {
+          "DotNetCore.NPOI.Core": "1.2.3",
+          "DotNetCore.NPOI.OpenXml4Net": "1.2.3",
+          "DotNetCore.NPOI.OpenXmlFormats": "1.2.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NPOI.OOXML.dll": {
+            "assemblyVersion": "1.2.3.0",
+            "fileVersion": "1.2.3.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NPOI.OOXML.dll": {}
+        }
+      },
+      "DotNetCore.NPOI.Core/1.2.3": {
+        "dependencies": {
+          "SharpZipLib": "1.2.0",
+          "System.Drawing.Common": "4.7.0",
+          "System.Text.Encoding.CodePages": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NPOI.dll": {
+            "assemblyVersion": "1.2.3.0",
+            "fileVersion": "1.2.3.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NPOI.dll": {}
+        }
+      },
+      "DotNetCore.NPOI.OpenXml4Net/1.2.3": {
+        "dependencies": {
+          "DotNetCore.NPOI.Core": "1.2.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NPOI.OpenXml4Net.dll": {
+            "assemblyVersion": "1.2.3.0",
+            "fileVersion": "1.2.3.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NPOI.OpenXml4Net.dll": {}
+        }
+      },
+      "DotNetCore.NPOI.OpenXmlFormats/1.2.3": {
+        "dependencies": {
+          "DotNetCore.NPOI.OpenXml4Net": "1.2.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NPOI.OpenXmlFormats.dll": {
+            "assemblyVersion": "1.2.3.0",
+            "fileVersion": "1.2.3.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NPOI.OpenXmlFormats.dll": {}
+        }
+      },
       "Google.Protobuf/3.14.0": {
         "dependencies": {
           "System.Memory": "4.5.3",
@@ -507,11 +564,26 @@
           "lib/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Http.Features/5.0.9": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "5.0.1",
+          "System.IO.Pipelines": "5.0.1"
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.921.36503"
+          }
+        },
+        "compile": {
+          "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
       "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "5.0.0"
+          "Microsoft.Extensions.Primitives": "5.0.1"
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {},
@@ -529,10 +601,20 @@
       "Microsoft.Extensions.Options/5.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
-          "Microsoft.Extensions.Primitives": "5.0.0"
+          "Microsoft.Extensions.Primitives": "5.0.1"
         }
       },
-      "Microsoft.Extensions.Primitives/5.0.0": {},
+      "Microsoft.Extensions.Primitives/5.0.1": {
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.521.16609"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
+        }
+      },
       "Microsoft.IdentityModel.JsonWebTokens/6.12.2": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "6.12.2"
@@ -637,7 +719,7 @@
           "System.Buffers": "4.5.1",
           "System.Configuration.ConfigurationManager": "4.4.1",
           "System.Security.Permissions": "4.7.0",
-          "System.Text.Encoding.CodePages": "4.4.0"
+          "System.Text.Encoding.CodePages": "4.5.0"
         },
         "runtime": {
           "lib/net5.0/MySql.Data.dll": {
@@ -702,6 +784,17 @@
             "assetType": "native",
             "fileVersion": "4.6.25512.1"
           }
+        }
+      },
+      "SharpZipLib/1.2.0": {
+        "runtime": {
+          "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "1.2.0.246",
+            "fileVersion": "1.2.0.246"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/ICSharpCode.SharpZipLib.dll": {}
         }
       },
       "Swashbuckle.AspNetCore/5.6.3": {
@@ -801,6 +894,9 @@
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
           "Microsoft.Win32.SystemEvents": "4.7.0"
+        },
+        "compile": {
+          "ref/netcoreapp3.0/System.Drawing.Common.dll": {}
         }
       },
       "System.IdentityModel.Tokens.Jwt/6.12.2": {
@@ -816,6 +912,17 @@
         },
         "compile": {
           "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll": {}
+        }
+      },
+      "System.IO.Pipelines/5.0.1": {
+        "runtime": {
+          "lib/netcoreapp3.0/System.IO.Pipelines.dll": {
+            "assemblyVersion": "5.0.0.1",
+            "fileVersion": "5.0.120.57516"
+          }
+        },
+        "compile": {
+          "ref/netcoreapp2.0/System.IO.Pipelines.dll": {}
         }
       },
       "System.Memory/4.5.3": {},
@@ -851,9 +958,10 @@
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
-      "System.Text.Encoding.CodePages/4.4.0": {
+      "System.Text.Encoding.CodePages/4.5.0": {
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0"
+          "Microsoft.NETCore.Platforms": "3.1.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         }
       },
       "System.Windows.Extensions/4.7.0": {
@@ -866,6 +974,8 @@
           "Autofac": "6.2.0",
           "Dapper": "2.0.90",
           "Dapper.SimpleCRUD": "2.3.0",
+          "DotNetCore.NPOI": "1.2.3",
+          "Microsoft.AspNetCore.Http.Features": "5.0.9",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
           "Microsoft.Extensions.DependencyModel": "5.0.0",
@@ -1161,12 +1271,6 @@
       "Microsoft.AspNetCore.Http.Extensions/5.0.0.0": {
         "compile": {
           "Microsoft.AspNetCore.Http.Extensions.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.AspNetCore.Http.Features/5.0.0.0": {
-        "compile": {
-          "Microsoft.AspNetCore.Http.Features.dll": {}
         },
         "compileOnly": true
       },
@@ -1668,12 +1772,6 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Primitives.Reference/5.0.0.0": {
-        "compile": {
-          "Microsoft.Extensions.Primitives.dll": {}
-        },
-        "compileOnly": true
-      },
       "Microsoft.Extensions.WebEncoders/5.0.0.0": {
         "compile": {
           "Microsoft.Extensions.WebEncoders.dll": {}
@@ -2019,12 +2117,6 @@
       "System.IO.MemoryMappedFiles/5.0.0.0": {
         "compile": {
           "System.IO.MemoryMappedFiles.dll": {}
-        },
-        "compileOnly": true
-      },
-      "System.IO.Pipelines/5.0.0.0": {
-        "compile": {
-          "System.IO.Pipelines.dll": {}
         },
         "compileOnly": true
       },
@@ -2709,6 +2801,34 @@
       "path": "dapper.simplecrud/2.3.0",
       "hashPath": "dapper.simplecrud.2.3.0.nupkg.sha512"
     },
+    "DotNetCore.NPOI/1.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-agXbYDkOvovMYBNqTcRAr6jrTtUXGYzVNdS9Yxy4PDZa8tBQiIeAD+54/Jdsc+3/Mln1L1Yj+SciO1TYwljcdQ==",
+      "path": "dotnetcore.npoi/1.2.3",
+      "hashPath": "dotnetcore.npoi.1.2.3.nupkg.sha512"
+    },
+    "DotNetCore.NPOI.Core/1.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2OgRNy4OpVOIwnkU8KPJs6itTE2xFpIFkFmci/iAnea/ZPTzQJrmuNPVKlfdn1csOI8ecFWES8Tk2ZmRSJjl5w==",
+      "path": "dotnetcore.npoi.core/1.2.3",
+      "hashPath": "dotnetcore.npoi.core.1.2.3.nupkg.sha512"
+    },
+    "DotNetCore.NPOI.OpenXml4Net/1.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gELhZln7TuLn2he3r0mx1qnuPLjEgTW5z8RTFnEexSQ+r1smDqSSryXNEhwUvj1beBUxTjKq2RrwkrWwLgtScA==",
+      "path": "dotnetcore.npoi.openxml4net/1.2.3",
+      "hashPath": "dotnetcore.npoi.openxml4net.1.2.3.nupkg.sha512"
+    },
+    "DotNetCore.NPOI.OpenXmlFormats/1.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3v0cJA+4rclcoW+hVuU4oYu1wNYv/jEIqQghLDMHqlviyOVxnuruAUDvsgENjiZM0iWFhkK0N/ZsXvH+qGvObw==",
+      "path": "dotnetcore.npoi.openxmlformats/1.2.3",
+      "hashPath": "dotnetcore.npoi.openxmlformats.1.2.3.nupkg.sha512"
+    },
     "Google.Protobuf/3.14.0": {
       "type": "package",
       "serviceable": true,
@@ -2743,6 +2863,13 @@
       "sha512": "sha512-zG4G0waQzkdG0TazXbyuvIxpmWgQllnIjuKNcXNIh5mwcMVG1UPqT09L5EkAGmW2TtktJNWvojr77OpiOpK9JA==",
       "path": "microsoft.aspnetcore.authentication.jwtbearer/5.0.9",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.5.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/5.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6CiMPjR7yjnQ2dzSNOY88FMWeNRDmmiPKn9hM23bBO0mCUDdPUCEpFhaGfog/mpa/t+y6sMBFL5Mcqd4AKdMfw==",
+      "path": "microsoft.aspnetcore.http.features/5.0.9",
+      "hashPath": "microsoft.aspnetcore.http.features.5.0.9.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",
@@ -2786,12 +2913,12 @@
       "path": "microsoft.extensions.options/5.0.0",
       "hashPath": "microsoft.extensions.options.5.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Primitives/5.0.0": {
+    "Microsoft.Extensions.Primitives/5.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cI/VWn9G1fghXrNDagX9nYaaB/nokkZn0HYAawGaELQrl8InSezfe9OnfPZLcJq3esXxygh3hkq2c3qoV3SDyQ==",
-      "path": "microsoft.extensions.primitives/5.0.0",
-      "hashPath": "microsoft.extensions.primitives.5.0.0.nupkg.sha512"
+      "sha512": "sha512-5WPSmL4YeP7eW+Vc8XZ4DwjYWBAiSwDV9Hm63JJWcz1Ie3Xjv4KuJXzgCstj48LkLfVCYa7mLcx7y+q6yqVvtw==",
+      "path": "microsoft.extensions.primitives/5.0.1",
+      "hashPath": "microsoft.extensions.primitives.5.0.1.nupkg.sha512"
     },
     "Microsoft.IdentityModel.JsonWebTokens/6.12.2": {
       "type": "package",
@@ -2898,6 +3025,13 @@
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
     },
+    "SharpZipLib/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zvWa/L02JHNatdtjya6Swpudb2YEHaOLHL1eRrqpjm71iGRNUNONO5adUF/9CHbSJbzhELW1UoH4NGy7n7+3bQ==",
+      "path": "sharpziplib/1.2.0",
+      "hashPath": "sharpziplib.1.2.0.nupkg.sha512"
+    },
     "Swashbuckle.AspNetCore/5.6.3": {
       "type": "package",
       "serviceable": true,
@@ -2968,6 +3102,13 @@
       "path": "system.identitymodel.tokens.jwt/6.12.2",
       "hashPath": "system.identitymodel.tokens.jwt.6.12.2.nupkg.sha512"
     },
+    "System.IO.Pipelines/5.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qEePWsaq9LoEEIqhbGe6D5J8c9IqQOUuTzzV6wn1POlfdLkJliZY3OlB0j0f17uMWlqZYjH7txj+2YbyrIA8Yg==",
+      "path": "system.io.pipelines/5.0.1",
+      "hashPath": "system.io.pipelines.5.0.1.nupkg.sha512"
+    },
     "System.Memory/4.5.3": {
       "type": "package",
       "serviceable": true,
@@ -3024,12 +3165,12 @@
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
-    "System.Text.Encoding.CodePages/4.4.0": {
+    "System.Text.Encoding.CodePages/4.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6JX7ZdaceBiLKLkYt8zJcp4xTJd1uYyXXEkPw6mnlUIjh1gZPIVKPtRXPmY5kLf6DwZmf5YLwR3QUrRonl7l0A==",
-      "path": "system.text.encoding.codepages/4.4.0",
-      "hashPath": "system.text.encoding.codepages.4.4.0.nupkg.sha512"
+      "sha512": "sha512-S0wEUiKcLvRlkFUXca8uio1UQ5bYQzYgOmOKtCqaBQC3GR9AJjh43otcM32IGsAyvadFTaAMw9Irm6dS4Evfng==",
+      "path": "system.text.encoding.codepages/4.5.0",
+      "hashPath": "system.text.encoding.codepages.4.5.0.nupkg.sha512"
     },
     "System.Windows.Extensions/4.7.0": {
       "type": "package",
@@ -3244,11 +3385,6 @@
       "sha512": ""
     },
     "Microsoft.AspNetCore.Http.Extensions/5.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.AspNetCore.Http.Features/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -3668,11 +3804,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Primitives.Reference/5.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
     "Microsoft.Extensions.WebEncoders/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
@@ -3959,11 +4090,6 @@
       "sha512": ""
     },
     "System.IO.MemoryMappedFiles/5.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.IO.Pipelines/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

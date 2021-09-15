@@ -24,6 +24,16 @@
     <ProjectReference Include="..\Cesium.ViewModels\Cesium.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="temp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="temp\component.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

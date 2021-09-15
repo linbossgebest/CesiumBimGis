@@ -15,3 +15,4 @@ E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.c
 E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.dll
 E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\ref\Cesium.ViewModels.dll
 E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\obj\Debug\net5.0\Cesium.ViewModels.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.ViewModels\bin\Debug\net5.0\NOTICE.TXT

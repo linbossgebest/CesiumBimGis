@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -29,14 +30,16 @@ namespace CesiumBimGisApi.Controllers
         private readonly IModelComponentService _modelComponentService;
         private readonly IModelComponentDataSourceService _modelComponentDataSourceService;
         private readonly IModelComponentTypeService _modelComponentTypeService;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService, IModelComponentTypeService modelComponentTypeService)
+        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService, IModelComponentTypeService modelComponentTypeService, IHostingEnvironment hostingEnvironment)
         {
             _modelComponentCommentService = modelComponentCommentService;
             _modelInfoService = modelInfoService;
             _modelComponentService = modelComponentService;
             _modelComponentDataSourceService = modelComponentDataSourceService;
             _modelComponentTypeService = modelComponentTypeService;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         #region 构件菜单
@@ -359,9 +362,25 @@ namespace CesiumBimGisApi.Controllers
         {
            List<ModelComponent> components= ImportExcelUtil<ModelComponent>.InputExcel(file);
 
+            //var result = new { };
             var result = await _modelComponentService.AddModelComponentListAsync(components);
 
             return JsonHelper.ObjectToJSON(result);
+        }
+
+        [HttpGet]
+        [Route("DownloadComponentsExcelTemplate")]
+        [AllowAnonymous]
+        public FileStreamResult DownloadComponentTemplate()
+        {
+            //var FilePath = System.Web.Hosting.HostingEnvironment.MapPath(@"~/download/EditPlus64_xp85.com.zip");
+            //var stream = new FileStream(FilePath, FileMode.Open);
+            //return File();
+            string contentRootPath = _hostingEnvironment.ContentRootPath;
+            var filePath = Path.Combine(contentRootPath, "temp", "component.xlsx");
+            var stream = new FileStream(filePath, FileMode.Open);
+     
+            return File(stream,"xlsx/xls");
         }
 
         #endregion

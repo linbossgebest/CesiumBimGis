@@ -21,3 +21,4 @@ E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.cspro
 E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\ref\Cesium.Services.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\NOTICE.TXT
