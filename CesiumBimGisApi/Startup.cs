@@ -107,6 +107,13 @@ namespace CesiumBimGisApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CesiumBimGisApi v1"));
             }
 
+            app.UseStaticFiles(new StaticFileOptions {
+                OnPrepareResponse = (c) =>
+                {
+                    c.Context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                },
+            });
+
             app.UseRouting();
 
             app.UseAuthentication();

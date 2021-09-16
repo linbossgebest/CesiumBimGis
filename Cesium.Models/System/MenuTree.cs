@@ -64,7 +64,7 @@ namespace Cesium.Models.System
         /// <summary>
         /// 排序编号
         /// </summary>
-        [JsonProperty("order")]
+        [JsonProperty("orderno")]
         public int? OrderNo { get; set; }
 
         [JsonProperty("children")]

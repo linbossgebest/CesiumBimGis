@@ -49,6 +49,10 @@ namespace Cesium.Respository.System
                             CreatorName = tokenInfo.UserName,
                         };
                         sysAuthMenu.Id = (int)await _dbConnection.InsertAsync(sysAuthMenu, transaction);
+                        SysAuthMenuMeta sysAuthMenuMeta = model.Meta;
+                        sysAuthMenuMeta.MenuId = sysAuthMenu.Id;
+                        sysAuthMenuMeta.Title = sysAuthMenu.Name;
+                        await _dbConnection.InsertAsync(sysAuthMenuMeta, transaction);//插入菜单对应的元数据
                     }
                     else
                     {
@@ -65,10 +69,13 @@ namespace Cesium.Respository.System
                         sysAuthMenu.ModifyId = tokenInfo.UserId;
                         sysAuthMenu.ModifyName = tokenInfo.UserName;
 
-                        await _dbConnection.UpdateAsync(sysAuthMenu, transaction); 
+                        await _dbConnection.UpdateAsync(sysAuthMenu, transaction);
+                        SysAuthMenuMeta sysAuthMenuMeta = model.Meta;
+                        sysAuthMenuMeta.MenuId = sysAuthMenu.Id;
+                        sysAuthMenuMeta.Title = sysAuthMenu.Name;
+                        await _dbConnection.UpdateAsync(sysAuthMenuMeta, transaction);//更新菜单对应的元数据
                     }
-                    SysAuthMenuMeta sysAuthMenuMeta = model.Meta;
-                    await _dbConnection.InsertAsync(sysAuthMenuMeta, transaction);//插入菜单对应的元数据
+                  
 
                     transaction.Commit();
                     return true;
@@ -92,13 +99,27 @@ namespace Cesium.Respository.System
             {
                 try
                 {
-                    await _dbConnection.DeleteAsync<SysAuthMenuMeta>(menuId, transaction);
-                    await _dbConnection.DeleteListAsync<SysAuthMenuMeta>(new { ParentId = menuId }, transaction);
+                    await _dbConnection.DeleteAsync<SysAuthMenu>(menuId, transaction);//删除该菜单信息
+                    string deleteSql = "Delete from SysAuthMenuMeta where MenuId = @menuId";
+                    await _dbConnection.ExecuteAsync(deleteSql, new { menuId }, transaction);
+                    /*  await _dbConnection.DeleteAsync<SysAuthMenuMeta>(new { MenuId = menuId }, transaction);*///删除该菜单元数据
+                    var list = await _dbConnection.GetListAsync<SysAuthMenu>(new { ParentId = menuId });//获取所有以该菜单Id作为父Id的菜单列表
+                    if (list.Any())//如果存在子菜单则删除
+                    {
+                        List<int> menuIds = new List<int>();
+                        foreach (var item in list)
+                        {
+                            menuIds.Add(item.Id);
+                        }
+                        string sql = "Delete from SysAuthMenuMeta where MenuId in @menuIds";
+                        await _dbConnection.DeleteListAsync<SysAuthMenu>(new { ParentId = menuId }, transaction);
+                        await _dbConnection.ExecuteAsync(sql, new { menuIds }, transaction);
+                    }
 
                     transaction.Commit();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     return false;
