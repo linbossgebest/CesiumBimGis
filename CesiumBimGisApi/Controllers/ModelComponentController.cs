@@ -166,6 +166,38 @@ namespace CesiumBimGisApi.Controllers
             return await _modelComponentDataSourceService.DeleteComponentDataSource(id);
         }
 
+        /// <summary>
+        /// 通过构件编号获取菜单信息
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetComponentDataSourceByComponentId")]
+        public async Task<BaseResult> GetComponentDataSourceByComponentId(string componentId)
+        {
+            BaseResult result = new BaseResult();
+            var sources=await _modelComponentDataSourceService.GetComponentDataSourceListByComponentIdAsync(componentId);
+            if (sources != null)
+            {
+                var data = new
+                {
+                    items = sources
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+            return result;
+        }
+
         #endregion
 
         #region 构件菜单类型
@@ -496,9 +528,40 @@ namespace CesiumBimGisApi.Controllers
             return await _modelComponentFileInfoService.DeleteComponentFileInfoAsync(fileId);
         }
 
-        public async Task<BaseResult> GetMenuNames(string componentId)
+        [HttpPost]
+        [Route("UpdateComponentFile")]
+        public async Task<BaseResult> UpdateModelComponentFileInfoAsync([FromBody] ComponentFileModel model)
         {
-            
+            return await _modelComponentFileInfoService.UpdateModelComponentFileInfoAsync(model);
+        }
+
+        [HttpGet]
+        [Route("GetComponentFile")]
+        public async Task<BaseResult> GetComponentFile(string componentId, string menuName)
+        {
+            BaseResult result = new BaseResult();
+            var fileInfo=  await _modelComponentFileInfoService.GetModelComponentFileByComponentIdAndMenuName(componentId, menuName);
+
+            if (fileInfo != null)
+            {
+                var data = new
+                {
+                    fileInfo
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
         }
 
         #endregion

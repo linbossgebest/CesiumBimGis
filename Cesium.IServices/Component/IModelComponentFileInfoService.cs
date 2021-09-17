@@ -1,5 +1,6 @@
 ﻿using Cesium.Core.Extensions;
 using Cesium.Models;
+using Cesium.ViewModels;
 using Cesium.ViewModels.ResultModel;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ namespace Cesium.IServices
         Task<BaseResult> AddModelComponentFileInfoAsync(ModelComponentFileInfo model);
 
         /// <summary>
+        /// 修改构件文件信息
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        Task<BaseResult> UpdateModelComponentFileInfoAsync(ComponentFileModel model);
+
+        /// <summary>
         /// 删除构件文件信息
         /// </summary>
         /// <param name="fileId">文件Id</param>
@@ -46,6 +54,6 @@ namespace Cesium.IServices
         /// <param name="componentId"></param>
         /// <param name="menuName"></param>
         /// <returns></returns>
-        Task<ModelComponentFileInfo> GetModelComponentFileByComponentId(int componentId,string menuName);
+        Task<ModelComponentFileInfo> GetModelComponentFileByComponentIdAndMenuName(string componentId,string menuName);
     }
 }

@@ -195,7 +195,7 @@ namespace CesiumBimGisApi.Controllers
                     issuer: _JWToption.Issuer,
                     audience: _JWToption.Audience,
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(30),
+                    expires: DateTime.Now.AddMinutes(120),
                     signingCredentials: creds);
 
                 var accessToken = new JwtSecurityTokenHandler().WriteToken(token);

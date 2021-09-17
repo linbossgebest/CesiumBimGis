@@ -2,6 +2,7 @@
 using Cesium.IRepository;
 using Cesium.IServices;
 using Cesium.Models;
+using Cesium.ViewModels;
 using Cesium.ViewModels.ResultModel;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace Cesium.Services
             return files;
         }
 
-        public async Task<ModelComponentFileInfo> GetModelComponentFileByComponentId(int componentId, string menuName)
+        public async Task<ModelComponentFileInfo> GetModelComponentFileByComponentIdAndMenuName(string componentId, string menuName)
         {
             string conditions = " where ComponentId=@ComponentId And MenuName=@MenuName";
             var file = await _modelComponentFileInfoRepository.GetAsync(conditions, new { ComponentId = componentId , MenuName =menuName});
@@ -80,6 +81,29 @@ namespace Cesium.Services
         public async Task<ModelComponentFileInfo> GetModelComponentFileById(int fileId)
         {
             return await _modelComponentFileInfoRepository.GetAsync(fileId);
+        }
+
+        public async Task<BaseResult> UpdateModelComponentFileInfoAsync(ComponentFileModel model)
+        {
+            var result = new BaseResult();
+            var fileModel = await _modelComponentFileInfoRepository.GetAsync(model.Id);
+            fileModel.ModelId = model.ModelId;
+            fileModel.ComponentId = model.ComponentId;
+            fileModel.MenuName = model.MenuName;
+            if (await _modelComponentFileInfoRepository.UpdateAsync(fileModel) > 0)
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
         }
     }
 }
