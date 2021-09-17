@@ -29,14 +29,22 @@ namespace Cesium.Models
         public string FileName { get; set; }
 
         /// <summary>
-        /// 文件资源路径
+        /// 文件资源路径 http://....
         /// </summary>
         public string FileSrc { get; set; }
+
+        //文件路径
+        public string FilePath { get; set; }
 
         /// <summary>
         /// 文件类型
         /// </summary>
         public string FileType { get; set; }
+
+        /// <summary>
+        /// 菜单名称
+        /// </summary>
+        public string MenuName { get; set; }
 
         /// <summary>
         /// 创建时间

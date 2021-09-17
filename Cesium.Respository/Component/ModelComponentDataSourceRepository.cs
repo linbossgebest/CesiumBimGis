@@ -63,5 +63,31 @@ namespace Cesium.Respository
 
             return list;
         }
+
+        public async Task<IEnumerable<ModelComponentDataSource>> GetModelComponentDataSources(string componentId)
+        {
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    var modelComponent = await _dbConnection.GetAsync<ModelComponent>(componentId, transaction);
+                    string sql = "select * from SysAppMenu where MenuName='属性'";
+                    var appMenu = await _dbConnection.QueryFirstOrDefaultAsync<SysAppMenu>(sql, transaction);
+                    var componentTypeId = modelComponent.ComponentTypeId;
+                    var appMenuId = appMenu.Id;
+                    string conditions = "where ComponentTypeId=@ComponentTypeId And AppMenuId=@AppMenuId ";
+                    var list = await _dbConnection.GetListAsync<ModelComponentDataSource>(conditions,new { ComponentTypeId = componentTypeId , AppMenuId = appMenuId },transaction);
+
+                    transaction.Commit();
+                    return list;
+
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
     }
 }

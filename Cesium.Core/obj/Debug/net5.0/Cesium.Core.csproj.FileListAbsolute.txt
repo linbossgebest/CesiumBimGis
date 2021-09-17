@@ -1,8 +1,8 @@
+E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Debug\net5.0\NOTICE.TXT
 E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Debug\net5.0\Cesium.Core.deps.json
 E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Debug\net5.0\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Debug\net5.0\ref\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Debug\net5.0\Cesium.Core.pdb
-E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.csproj.AssemblyReference.cache
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.GeneratedMSBuildEditorConfig.editorconfig
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.AssemblyInfoInputs.cache
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.AssemblyInfo.cs
@@ -10,4 +10,4 @@ E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.csproj.CoreCo
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\ref\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.pdb
-E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Debug\net5.0\NOTICE.TXT
+E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Debug\net5.0\Cesium.Core.csproj.AssemblyReference.cache

@@ -1,4 +1,5 @@
 ﻿using Cesium.Core.CustomEnum;
+using Cesium.Core.Extensions;
 using Cesium.Core.Helper;
 using Cesium.IServices;
 using Cesium.Models;
@@ -30,15 +31,18 @@ namespace CesiumBimGisApi.Controllers
         private readonly IModelComponentService _modelComponentService;
         private readonly IModelComponentDataSourceService _modelComponentDataSourceService;
         private readonly IModelComponentTypeService _modelComponentTypeService;
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IModelComponentFileInfoService _modelComponentFileInfoService;
+        private readonly IHostEnvironment _hostingEnvironment;
 
-        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService, IModelComponentTypeService modelComponentTypeService, IHostingEnvironment hostingEnvironment)
+
+        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService, IModelComponentTypeService modelComponentTypeService, IModelComponentFileInfoService modelComponentFileInfoService, IHostEnvironment hostingEnvironment)
         {
             _modelComponentCommentService = modelComponentCommentService;
             _modelInfoService = modelInfoService;
             _modelComponentService = modelComponentService;
             _modelComponentDataSourceService = modelComponentDataSourceService;
             _modelComponentTypeService = modelComponentTypeService;
+            _modelComponentFileInfoService = modelComponentFileInfoService;
             _hostingEnvironment = hostingEnvironment;
         }
 
@@ -360,7 +364,7 @@ namespace CesiumBimGisApi.Controllers
         [AllowAnonymous]
         public async Task<string> UploadComponentFileExcel(IFormFile file)
         {
-           List<ModelComponent> components= ImportExcelUtil<ModelComponent>.InputExcel(file);
+            List<ModelComponent> components = ImportExcelUtil<ModelComponent>.InputExcel(file);
 
             //var result = new { };
             var result = await _modelComponentService.AddModelComponentListAsync(components);
@@ -379,12 +383,125 @@ namespace CesiumBimGisApi.Controllers
             string contentRootPath = _hostingEnvironment.ContentRootPath;
             var filePath = Path.Combine(contentRootPath, "temp", "component.xlsx");
             var stream = new FileStream(filePath, FileMode.Open);
-     
-            return File(stream,"xlsx/xls");
+
+            return File(stream, "xlsx/xls");
         }
 
         #endregion
 
+        #region 构件文件信息
+
+        /// <summary>
+        /// 获取构件对应文件信息
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetComponentFiles")]
+        public async Task<BaseResult> GetComponentFileList(int pageIndex, int pageSize, string componentId)
+        {
+            BaseResult result = new BaseResult();
+            var files = await _modelComponentFileInfoService.GetComponentFilesAsync(componentId);
+            var total = files.Count();
+
+            files = files.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            var data = new
+            {
+                items = files,
+                total = total
+            };
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 上传构件对应文件信息
+        /// </summary>
+        /// <param name="file">上传文件</param>
+        /// <param name="modelId">模型编号</param>
+        /// <param name="componentId">构件编号</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("UploadComponentFile")]
+        [AllowAnonymous]
+        public async Task<BaseResult> UploadComponentFile(IFormFile file, int modelId, string componentId)
+        {
+            #region 上传文件到静态服务器
+
+            var fileName = file.FileName;
+            var fileExt = Path.GetExtension(file.FileName);
+            var path = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot\\componentresources\\" + fileName);
+            await using var stream = System.IO.File.Create(path);
+            await file.CopyToAsync(stream);
+
+            #endregion
+
+            #region 添加构件对应文件信息
+
+            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            TokenInfo tokenInfo = new()
+            {
+                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            };
+
+            ModelComponentFileInfo model = new()
+            {
+                ModelId = modelId,
+                ComponentId = componentId,
+                FileName = fileName,
+                FileSrc = fileName,
+                FilePath = path,
+                FileType = fileExt,
+                CreateTime = DateTime.Now,
+                CreatorId = tokenInfo.UserId,
+                CreatorName = tokenInfo.UserName
+            };
+
+            #endregion
+
+            return await _modelComponentFileInfoService.AddModelComponentFileInfoAsync(model);
+
+        }
+
+        /// <summary>
+        /// 删除构件对应文件信息
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteComponentFile")]
+        public async Task<BaseResult> DeleteComponentFileInfo(int fileId)
+        {
+            var fileInfo = await _modelComponentFileInfoService.GetModelComponentFileById(fileId);
+
+            var path = fileInfo.FilePath;
+
+            if (!path.IsNullOrEmpty())
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    System.IO.File.Delete(path);
+                }
+            }
+
+            return await _modelComponentFileInfoService.DeleteComponentFileInfoAsync(fileId);
+        }
+
+        public async Task<BaseResult> GetMenuNames(string componentId)
+        {
+            
+        }
+
+        #endregion
 
         /// <summary>
         /// 添加模型

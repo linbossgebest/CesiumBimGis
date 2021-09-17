@@ -118,5 +118,10 @@ namespace Cesium.Services
         {
             return await _modelComponentDataSourceRepository.GetComponentDataSourceListAsync(componentTypeId);
         }
+
+        public async Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListByComponentIdAsync(string componentId)
+        {
+            return await _modelComponentDataSourceRepository.GetModelComponentDataSources(componentId);
+        }
     }
 }

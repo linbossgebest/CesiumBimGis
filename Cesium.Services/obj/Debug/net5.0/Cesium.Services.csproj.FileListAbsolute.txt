@@ -1,3 +1,9 @@
+E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.csproj.AssemblyReference.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.GeneratedMSBuildEditorConfig.editorconfig
+E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.AssemblyInfoInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.AssemblyInfo.cs
+E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.csproj.CoreCompileInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\NOTICE.TXT
 E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\Cesium.Services.deps.json
 E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\Cesium.Services.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\ref\Cesium.Services.dll
@@ -12,13 +18,7 @@ E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\Cesium.IServices.pdb
 E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\Cesium.Core.pdb
 E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\Cesium.Models.pdb
 E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\Cesium.ViewModels.pdb
-E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.csproj.AssemblyReference.cache
-E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.GeneratedMSBuildEditorConfig.editorconfig
-E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.AssemblyInfoInputs.cache
-E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.AssemblyInfo.cs
-E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.csproj.CoreCompileInputs.cache
 E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.csproj.CopyComplete
 E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\ref\Cesium.Services.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Services\obj\Debug\net5.0\Cesium.Services.pdb
-E:\CesiumApi\CesiumBimGis\Cesium.Services\bin\Debug\net5.0\NOTICE.TXT

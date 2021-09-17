@@ -17,21 +17,21 @@ namespace Cesium.IServices
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        Task<BaseResult> AddModelComponentListAsync(List<ModelComponent> list);
+        Task<BaseResult> AddModelComponentListAsync(List<Cesium.Models.ModelComponent> list);
 
         /// <summary>
         /// 新增模型构件数据
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        Task<BaseResult> AddModelComponentAsync(ModelComponent model);
+        Task<BaseResult> AddModelComponentAsync(Cesium.Models.ModelComponent model);
 
         /// <summary>
         /// 修改模型构件数据
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<BaseResult> UpdateModelComponentAsync(ModelComponent model);
+        Task<BaseResult> UpdateModelComponentAsync(Cesium.Models.ModelComponent model);
 
         /// <summary>
         /// 根据构件编号删除模型构件数据
@@ -45,13 +45,13 @@ namespace Cesium.IServices
         /// </summary>
         /// <param name="componentId"></param>
         /// <returns></returns>
-        Task<ModelComponent> GetComponentInfoAsync(string componentId);
+        Task<Cesium.Models.ModelComponent> GetComponentInfoAsync(string componentId);
 
         /// <summary>
         /// 获取所有构件信息
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<ModelComponent>> GetComponentsAsync(string componentId, string componentName);
+        Task<IEnumerable<Cesium.Models.ModelComponent>> GetComponentsAsync(string componentId, string componentName);
 
     }
 }

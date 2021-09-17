@@ -39,5 +39,11 @@ namespace Cesium.IServices
         /// <param name="id"></param>
         /// <returns></returns>
         Task<BaseResult> DeleteComponentDataSource(int id);
+
+        /// <summary>
+        /// 通过componentId 获取模型构件菜单数据资源
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<ModelComponentDataSource>> GetComponentDataSourceListByComponentIdAsync(string componentId);
     }
 }

@@ -1,3 +1,4 @@
+E:\CesiumApi\CesiumBimGis\Cesium.IRepository\bin\Debug\net5.0\NOTICE.TXT
 E:\CesiumApi\CesiumBimGis\Cesium.IRepository\bin\Debug\net5.0\Cesium.IRepository.deps.json
 E:\CesiumApi\CesiumBimGis\Cesium.IRepository\bin\Debug\net5.0\Cesium.IRepository.dll
 E:\CesiumApi\CesiumBimGis\Cesium.IRepository\bin\Debug\net5.0\ref\Cesium.IRepository.dll
@@ -17,4 +18,3 @@ E:\CesiumApi\CesiumBimGis\Cesium.IRepository\obj\Debug\net5.0\Cesium.IRepository
 E:\CesiumApi\CesiumBimGis\Cesium.IRepository\obj\Debug\net5.0\Cesium.IRepository.dll
 E:\CesiumApi\CesiumBimGis\Cesium.IRepository\obj\Debug\net5.0\ref\Cesium.IRepository.dll
 E:\CesiumApi\CesiumBimGis\Cesium.IRepository\obj\Debug\net5.0\Cesium.IRepository.pdb
-E:\CesiumApi\CesiumBimGis\Cesium.IRepository\bin\Debug\net5.0\NOTICE.TXT

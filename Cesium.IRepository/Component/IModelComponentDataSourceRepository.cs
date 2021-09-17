@@ -22,5 +22,12 @@ namespace Cesium.IRepository
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<ModelComponentDataSource>> GetAllComponentDataSourceListAsync();
+
+        /// <summary>
+        /// 通过（构件Id&&menuname='属性'）获取所有构件动态信息
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ModelComponentDataSource>> GetModelComponentDataSources(string componentId);
     }
 }
