@@ -537,6 +537,7 @@ namespace CesiumBimGisApi.Controllers
 
         [HttpGet]
         [Route("GetComponentFile")]
+        [AllowAnonymous]
         public async Task<BaseResult> GetComponentFile(string componentId, string menuName)
         {
             BaseResult result = new BaseResult();

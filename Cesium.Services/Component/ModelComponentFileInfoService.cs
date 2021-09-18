@@ -71,7 +71,7 @@ namespace Cesium.Services
 
         public async Task<ModelComponentFileInfo> GetModelComponentFileByComponentIdAndMenuName(string componentId, string menuName)
         {
-            string conditions = " where ComponentId=@ComponentId And MenuName=@MenuName";
+            string conditions = $"select * from {nameof(ModelComponentFileInfo)}  where ComponentId=@ComponentId And MenuName=@MenuName";
             var file = await _modelComponentFileInfoRepository.GetAsync(conditions, new { ComponentId = componentId , MenuName =menuName});
 
             return file;
