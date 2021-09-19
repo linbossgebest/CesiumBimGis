@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CesiumBimGisApi</name>
+    </assembly>
+    <members>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.AddOrModifyUser(Cesium.ViewModels.System.UserModel)">
+            <summary>
+            添加用户或者修改用户信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetUserInfoList(System.Int32,System.Int32)">
+            <summary>
+            获取所有用户信息
+            </summary>
+            <param name="pageIndex">第几页</param>
+            <param name="pageSize">每页的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.DeleteUserInfo(System.Int32)">
+            <summary>
+            根据userid删除用户信息
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetUserInfo">
+            <summary>
+            获取单个用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.RequestToken(Cesium.ViewModels.System.LoginModel)">
+            <summary>
+            用户登录获取bearer token
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetUserRoleInfoList">
+            <summary>
+            获取所有用户角色信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetUserRoleInfoByUserId(System.Int32)">
+            <summary>
+            根据用户编号获取用户角色信息
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetRoleInfoList">
+            <summary>
+            获取所有角色信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.DeleteRoleInfo(System.Int32)">
+            <summary>
+            删除角色信息
+            </summary>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.AddOrModifyMenuInfo(Cesium.Models.System.SysAuthMenu)">
+            <summary>
+            新增或修改菜单信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.DeleteMenuInfo(System.Int32)">
+            <summary>
+            删除菜单及对应子菜单信息
+            </summary>
+            <param name="menuId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetMenuInfo">
+            <summary>
+            获取菜单信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetMenuTreeByRole(System.Int32)">
+            <summary>
+            根据角色Id获取菜单tree
+            </summary>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetAllAppMenuList(System.Int32,System.Int32)">
+            <summary>
+            查询所有App菜单
+            </summary>
+            <param name="pageIndex">第几页</param>
+            <param name="pageSize">每页的数量</param>
+            <returns></returns>
+        </member>
+        <member name="T:CesiumBimGisApi.Controllers.BaseController">
+            <summary>
+            抽象基类控制器
+            </summary>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetComponentDataSourceList(System.String)">
+            <summary>
+            根据构件编号获取构件菜单
+            </summary>
+            <param name="componentId">构件编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetAllComponentDataSourceList(System.Int32,System.Int32)">
+            <summary>
+            获取所有构件菜单
+            </summary>
+            <param name="pageIndex">第几页</param>
+            <param name="pageSize">每页的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddOrModifyComponentDataSource(Cesium.ViewModels.ComponentMenuModel)">
+            <summary>
+            新增修改构件菜单信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.DeleteComponentDataSource(System.Int32)">
+            <summary>
+            删除构件菜单信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetComponentDataSourceByComponentId(System.String)">
+            <summary>
+            通过构件编号获取菜单信息
+            </summary>
+            <param name="componentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddOrModifyComponentType(Cesium.ViewModels.ComponentTypeModel)">
+            <summary>
+            添加或修改构件菜单类型信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetComponentTypeList(System.Int32,System.Int32)">
+            <summary>
+            查询所有构件类型
+            </summary>
+            <param name="pageIndex">第几页</param>
+            <param name="pageSize">每页的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.DeleteComponentTypeInfo(System.Int32)">
+            <summary>
+            根据类型Id删除类型信息
+            </summary>
+            <param name="typeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddComment(Cesium.ViewModels.CommentModel)">
+            <summary>
+            添加评论
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddComponentInfo(Cesium.Models.ModelComponent)">
+            <summary>
+            新增构件信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.UpdateComponentInfo(Cesium.Models.ModelComponent)">
+            <summary>
+            修改构件信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.DeleteComponentInfo(System.String)">
+            <summary>
+            删除构件信息
+            </summary>
+            <param name="componentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetAllComponents(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询所有构件信息
+            </summary>
+            <param name="pageIndex">第几页</param>
+            <param name="pageSize">每页的数量</param>
+            <param name="componentId">构件编号</param>
+            <param name="componentName">构件名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.UploadComponentFile(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传构件json文件
+            </summary>
+            <param name="fileinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.UploadComponentFileExcel(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传excel文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetComponentFileList(System.Int32,System.Int32,System.String)">
+            <summary>
+            获取构件对应文件信息
+            </summary>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <param name="componentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.UploadComponentFile(Microsoft.AspNetCore.Http.IFormFile,System.Int32,System.String)">
+            <summary>
+            上传构件对应文件信息
+            </summary>
+            <param name="file">上传文件</param>
+            <param name="modelId">模型编号</param>
+            <param name="componentId">构件编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.DeleteComponentFileInfo(System.Int32)">
+            <summary>
+            删除构件对应文件信息
+            </summary>
+            <param name="fileId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddModelInfo(Cesium.Models.ModelInfo)">
+            <summary>
+            添加模型
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

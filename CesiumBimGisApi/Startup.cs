@@ -7,6 +7,7 @@ using Cesium.IRepository;
 using Cesium.IServices;
 using Cesium.Respository;
 using Cesium.Services;
+using CesiumBimGisApi.CustomMiddleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
@@ -76,6 +78,11 @@ namespace CesiumBimGisApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CesiumBimGisApi", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                // 获取xml文件路径
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                // 添加控制器层注释，true表示显示控制器注释
+                c.IncludeXmlComments(xmlPath, true);
             });
 
             //添加cors 服务 配置跨域处理            
@@ -87,7 +94,6 @@ namespace CesiumBimGisApi
                            .AllowAnyHeader()
                            .SetIsOriginAllowed(_ => true) //= AllowAnyOrigin()
                            .AllowCredentials();
-
                 });
             });
         }
@@ -107,10 +113,13 @@ namespace CesiumBimGisApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CesiumBimGisApi v1"));
             }
 
-            app.UseStaticFiles(new StaticFileOptions {
+            app.UseCustomExceptionMiddleware();//自定义全局异常中间件
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
                 OnPrepareResponse = (c) =>
                 {
-                    c.Context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                    c.Context.Response.Headers.Add("Access-Control-Allow-Origin", "*");//静态文件跨域访问
                 },
             });
 
