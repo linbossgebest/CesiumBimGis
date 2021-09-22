@@ -84,6 +84,10 @@
               "target": "Package",
               "version": "[8.0.26, )"
             },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[4.14.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"

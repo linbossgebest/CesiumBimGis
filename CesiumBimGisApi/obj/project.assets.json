@@ -1992,6 +1992,7 @@
           "Microsoft.Extensions.DependencyModel": "5.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
           "MySql.Data": "8.0.26",
+          "NLog.Web.AspNetCore": "4.14.0",
           "Newtonsoft.Json": "13.0.1",
           "System.Data.SqlClient": "4.8.2",
           "System.IdentityModel.Tokens.Jwt": "6.12.2"
