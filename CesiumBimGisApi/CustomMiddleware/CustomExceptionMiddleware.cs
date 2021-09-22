@@ -29,7 +29,7 @@ namespace CesiumBimGisApi.CustomMiddleware
             }
             catch (Exception ex)
             {
-                _logger.LogError("Unhandled exception....", ex);
+                _logger.LogError($"Unhandled exception....{ex}", ex);
                 await HandleExceptionAsync(httpContext, ex);
             }
         }

@@ -55,5 +55,40 @@ namespace Cesium.Services
             }
             return result;
         }
+
+        public async Task<BaseResult> DeleteCommentInfo(int id)
+        {
+            var result = new BaseResult();
+            if (await _modelComponentCommentRepository.DeleteAsync(id) > 0)
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+            }
+            else
+            {
+                result.isSuccess = false;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        public async Task<IEnumerable<ModelComponentComment>> GetCommentsAsync(string componentId, string componentName)
+        {
+            string conditions = " where 1=1 ";
+            if (!componentId.IsNullOrWhiteSpace())
+            {
+                conditions += "And ComponentId = @ComponentId";
+            }
+            if (!componentName.IsNullOrWhiteSpace())
+            {
+                conditions += "And ComponentName = @ComponentName";
+            }
+            var comments = await _modelComponentCommentRepository.GetListAsync(conditions, new { ComponentId = componentId, ComponentName = componentName });
+
+            return comments;
+        }
     }
 }

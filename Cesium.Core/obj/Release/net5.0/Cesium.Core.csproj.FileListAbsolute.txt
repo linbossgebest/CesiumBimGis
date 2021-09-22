@@ -10,3 +10,4 @@ E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.csproj.Core
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\ref\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.csproj.AssemblyReference.cache

@@ -163,11 +163,28 @@
             <param name="typeId"></param>
             <returns></returns>
         </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetCommentList(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            获取所有评论信息
+            </summary>
+            <param name="componentId">构件编号</param>
+            <param name="componentName">构件名称</param>
+            <param name="pageIndex">页数</param>
+            <param name="pageSize">每页数量</param>
+            <returns></returns>
+        </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddComment(Cesium.ViewModels.CommentModel)">
             <summary>
             添加评论
             </summary>
             <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.DeleteComment(System.Int32)">
+            <summary>
+            删除评论
+            </summary>
+            <param name="commentId"></param>
             <returns></returns>
         </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddComponentInfo(Cesium.Models.ModelComponent)">
@@ -246,6 +263,16 @@
             </summary>
             <param name="model"></param>
             <returns></returns>
+        </member>
+        <member name="T:CesiumBimGisApi.CustomMiddleware.CustomExceptionMiddleware">
+            <summary>
+            自定义异常中间件
+            </summary>
+        </member>
+        <member name="T:CesiumBimGisApi.CustomMiddleware.CustomExceptionMiddlewareExtensions">
+            <summary>
+            自定义异常中间件扩展类
+            </summary>
         </member>
     </members>
 </doc>

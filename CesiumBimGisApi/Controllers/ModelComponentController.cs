@@ -176,7 +176,7 @@ namespace CesiumBimGisApi.Controllers
         public async Task<BaseResult> GetComponentDataSourceByComponentId(string componentId)
         {
             BaseResult result = new BaseResult();
-            var sources=await _modelComponentDataSourceService.GetComponentDataSourceListByComponentIdAsync(componentId);
+            var sources = await _modelComponentDataSourceService.GetComponentDataSourceListByComponentIdAsync(componentId);
             if (sources != null)
             {
                 var data = new
@@ -269,16 +269,61 @@ namespace CesiumBimGisApi.Controllers
         #region 构件评论
 
         /// <summary>
+        /// 获取所有评论信息
+        /// </summary>
+        /// <param name="componentId">构件编号</param>
+        /// <param name="componentName">构件名称</param>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageSize">每页数量</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetComments")]
+        public async Task<BaseResult> GetCommentList(string componentId, string componentName,int pageIndex, int pageSize)
+        {
+            BaseResult result = new BaseResult();
+            var comments = await _modelComponentCommentService.GetCommentsAsync(componentId, componentName);
+            var total = comments.Count();
+
+            comments = comments.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            var data = new
+            {
+                items = comments,
+                total = total
+            };
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
+
+            return result;
+        }
+
+        /// <summary>
         /// 添加评论
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("AddComment")]
+        [AllowAnonymous]
         public async Task<string> AddComment([FromBody] CommentModel model)
         {
             var result = await _modelComponentCommentService.AddCommentAsync(model);
             return JsonHelper.ObjectToJSON(result);
+        }
+
+        /// <summary>
+        /// 删除评论
+        /// </summary>
+        /// <param name="commentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("DeleteComment")]
+        public async Task<BaseResult> DeleteComment(int commentId)
+        {
+            return await _modelComponentCommentService.DeleteCommentInfo(commentId);
         }
 
         #endregion

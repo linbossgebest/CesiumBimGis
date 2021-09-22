@@ -1,4 +1,5 @@
 ﻿using Cesium.Core.Extensions;
+using Cesium.Models;
 using Cesium.ViewModels;
 using Cesium.ViewModels.ResultModel;
 using System;
@@ -17,5 +18,18 @@ namespace Cesium.IServices
         /// <param name="model"></param>
         /// <returns></returns>
         Task<BaseResult> AddCommentAsync(CommentModel model);
+
+        /// <summary>
+        /// 删除模型构件评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<BaseResult> DeleteCommentInfo(int id);
+
+        /// <summary>
+        /// 获取所有评论信息
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<ModelComponentComment>> GetCommentsAsync(string componentId,string componentName);
     }
 }
