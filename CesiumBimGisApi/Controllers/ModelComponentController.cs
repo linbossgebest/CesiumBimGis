@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -33,9 +34,10 @@ namespace CesiumBimGisApi.Controllers
         private readonly IModelComponentTypeService _modelComponentTypeService;
         private readonly IModelComponentFileInfoService _modelComponentFileInfoService;
         private readonly IHostEnvironment _hostingEnvironment;
+        private readonly ILogger<ModelComponentController> _logger;
 
-
-        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService, IModelComponentTypeService modelComponentTypeService, IModelComponentFileInfoService modelComponentFileInfoService, IHostEnvironment hostingEnvironment)
+        public ModelComponentController(IModelComponentCommentService modelComponentCommentService, IModelInfoService modelInfoService, IModelComponentService modelComponentService, IModelComponentDataSourceService modelComponentDataSourceService, IModelComponentTypeService modelComponentTypeService, IModelComponentFileInfoService modelComponentFileInfoService, IHostEnvironment hostingEnvironment,
+            ILogger<ModelComponentController> logger)
         {
             _modelComponentCommentService = modelComponentCommentService;
             _modelInfoService = modelInfoService;
@@ -44,6 +46,7 @@ namespace CesiumBimGisApi.Controllers
             _modelComponentTypeService = modelComponentTypeService;
             _modelComponentFileInfoService = modelComponentFileInfoService;
             _hostingEnvironment = hostingEnvironment;
+            _logger = logger;
         }
 
         #region 构件菜单
@@ -513,7 +516,7 @@ namespace CesiumBimGisApi.Controllers
         {
             #region 上传文件到静态服务器
 
-            var fileName = file.FileName;
+            var fileName = Guid.NewGuid().ToString() + file.FileName;
             var fileExt = Path.GetExtension(file.FileName);
             var path = Path.Combine(_hostingEnvironment.ContentRootPath, "wwwroot\\componentresources\\" + fileName);
             await using var stream = System.IO.File.Create(path);
@@ -523,12 +526,18 @@ namespace CesiumBimGisApi.Controllers
 
             #region 添加构件对应文件信息
 
-            var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
-            TokenInfo tokenInfo = new()
-            {
-                UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
-                UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
-            };
+            //var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
+            //_logger.LogInformation("info 是否为null:" + (info==null).ToString());
+            //_logger.LogInformation("info count:"+info.Count().ToString());
+            //TokenInfo tokenInfo = null ;
+            //if (info != null)
+            //{
+            //    tokenInfo = new()
+            //    {
+            //        UserId = Int32.Parse(info.FirstOrDefault(f => f.Type.Equals("UserId")).Value),
+            //        UserName = info.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Name)).Value
+            //    };
+            //}
 
             ModelComponentFileInfo model = new()
             {
@@ -539,8 +548,12 @@ namespace CesiumBimGisApi.Controllers
                 FilePath = path,
                 FileType = fileExt,
                 CreateTime = DateTime.Now,
-                CreatorId = tokenInfo.UserId,
-                CreatorName = tokenInfo.UserName
+                CreatorId = 1,
+                CreatorName = "admin"
+                //CreatorId = tokenInfo == null ? 1 : tokenInfo.UserId,
+                //CreatorName = tokenInfo == null ? "admin" : tokenInfo.UserName
+                //CreatorId = tokenInfo.UserId,
+                //CreatorName = tokenInfo.UserName
             };
 
             #endregion
