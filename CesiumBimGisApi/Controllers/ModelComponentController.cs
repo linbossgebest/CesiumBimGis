@@ -60,7 +60,7 @@ namespace CesiumBimGisApi.Controllers
         [Route("GetComponentMenu")]
         [AllowAnonymous]
         public async Task<BaseResult> GetComponentDataSourceList(string componentId)
-        {
+        { 
             BaseResult result = new BaseResult();
 
             var component = await _modelComponentService.GetComponentInfoAsync(componentId);//获取构件信息
@@ -546,7 +546,7 @@ namespace CesiumBimGisApi.Controllers
                 FileName = fileName,
                 FileSrc = fileName,
                 FilePath = path,
-                FileType = fileExt,
+                FileType = fileExt.ToLower(),
                 CreateTime = DateTime.Now,
                 CreatorId = 1,
                 CreatorName = "admin"
@@ -586,6 +586,11 @@ namespace CesiumBimGisApi.Controllers
             return await _modelComponentFileInfoService.DeleteComponentFileInfoAsync(fileId);
         }
 
+        /// <summary>
+        /// 修改构件文件信息
+        /// </summary>
+        /// <param name="model">文件信息</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("UpdateComponentFile")]
         public async Task<BaseResult> UpdateModelComponentFileInfoAsync([FromBody] ComponentFileModel model)
@@ -593,6 +598,12 @@ namespace CesiumBimGisApi.Controllers
             return await _modelComponentFileInfoService.UpdateModelComponentFileInfoAsync(model);
         }
 
+        /// <summary>
+        /// 通过构件编号和菜单名称获取文件信息
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <param name="menuName"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("GetComponentFile")]
         [AllowAnonymous]
@@ -668,8 +679,6 @@ namespace CesiumBimGisApi.Controllers
             var result = await _modelComponentService.AddModelComponentListAsync(list);
             return JsonHelper.ObjectToJSON(result);
         }
-
-
 
         #region private method
 
