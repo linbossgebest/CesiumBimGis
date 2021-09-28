@@ -18,11 +18,34 @@ namespace Cesium.Respository
         {
         }
 
-        public async Task<int> AddListAsync(List<ModelComponent> list)
+        public async Task<bool> AddListAsync(List<ModelComponent> list)
         {
-            string sql = @" INSERT INTO ModelComponent (ComponentId,ComponentName,ModelId,Status,CompletedTime,ParentId,ComponentTypeId)
-             VALUES(@ComponentId,@ComponentName,@ModelId,@Status,@CompletedTime,@ParentId,@ComponentTypeId); ";
-            return await _dbConnection.ExecuteAsync(sql, list);
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    List<string> componentIds = new List<string>();
+                    componentIds = list.Select(f => f.ComponentId).ToList();
+                    //foreach (var item in list)
+                    //{
+                    //    componentIds.Add(item.ComponentId);
+                    //}
+                    string deletesql = "Delete from ModelComponent where ComponentId in @componentIds";
+                    await _dbConnection.ExecuteAsync(deletesql, new { componentIds }, transaction);
+
+                    string sql = @" INSERT INTO ModelComponent (ComponentId,ComponentName,ModelId,Status,CompletedTime,ParentId,ComponentTypeId,AdditionalProperties)
+             VALUES(@ComponentId,@ComponentName,@ModelId,@Status,@CompletedTime,@ParentId,@ComponentTypeId,@AdditionalProperties); ";
+                    await _dbConnection.ExecuteAsync(sql, list, transaction);
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return false;
+                }
+               
+            }
         }
     }
 }

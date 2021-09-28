@@ -49,5 +49,9 @@ namespace Cesium.Models
         /// </summary>
         public int ComponentTypeId { get; set; }
 
+        /// <summary>
+        /// 构件额外属性 json对象类型的字符串
+        /// </summary>
+        public string AdditionalProperties { get; set; }
     }
 }

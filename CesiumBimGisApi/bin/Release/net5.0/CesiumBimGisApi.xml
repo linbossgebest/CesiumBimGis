@@ -257,6 +257,21 @@
             <param name="fileId"></param>
             <returns></returns>
         </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.UpdateModelComponentFileInfoAsync(Cesium.ViewModels.ComponentFileModel)">
+            <summary>
+            修改构件文件信息
+            </summary>
+            <param name="model">文件信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetComponentFile(System.String,System.String)">
+            <summary>
+            通过构件编号和菜单名称获取文件信息
+            </summary>
+            <param name="componentId"></param>
+            <param name="menuName"></param>
+            <returns></returns>
+        </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddModelInfo(Cesium.Models.ModelInfo)">
             <summary>
             添加模型

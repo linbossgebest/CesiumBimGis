@@ -10,6 +10,11 @@ namespace Cesium.IRepository
 {
     public interface IModelComponentRepository : IDependency, IBaseRepository<ModelComponent, string>
     {
-        Task<int> AddListAsync(List<ModelComponent> list);
+        /// <summary>
+        /// 批量更新模型构件信息
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        Task<bool> AddListAsync(List<ModelComponent> list);
     }
 }

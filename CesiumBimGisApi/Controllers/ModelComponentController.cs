@@ -410,6 +410,32 @@ namespace CesiumBimGisApi.Controllers
             return result;
         }
 
+        /// <summary>
+        /// 通过构件编号获取构件的额外属性
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetProperties")]
+        [AllowAnonymous]
+        public async Task<BaseResult> GetAddtionalProperties(string componentId)
+        {
+            BaseResult result = new BaseResult();
+            var properties = await _modelComponentService.GetAddtionalProperties(componentId);
+            var list = JsonHelper.JSONToObject<List<PropertyModel>>(properties);
+
+            var data = new
+            {
+                items = list
+            };
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
+
+            return result;
+        }
 
         /// <summary>
         /// 上传构件json文件

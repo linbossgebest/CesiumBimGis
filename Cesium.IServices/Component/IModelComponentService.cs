@@ -53,5 +53,11 @@ namespace Cesium.IServices
         /// <returns></returns>
         Task<IEnumerable<Cesium.Models.ModelComponent>> GetComponentsAsync(string componentId, string componentName);
 
+        /// <summary>
+        /// 通过构件编号获取构件的额外属性
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
+        Task<string> GetAddtionalProperties(string componentId);
     }
 }

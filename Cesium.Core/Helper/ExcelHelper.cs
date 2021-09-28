@@ -118,10 +118,11 @@ namespace Cesium.Core.Helper
                             {
                                 propertys[j].SetValue(obj, value, null);
                             }
-                            else if (str == "System.DateTime")
+                            else if (str.Contains("System.DateTime"))
                             {
-                                DateTime pdt = Convert.ToDateTime(value, CultureInfo.InvariantCulture);
-                                propertys[j].SetValue(obj, pdt, null);
+                                //DateTime pdt = Convert.ToDateTime(value, CultureInfo.InvariantCulture);
+                                var datetime=cell.DateCellValue;
+                                propertys[j].SetValue(obj, datetime, null);
                             }
                             else if (str == "System.Boolean")
                             {

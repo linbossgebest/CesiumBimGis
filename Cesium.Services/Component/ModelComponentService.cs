@@ -30,7 +30,7 @@ namespace Cesium.Services
         public async Task<BaseResult> AddModelComponentListAsync(List<ModelComponent> list)
         {
             var result = new BaseResult();
-            if (await _modelComponentRepository.AddListAsync(list) > 0)
+            if (await _modelComponentRepository.AddListAsync(list))
             {
                 result.isSuccess = true;
                 result.code = ResultCodeMsg.CommonSuccessCode;
@@ -164,6 +164,13 @@ namespace Cesium.Services
             }
 
             return result;
+        }
+
+        public async Task<string> GetAddtionalProperties(string componentId)
+        {
+            var existComponent = await _modelComponentRepository.GetAsync(componentId);
+
+            return existComponent.AdditionalProperties;
         }
     }
 }
