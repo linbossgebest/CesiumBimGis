@@ -17,6 +17,7 @@ namespace Cesium.Core.Extensions
         public static IServiceCollection AddModule(this IServiceCollection services, ContainerBuilder builder, IConfiguration configuration)
         {
             Type baseType = typeof(IDependency);
+            //获取项目程序集，排除所有的系统程序集(Microsoft.***、System.***等)
             var compilationLibrary = DependencyContext.Default
                        .CompileLibraries
                        .Where(x => !x.Serviceable

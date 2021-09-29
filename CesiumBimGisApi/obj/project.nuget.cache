@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BzG/bPeBj0RNfBlELQbdy/04R2c4G00a/27BtpMYHaCrk8Gy3bwnLK+lRhkCBPm/t4BW1wVt4Y1rQphWgbvDsg==",
+  "dgSpecHash": "AV/prl5MXsbrHjgETvto6tYLWKcI21hTtW/ujbL3AKZQQppggaHcyTLcpgOKeoUh3agVYs19bz860nA20Wf+Ww==",
   "success": true,
   "projectFilePath": "E:\\CesiumApi\\CesiumBimGis\\CesiumBimGisApi\\CesiumBimGisApi.csproj",
   "expectedPackageFiles": [
@@ -139,7 +139,8 @@
     "C:\\Users\\linyong\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\linyong\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\linyong\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\linyong\\.nuget\\packages\\uaparser\\3.1.47\\uaparser.3.1.47.nupkg.sha512"
   ],
   "logs": []
 }

@@ -8,6 +8,7 @@ using Cesium.IServices;
 using Cesium.Respository;
 using Cesium.Services;
 using CesiumBimGisApi.CustomMiddleware;
+using CesiumBimGisApi.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,8 +46,6 @@ namespace CesiumBimGisApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //services.AddOptions();
             services.Configure<DbOption>("DbOption", Configuration.GetSection("DbOption"));
             services.Configure<JWTOption>("JWTOption", Configuration.GetSection("JWTConfigurations"));
 
@@ -74,7 +73,11 @@ namespace CesiumBimGisApi
                 };
             });
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(RequestActionFilter));
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CesiumBimGisApi", Version = "v1" });

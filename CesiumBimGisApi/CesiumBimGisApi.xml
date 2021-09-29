@@ -296,5 +296,10 @@
             自定义异常中间件扩展类
             </summary>
         </member>
+        <member name="T:CesiumBimGisApi.Filters.RequestActionFilter">
+            <summary>
+            Action操作过滤器 记录操作日志
+            </summary>
+        </member>
     </members>
 </doc>

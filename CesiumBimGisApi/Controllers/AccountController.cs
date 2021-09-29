@@ -1,4 +1,5 @@
 ﻿using Cesium.Core;
+using Cesium.Core.CustomEnum;
 using Cesium.Core.Helper;
 using Cesium.Core.Options;
 using Cesium.IServices;
@@ -20,6 +21,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using UAParser;
 
 namespace CesiumBimGisApi.Controllers
 {
@@ -27,6 +29,7 @@ namespace CesiumBimGisApi.Controllers
     [ApiController]
     public class AccountController : BaseController
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ISysUserService _userService;
         private readonly ISysRoleService _roleService;
         private readonly ISysAuthMenuService _sysAuthMenuService;
@@ -34,17 +37,20 @@ namespace CesiumBimGisApi.Controllers
         private readonly ISysAppMenuService _sysAppMenuService;
         private readonly ISysUserRoleService _sysUserRoleService;
         private readonly ISysRoleMenuService _sysRoleMenuService;
+        private readonly ISysLogVisService _sysLogVisService;
         private readonly DbOption _option;
         private readonly JWTOption _JWToption;
 
-        public AccountController(ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService, ISysUserRoleService sysUserRoleService, ISysRoleMenuService sysRoleMenuService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
+        public AccountController(IHttpContextAccessor httpContextAccessor,ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService, ISysUserRoleService sysUserRoleService, ISysRoleMenuService sysRoleMenuService, ISysLogVisService sysLogVisService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
         {
+            _httpContextAccessor = httpContextAccessor;
             _userService = userService;
             _roleService = roleService;
             _sysAuthMenuService = sysAuthMenuService;
             _sysAppMenuService = sysAppMenuService;
             _sysUserRoleService = sysUserRoleService;
             _sysRoleMenuService = sysRoleMenuService;
+            _sysLogVisService = sysLogVisService;
             _option = option.Get("DbOption");
             _JWToption = JWToption.Get("JWTOption");
             _configuration = configuration;
@@ -159,14 +165,14 @@ namespace CesiumBimGisApi.Controllers
         }
 
         /// <summary>
-        /// 用户登录获取bearer token
+        /// 用户登录操作  获取bearer token
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        [Route("RequestToken")]
-        public async Task<BaseResult> RequestToken([FromBody] LoginModel model)
+        [Route("Login")]
+        public async Task<BaseResult> Login([FromBody] LoginModel model)
         {
             BaseResult result = new BaseResult();
             var user = await _userService.SignInAsync(model);
@@ -213,6 +219,13 @@ namespace CesiumBimGisApi.Controllers
                 result.message = ResultCodeMsg.CommonSuccessMsg;
                 result.data = JsonHelper.ObjectToJSON(data);
 
+                #region 添加登录访问日志
+
+                SysLogVis log = SetSysLogVis(_httpContextAccessor, "登录成功", LoginType.Login);
+                await _sysLogVisService.AddLog(log);
+
+                #endregion
+
             }
             else
             {
@@ -222,6 +235,19 @@ namespace CesiumBimGisApi.Controllers
             }
             //return JsonHelper.ObjectToJSON(result);
             return result;
+        }
+
+       
+
+        /// <summary>
+        /// 用户退出
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Logout")]
+        public async Task Logout()
+        {
+            await Task.CompletedTask;
         }
 
         #endregion
@@ -585,5 +611,38 @@ namespace CesiumBimGisApi.Controllers
 
         #endregion
 
+        #region private method
+
+        /// <summary>
+        /// 设置访问日志类容
+        /// </summary>
+        /// <param name="httpContextAccessor"></param>
+        /// <param name="message"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private SysLogVis SetSysLogVis(IHttpContextAccessor httpContextAccessor, string message, LoginType type)
+        {
+            var httpContext = httpContextAccessor.HttpContext;
+            var httpRequest = httpContext.Request;
+            var headers = httpRequest.Headers;
+            var clientInfo = headers.ContainsKey("User-Agent")
+                ? Parser.GetDefault().Parse(headers["User-Agent"])
+                : null;
+            SysLogVis log = new SysLogVis
+            {
+                Name = httpContext.User?.FindFirstValue(ClaimTypes.Name),
+                Success = true,
+                Message = message,
+                Ip = httpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(),
+                Browser = clientInfo?.UA.Family + clientInfo?.UA.Major,
+                Os = clientInfo?.OS.Family + clientInfo?.OS.Major,
+                VisType = type,
+                VisTime = DateTime.Now,
+                Account = httpContext.User?.FindFirstValue("UserId")
+            };
+            return log;
+        }
+
+        #endregion
     }
 }
