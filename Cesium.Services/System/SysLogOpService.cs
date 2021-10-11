@@ -39,9 +39,10 @@ namespace Cesium.Services.System
                 conditions += "And ReqMethod LIKE CONCAT('%',@requestMethod,'%') ";
             }
 
-            var logs = await _sysLogOpRepository.GetListAsync(conditions, new { Name = logName, ReqMethod = requestMethod });
+            var logs = await _sysLogOpRepository.GetListAsync(conditions, new { logName = logName, requestMethod = requestMethod });
 
             return logs;
         }
+
     }
 }

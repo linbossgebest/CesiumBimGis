@@ -20,6 +20,12 @@ namespace CesiumBimGisApi.Filters
     {
         private readonly ISysLogOpService _sysLogOpService;
         private readonly ILogger<RequestActionFilter> _logger;
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="sysLogOpService"></param>
+        /// <param name="logger"></param>
         public RequestActionFilter(ISysLogOpService sysLogOpService, ILogger<RequestActionFilter> logger)
         {
             _sysLogOpService = sysLogOpService;
@@ -28,13 +34,13 @@ namespace CesiumBimGisApi.Filters
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var httpContext = context.HttpContext;
-            var httpRequest = httpContext.Request;
             var sw = new Stopwatch();
             sw.Start();
             var actionContext = await next();
             sw.Stop();
 
+            var httpContext = context.HttpContext;
+            var httpRequest = httpContext.Request;
             // 判断是否请求成功（没有异常就是请求成功）
             var isRequestSucceed = actionContext.Exception == null;
             var headers = httpRequest.Headers;

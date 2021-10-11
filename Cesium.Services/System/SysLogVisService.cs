@@ -37,10 +37,14 @@ namespace Cesium.Services.System
             }
             if (visType.HasValue)
             {
+                visType = visType.Value;
                 conditions += "And VisType = @visType ";
             }
+            else {
+                visType = null;
+            }
 
-            var logs = await _sysLogVisRepository.GetListAsync(conditions, new { Name = logName, VisType = visType.Value });
+            var logs = await _sysLogVisRepository.GetListAsync(conditions, new { logName = logName, visType = visType });
 
             return logs;
         }

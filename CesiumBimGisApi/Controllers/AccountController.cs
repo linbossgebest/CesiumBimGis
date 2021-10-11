@@ -29,19 +29,21 @@ namespace CesiumBimGisApi.Controllers
     [ApiController]
     public class AccountController : BaseController
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ISysUserService _userService;
-        private readonly ISysRoleService _roleService;
-        private readonly ISysAuthMenuService _sysAuthMenuService;
-        private readonly IConfiguration _configuration;
-        private readonly ISysAppMenuService _sysAppMenuService;
-        private readonly ISysUserRoleService _sysUserRoleService;
-        private readonly ISysRoleMenuService _sysRoleMenuService;
-        private readonly ISysLogVisService _sysLogVisService;
+        private readonly IHttpContextAccessor _httpContextAccessor;//http上下文
+        private readonly ISysUserService _userService;//用户服务
+        private readonly ISysRoleService _roleService;//角色服务
+        private readonly ISysAuthMenuService _sysAuthMenuService;//权限服务
+        private readonly IConfiguration _configuration;//配置
+        private readonly ISysAppMenuService _sysAppMenuService;//app菜单服务
+        private readonly ISysUserRoleService _sysUserRoleService;//用户角色服务
+        private readonly ISysRoleMenuService _sysRoleMenuService;//角色菜单服务
+        private readonly ISysLogOpService _sysLogOpService;//操作日志服务
+        private readonly ISysLogExService _sysLogExService;//异常日志服务
+        private readonly ISysLogVisService _sysLogVisService;//访问日志服务
         private readonly DbOption _option;
         private readonly JWTOption _JWToption;
 
-        public AccountController(IHttpContextAccessor httpContextAccessor,ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService, ISysUserRoleService sysUserRoleService, ISysRoleMenuService sysRoleMenuService, ISysLogVisService sysLogVisService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
+        public AccountController(IHttpContextAccessor httpContextAccessor,ISysUserService userService, ISysRoleService roleService, ISysAuthMenuService sysAuthMenuService, ISysAppMenuService sysAppMenuService, ISysUserRoleService sysUserRoleService, ISysRoleMenuService sysRoleMenuService, ISysLogOpService sysLogOpService, ISysLogExService sysLogExService, ISysLogVisService sysLogVisService,IOptionsSnapshot<DbOption> option, IConfiguration configuration, IOptionsSnapshot<JWTOption> JWToption)
         {
             _httpContextAccessor = httpContextAccessor;
             _userService = userService;
@@ -50,6 +52,8 @@ namespace CesiumBimGisApi.Controllers
             _sysAppMenuService = sysAppMenuService;
             _sysUserRoleService = sysUserRoleService;
             _sysRoleMenuService = sysRoleMenuService;
+            _sysLogOpService = sysLogOpService;
+            _sysLogExService = sysLogExService;
             _sysLogVisService = sysLogVisService;
             _option = option.Get("DbOption");
             _JWToption = JWToption.Get("JWTOption");
@@ -221,7 +225,7 @@ namespace CesiumBimGisApi.Controllers
 
                 #region 添加登录访问日志
 
-                SysLogVis log = SetSysLogVis(_httpContextAccessor, "登录成功", LoginType.Login);
+                SysLogVis log = SetSysLogVis(_httpContextAccessor, "登录成功", LoginType.Login, user);
                 await _sysLogVisService.AddLog(log);
 
                 #endregion
@@ -245,9 +249,18 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Logout")]
-        public async Task Logout()
+        public async Task<BaseResult> Logout()
         {
-            await Task.CompletedTask;
+            BaseResult result = new BaseResult();
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+
+            SysLogVis log = SetSysLogVis(_httpContextAccessor, "退出成功", LoginType.LogOut);
+            await _sysLogVisService.AddLog(log);
+
+            return result;
         }
 
         #endregion
@@ -611,6 +624,133 @@ namespace CesiumBimGisApi.Controllers
 
         #endregion
 
+        #region 日志信息
+
+        /// <summary>
+        /// 查询操作日志信息
+        /// </summary>
+        /// <param name="logName">日志名称</param>
+        /// <param name="requestMethod">请求方式</param>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageSize">每页数量</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetOptionLogs")]
+        public async Task<BaseResult> GetOptionLogs(string logName, string requestMethod, int pageIndex, int pageSize)
+        {
+            BaseResult result = new BaseResult();
+            var logs = await _sysLogOpService.GetLogs(logName, requestMethod);
+            var total = logs.Count();
+
+            logs=logs.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            if (logs != null)
+            {
+                var data = new
+                {
+                    items = logs,
+                    total = total
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 异常日志查询
+        /// </summary>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageSize">每页数量</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetExceptionLogs")]
+        public async Task<BaseResult> GetExceptionLogs(string className, string methodName, int pageIndex, int pageSize)
+        {
+            BaseResult result = new BaseResult();
+            var logs = await _sysLogExService.GetLogs(className, methodName);
+            var total = logs.Count();
+
+            logs=logs.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            if (logs != null)
+            {
+                var data = new
+                {
+                    items = logs,
+                    total = total
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 访问日志查询
+        /// </summary>
+        /// <param name="logName">日志名称</param>
+        /// <param name="visType">登录类型</param>
+        /// <param name="pageIndex">页数</param>
+        /// <param name="pageSize">每页数量</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetVisitLogs")]
+        public async Task<BaseResult> GetVisitLogs(string logName, int? visType, int pageIndex, int pageSize)
+        {
+            BaseResult result = new BaseResult();
+            var logs = await _sysLogVisService.GetLogs(logName, visType);
+            var total = logs.Count();
+
+            logs = logs.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
+            if (logs != null)
+            {
+                var data = new
+                {
+                    items = logs,
+                    total = total
+                };
+
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonSuccessCode;
+                result.message = ResultCodeMsg.CommonSuccessMsg;
+                result.data = JsonHelper.ObjectToJSON(data);
+            }
+            else
+            {
+                result.isSuccess = true;
+                result.code = ResultCodeMsg.CommonFailCode;
+                result.message = ResultCodeMsg.CommonFailMsg;
+            }
+
+            return result;
+        }
+
+        #endregion
+
         #region private method
 
         /// <summary>
@@ -619,8 +759,9 @@ namespace CesiumBimGisApi.Controllers
         /// <param name="httpContextAccessor"></param>
         /// <param name="message"></param>
         /// <param name="type"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        private SysLogVis SetSysLogVis(IHttpContextAccessor httpContextAccessor, string message, LoginType type)
+        private SysLogVis SetSysLogVis(IHttpContextAccessor httpContextAccessor, string message, LoginType type, SysUser user = null)
         {
             var httpContext = httpContextAccessor.HttpContext;
             var httpRequest = httpContext.Request;
@@ -628,17 +769,30 @@ namespace CesiumBimGisApi.Controllers
             var clientInfo = headers.ContainsKey("User-Agent")
                 ? Parser.GetDefault().Parse(headers["User-Agent"])
                 : null;
+            string name = "";
+            string account = "";
+            if (httpContext.User != null)
+            {
+                name = httpContext.User.FindFirstValue(ClaimTypes.Name);
+                account = httpContext.User.FindFirstValue("UserId");
+            }
+            if (user != null)
+            {
+                name = user.UserName;
+                account = user.Id.ToString();
+            }
             SysLogVis log = new SysLogVis
             {
-                Name = httpContext.User?.FindFirstValue(ClaimTypes.Name),
+                Name = name,
                 Success = true,
                 Message = message,
                 Ip = httpContext.Connection.RemoteIpAddress.MapToIPv4().ToString(),
+                Location = httpRequest.Path,
                 Browser = clientInfo?.UA.Family + clientInfo?.UA.Major,
                 Os = clientInfo?.OS.Family + clientInfo?.OS.Major,
                 VisType = type,
                 VisTime = DateTime.Now,
-                Account = httpContext.User?.FindFirstValue("UserId")
+                Account = account
             };
             return log;
         }

@@ -54,5 +54,9 @@ namespace Cesium.ViewModels.ResultModel
         /// 编号重复
         /// </summary>
         public const string DuplicateNumberErrorMsg = "编号已存在,请确认输入信息";
+
+        public const int EmptyInfoCode = 5;
+
+        public const string EmptyInfoMsg = "查询信息为空";
     }
 }

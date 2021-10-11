@@ -86,7 +86,7 @@ namespace Cesium.Models.System
         /// <summary>
         /// 操作时间
         /// </summary>
-        public DateTimeOffset? OpTime { get; set; }
+        public DateTime? OpTime { get; set; }
         
         /// <summary>
         /// 操作人
