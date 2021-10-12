@@ -49,11 +49,13 @@ namespace CesiumBimGisApi
             services.Configure<DbOption>("DbOption", Configuration.GetSection("DbOption"));
             services.Configure<JWTOption>("JWTOption", Configuration.GetSection("JWTConfigurations"));
 
-            var tokenConfigurations = new JWTOption();
-            new ConfigureFromConfigurationOptions<JWTOption>(
-                Configuration.GetSection("JWTConfigurations"))
-                    .Configure(tokenConfigurations);
-            services.AddSingleton(tokenConfigurations);
+            //var tokenConfigurations = new JWTOption();
+            //new ConfigureFromConfigurationOptions<JWTOption>(
+            //    Configuration.GetSection("JWTConfigurations"))
+            //        .Configure(tokenConfigurations);
+            //services.AddSingleton(tokenConfigurations);
+
+            var jwt = Configuration.GetSection("JWTConfigurations");
 
             services.AddAuthentication(authOptions =>
             {
@@ -67,8 +69,10 @@ namespace CesiumBimGisApi
                     ValidateAudience = true,//是否验证Audience
                     ValidateLifetime = true,//是否验证失效时间
                     ValidateIssuerSigningKey = true,//是否验证SecurityKey
-                    ValidAudience = tokenConfigurations.Audience,//Audience
-                    ValidIssuer = tokenConfigurations.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+                    ValidAudience = jwt["Audience"],//Audience
+                    ValidIssuer = jwt["Issuer"],//Issuer，这两项和前面签发jwt的设置一致
+                    //ValidAudience = tokenConfigurations.Audience,//Audience
+                    //ValidIssuer = tokenConfigurations.Issuer,//Issuer，这两项和前面签发jwt的设置一致
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))//拿到SecurityKey
                 };
             });
