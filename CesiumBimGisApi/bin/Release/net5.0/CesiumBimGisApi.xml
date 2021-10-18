@@ -32,11 +32,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CesiumBimGisApi.Controllers.AccountController.RequestToken(Cesium.ViewModels.System.LoginModel)">
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.Login(Cesium.ViewModels.System.LoginModel)">
             <summary>
-            用户登录获取bearer token
+            用户登录操作  获取bearer token
             </summary>
             <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.Logout">
+            <summary>
+            用户退出
+            </summary>
             <returns></returns>
         </member>
         <member name="M:CesiumBimGisApi.Controllers.AccountController.GetUserRoleInfoList">
@@ -98,6 +104,46 @@
             </summary>
             <param name="pageIndex">第几页</param>
             <param name="pageSize">每页的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetOptionLogs(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询操作日志信息
+            </summary>
+            <param name="logName">日志名称</param>
+            <param name="requestMethod">请求方式</param>
+            <param name="pageIndex">页数</param>
+            <param name="pageSize">每页数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetExceptionLogs(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            异常日志查询
+            </summary>
+            <param name="className">类名</param>
+            <param name="methodName">方法名</param>
+            <param name="pageIndex">页数</param>
+            <param name="pageSize">每页数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.GetVisitLogs(System.String,System.Nullable{System.Int32},System.Int32,System.Int32)">
+            <summary>
+            访问日志查询
+            </summary>
+            <param name="logName">日志名称</param>
+            <param name="visType">登录类型</param>
+            <param name="pageIndex">页数</param>
+            <param name="pageSize">每页数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.SetSysLogVis(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,Cesium.Core.CustomEnum.LoginType,Cesium.Models.System.SysUser)">
+            <summary>
+            设置访问日志类容
+            </summary>
+            <param name="httpContextAccessor"></param>
+            <param name="message"></param>
+            <param name="type"></param>
+            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="T:CesiumBimGisApi.Controllers.BaseController">
@@ -218,6 +264,13 @@
             <param name="componentName">构件名称</param>
             <returns></returns>
         </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetAddtionalProperties(System.String)">
+            <summary>
+            通过构件编号获取构件的额外属性
+            </summary>
+            <param name="componentId"></param>
+            <returns></returns>
+        </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.UploadComponentFile(Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             上传构件json文件
@@ -288,6 +341,18 @@
             <summary>
             自定义异常中间件扩展类
             </summary>
+        </member>
+        <member name="T:CesiumBimGisApi.Filters.RequestActionFilter">
+            <summary>
+            Action操作过滤器 记录操作日志
+            </summary>
+        </member>
+        <member name="M:CesiumBimGisApi.Filters.RequestActionFilter.#ctor(Cesium.IServices.System.ISysLogOpService,Microsoft.Extensions.Logging.ILogger{CesiumBimGisApi.Filters.RequestActionFilter})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="sysLogOpService"></param>
+            <param name="logger"></param>
         </member>
     </members>
 </doc>

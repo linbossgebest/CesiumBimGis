@@ -53,6 +53,7 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\System.D
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\System.IO.Pipelines.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\UAParser.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\runtimes\win-arm64\native\sni.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\runtimes\win-x64\native\sni.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\PubTmp\Out\runtimes\win-x86\native\sni.dll

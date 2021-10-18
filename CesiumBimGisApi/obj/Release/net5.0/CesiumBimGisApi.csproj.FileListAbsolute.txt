@@ -89,3 +89,4 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\ref\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\CesiumBimGisApi.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\CesiumBimGisApi.genruntimeconfig.cache
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\UAParser.dll
