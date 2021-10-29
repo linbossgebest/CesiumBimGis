@@ -90,3 +90,6 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NLog.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NLog.Extensions.Logging.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NLog.Web.AspNetCore.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\UAParser.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Scrutor.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Filters.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
