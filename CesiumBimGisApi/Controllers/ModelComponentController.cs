@@ -411,6 +411,31 @@ namespace CesiumBimGisApi.Controllers
         }
 
         /// <summary>
+        /// 获取已完成的构件
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetCompletedComponents")]
+        [AllowAnonymous]
+        public async Task<BaseResult> GetCompletedComponents()
+        {
+            BaseResult result = new BaseResult();
+            var components = await _modelComponentService.GetCompletedComponentsAsync();
+
+            var data = new
+            {
+                items = components.OrderBy(f => f.CompletedTime)//按完成时间降序排序构件列表
+            };
+
+            result.isSuccess = true;
+            result.code = ResultCodeMsg.CommonSuccessCode;
+            result.message = ResultCodeMsg.CommonSuccessMsg;
+            result.data = JsonHelper.ObjectToJSON(data);
+
+            return result;
+        }
+
+        /// <summary>
         /// 通过构件编号获取构件的额外属性
         /// </summary>
         /// <param name="componentId"></param>

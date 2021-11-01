@@ -1,0 +1,27 @@
+﻿/**
+*┌──────────────────────────────────────────────────────────────┐
+*│　描    述：{Comment}                                                    
+*│　作    者：{Author}                                              
+*│　版    本：1.0   模板代码自动生成                                              
+*│　创建时间：{GeneratorTime}                           
+*└──────────────────────────────────────────────────────────────┘
+*┌──────────────────────────────────────────────────────────────┐
+*│　命名空间： {IRepositoryNamespace}                                   
+*│　接口名称： I{ModelName}Repository                                      
+*└──────────────────────────────────────────────────────────────┘
+*/
+using Cesium.Core.Extensions;
+using Cesium.Models.System;
+using Cesium.ViewModels.System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace {IRepositoryNamespace}
+{
+    public interface I{ModelName}Repository : IDependency, IBaseRepository<{ModelName}, {KeyTypeName}>
+    {
+    }
+}

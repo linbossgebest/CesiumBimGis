@@ -1,0 +1,37 @@
+﻿/**
+*┌──────────────────────────────────────────────────────────────┐
+*│　描    述：{Comment}                                                    
+*│　作    者：{Author}                                            
+*│　版    本：1.0    模板代码自动生成                                                
+*│　创建时间：{GeneratorTime}                             
+*└──────────────────────────────────────────────────────────────┘
+*┌──────────────────────────────────────────────────────────────┐
+*│　命名空间： {ServicesNamespace}                                  
+*│　类    名： {ModelName}Service                                    
+*└──────────────────────────────────────────────────────────────┘
+*/
+using Cesium.Core.Extensions;
+using Cesium.Core.Helper;
+using Cesium.IRepository;
+using Cesium.IServices;
+using Cesium.Models.System;
+using Cesium.ViewModels.ResultModel;
+using Cesium.ViewModels.System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace {ServicesNamespace}
+{
+    public class {ModelName}Service: I{ModelName}Service, IDependency
+    {
+        private readonly I{ModelName}Repository _repository;
+
+        public {ModelName}Service(I{ModelName}Repository repository)
+        {
+            _repository = repository;
+        }
+    }
+}

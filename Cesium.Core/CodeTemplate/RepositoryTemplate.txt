@@ -1,0 +1,37 @@
+﻿/**
+*┌──────────────────────────────────────────────────────────────┐
+*│　描    述：{Comment}接口实现                                                    
+*│　作    者：{Author}                                            
+*│　版    本：1.0    模板代码自动生成                                                
+*│　创建时间：{GeneratorTime}                             
+*└──────────────────────────────────────────────────────────────┘
+*┌──────────────────────────────────────────────────────────────┐
+*│　命名空间： {RepositoryNamespace}                                  
+*│　类    名： {ModelName}Repository                                      
+*└──────────────────────────────────────────────────────────────┘
+*/
+using Cesium.Core;
+using Cesium.Core.DbHelper;
+using Cesium.Core.Extensions;
+using Cesium.IRepository;
+using Cesium.Models.System;
+using Cesium.ViewModels.System;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Dapper;
+using Cesium.Core.Helper;
+using Cesium.ViewModels.ResultModel;
+
+namespace {RepositoryNamespace}
+{
+    public class {ModelName}Repository:BaseRepository<{ModelName},{KeyTypeName}>, I{ModelName}Repository, IDependency
+    {
+        public {ModelName}Repository(IOptionsSnapshot<DbOption> options) : base(options.Get("DbOption"))
+        {
+        }
+    }
+}

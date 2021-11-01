@@ -264,6 +264,12 @@
             <param name="componentName">构件名称</param>
             <returns></returns>
         </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetCompletedComponents">
+            <summary>
+            获取已完成的构件
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetAddtionalProperties(System.String)">
             <summary>
             通过构件编号获取构件的额外属性

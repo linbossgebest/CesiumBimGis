@@ -166,11 +166,30 @@ namespace Cesium.Services
             return result;
         }
 
+        /// <summary>
+        /// 获取构件额外属性（json对象）
+        /// </summary>
+        /// <param name="componentId"></param>
+        /// <returns></returns>
         public async Task<string> GetAddtionalProperties(string componentId)
         {
             var existComponent = await _modelComponentRepository.GetAsync(componentId);
 
             return existComponent.AdditionalProperties;
+        }
+
+        /// <summary>
+        /// 获取所有已完成构件
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<ModelComponent>> GetCompletedComponentsAsync()
+        {
+            string conditions = " where `Status`=1 ";
+            //var args = new DynamicParameters(new { });
+
+            var components = await _modelComponentRepository.GetListAsync(conditions);
+
+            return components;
         }
     }
 }

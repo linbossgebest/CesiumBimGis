@@ -54,6 +54,13 @@ namespace Cesium.IServices
         Task<IEnumerable<Cesium.Models.ModelComponent>> GetComponentsAsync(string componentId, string componentName);
 
         /// <summary>
+        /// 获取已完成的构件
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        Task<IEnumerable<ModelComponent>> GetCompletedComponentsAsync();
+
+        /// <summary>
         /// 通过构件编号获取构件的额外属性
         /// </summary>
         /// <param name="componentId"></param>
