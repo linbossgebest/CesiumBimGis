@@ -60,7 +60,8 @@ namespace CesiumBimGisApi.Controllers
         [Route("GetComponentMenu")]
         [AllowAnonymous]
         public async Task<BaseResult> GetComponentDataSourceList(string componentId)
-        { 
+        {
+            //var s = new DirectoryInfo(_hostingEnvironment.ContentRootPath).Parent.FullName;
             BaseResult result = new BaseResult();
 
             var component = await _modelComponentService.GetComponentInfoAsync(componentId);//获取构件信息

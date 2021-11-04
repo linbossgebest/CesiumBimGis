@@ -15,10 +15,16 @@ namespace Cesium.Core.Options
         /// 数据库连接字符串
         /// </summary>
         public string ConnectionString { get; set; }
+
         /// <summary>
         /// 数据库类型
         /// </summary>
         public string DbType { get; set; }
+
+        /// <summary>
+        /// 表名
+        /// </summary>
+        public string TableName { get; set; }
 
         /// <summary>
         /// 作者
@@ -39,18 +45,22 @@ namespace Cesium.Core.Options
         /// 实体命名空间
         /// </summary>
         public string ModelsNamespace { get; set; }
+
         /// <summary>
         /// 仓储接口命名空间
         /// </summary>
         public string IRepositoryNamespace { get; set; }
+
         /// <summary>
         /// 仓储命名空间
         /// </summary>
         public string RepositoryNamespace { get; set; }
+
         /// <summary>
         /// 服务接口命名空间
         /// </summary>
         public string IServicesNamespace { get; set; }
+
         /// <summary>
         /// 服务命名空间
         /// </summary>
