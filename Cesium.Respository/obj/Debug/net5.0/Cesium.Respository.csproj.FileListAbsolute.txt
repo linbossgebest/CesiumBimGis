@@ -1,3 +1,7 @@
+E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.GeneratedMSBuildEditorConfig.editorconfig
+E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.AssemblyInfoInputs.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.AssemblyInfo.cs
+E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.csproj.CoreCompileInputs.cache
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\bin\Debug\net5.0\NOTICE.TXT
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\bin\Debug\net5.0\Cesium.Respository.deps.json
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\bin\Debug\net5.0\Cesium.Respository.dll
@@ -12,10 +16,6 @@ E:\CesiumApi\CesiumBimGis\Cesium.Respository\bin\Debug\net5.0\Cesium.IRepository
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\bin\Debug\net5.0\Cesium.Models.pdb
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\bin\Debug\net5.0\Cesium.ViewModels.pdb
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.csproj.AssemblyReference.cache
-E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.GeneratedMSBuildEditorConfig.editorconfig
-E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.AssemblyInfoInputs.cache
-E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.AssemblyInfo.cs
-E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.csproj.CoreCompileInputs.cache
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.csproj.CopyComplete
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\Cesium.Respository.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Respository\obj\Debug\net5.0\ref\Cesium.Respository.dll
