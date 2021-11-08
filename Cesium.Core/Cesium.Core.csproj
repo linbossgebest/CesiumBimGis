@@ -42,4 +42,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\ServiceExtensions\" />
+  </ItemGroup>
+
 </Project>
