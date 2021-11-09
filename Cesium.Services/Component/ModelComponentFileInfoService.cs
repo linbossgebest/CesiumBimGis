@@ -57,7 +57,7 @@ namespace Cesium.Services
 
             return result;
         }
-
+    
         public async Task<IEnumerable<ModelComponentFileInfo>> GetComponentFilesAsync(string componentId)
         {
             string conditions = " where 1=1 ";

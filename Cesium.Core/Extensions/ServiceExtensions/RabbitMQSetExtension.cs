@@ -1,4 +1,5 @@
 ﻿using Cesium.Core.Helper;
+using Cesium.Core.RabbitMQ;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,13 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cesium.Core.RabbitMQ
+namespace Cesium.Core.Extensions.ServiceExtensions
 {
-    /// <summary>
-    /// 添加RabbitMQ 连接服务
-    /// </summary>
     public static class RabbitMQSetExtension
     {
+        /// <summary>
+        ///  添加RabbitMQ 连接服务
+        /// </summary>
+        /// <param name="services"></param>
         public static void AddRabbitMQSet(this IServiceCollection services)
         {
             if (services == null)

@@ -1754,6 +1754,7 @@
           "Dapper": "2.0.90",
           "Dapper.SimpleCRUD": "2.3.0",
           "DotNetCore.NPOI": "1.2.3",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.9",
           "Microsoft.AspNetCore.Http.Features": "5.0.9",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
@@ -1764,6 +1765,8 @@
           "Newtonsoft.Json": "13.0.1",
           "Polly": "7.2.2",
           "RabbitMQ.Client": "6.2.2",
+          "Swashbuckle.AspNetCore": "5.6.3",
+          "Swashbuckle.AspNetCore.Filters": "7.0.2",
           "System.Data.SqlClient": "4.8.2",
           "System.IdentityModel.Tokens.Jwt": "6.12.2"
         },

@@ -1,9 +1,3 @@
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.csproj.AssemblyReference.cache
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.GeneratedMSBuildEditorConfig.editorconfig
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.AssemblyInfoInputs.cache
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.AssemblyInfo.cs
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.csproj.CoreCompileInputs.cache
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.MvcApplicationPartsAssemblyInfo.cache
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NOTICE.TXT
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\appsettings.Development.json
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\appsettings.json
@@ -85,7 +79,13 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Models.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Respository.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Services.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.ViewModels.pdb
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.csproj.AssemblyReference.cache
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.GeneratedMSBuildEditorConfig.editorconfig
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.AssemblyInfoInputs.cache
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.AssemblyInfo.cs
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.csproj.CoreCompileInputs.cache
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.MvcApplicationPartsAssemblyInfo.cs
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.MvcApplicationPartsAssemblyInfo.cache
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\staticwebassets\CesiumBimGisApi.StaticWebAssets.Manifest.cache
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\staticwebassets\CesiumBimGisApi.StaticWebAssets.xml
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\scopedcss\bundle\CesiumBimGisApi.styles.css

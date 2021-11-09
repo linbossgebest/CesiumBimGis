@@ -12,7 +12,6 @@ namespace Cesium.IServices
 {
     public interface IModelComponentFileInfoService:IDependency
     {
-
         /// <summary>
         /// 获取所有构件文件信息(模糊查询)
         /// </summary>

@@ -1,35 +1,16 @@
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Cesium.Core;
 using Cesium.Core.Extensions;
+using Cesium.Core.Extensions.ServiceExtensions;
+using Cesium.Core.Helper;
 using Cesium.Core.Options;
-using Cesium.IRepository;
-using Cesium.IServices;
-using Cesium.Respository;
-using Cesium.Services;
 using CesiumBimGisApi.CustomMiddleware;
 using CesiumBimGisApi.Filters;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Loader;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CesiumBimGisApi
 {
@@ -47,78 +28,21 @@ namespace CesiumBimGisApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(new AppSettingsHelper(Configuration));
             services.Configure<DbOption>("DbOption", Configuration.GetSection("DbOption"));
             services.Configure<JWTOption>("JWTOption", Configuration.GetSection("JWTConfigurations"));
 
-            //var tokenConfigurations = new JWTOption();
-            //new ConfigureFromConfigurationOptions<JWTOption>(
-            //    Configuration.GetSection("JWTConfigurations"))
-            //        .Configure(tokenConfigurations);
-            //services.AddSingleton(tokenConfigurations);
-
-            var jwt = Configuration.GetSection("JWTConfigurations");
-
-            services.AddAuthentication(authOptions =>
-            {
-                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(bearerOptions =>
-            {
-                bearerOptions.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,//是否验证Issuer
-                    ValidateAudience = true,//是否验证Audience
-                    ValidateLifetime = true,//是否验证失效时间
-                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
-                    ValidAudience = jwt["Audience"],//Audience
-                    ValidIssuer = jwt["Issuer"],//Issuer，这两项和前面签发jwt的设置一致
-                    //ValidAudience = tokenConfigurations.Audience,//Audience
-                    //ValidIssuer = tokenConfigurations.Issuer,//Issuer，这两项和前面签发jwt的设置一致
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))//拿到SecurityKey
-                };
-            });
+            services.AddRabbitMQSet();
+            services.AddAuthentication_JWTSet();
 
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(RequestActionFilter));
             });
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CesiumBimGisApi", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                // 获取xml文件路径
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                // 添加控制器层注释，true表示显示控制器注释
-                c.IncludeXmlComments(xmlPath, true);
+            services.AddSwaggerSet();
+            services.AddCorsSet();
 
-                // 开启加权小锁
-                c.OperationFilter<AddResponseHeadersFilter>();
-                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
-
-                // 在header中添加token，传递到后台
-                c.OperationFilter<SecurityRequirementsOperationFilter>();
-
-                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                {
-                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）\"",
-                    Name = "Authorization",//jwt默认的参数名称
-                    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
-                    Type = SecuritySchemeType.ApiKey
-                });
-            });
-
-            //添加cors 服务 配置跨域处理            
-            services.AddCors(options =>
-            {
-                options.AddPolicy("default", builder =>
-                {
-                    builder.AllowAnyMethod()
-                           .AllowAnyHeader()
-                           .SetIsOriginAllowed(_ => true) //= AllowAnyOrigin()
-                           .AllowCredentials();
-                });
-            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -129,7 +53,7 @@ namespace CesiumBimGisApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -151,7 +75,7 @@ namespace CesiumBimGisApi
 
             app.UseAuthentication();
 
-            app.UseCors("default");
+            app.UseCors(AppSettingsHelper.app(new string[] { "Cors", "PolicyName" }));
 
             app.UseAuthorization();
 

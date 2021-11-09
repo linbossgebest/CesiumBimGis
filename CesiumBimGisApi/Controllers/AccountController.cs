@@ -189,7 +189,9 @@ namespace CesiumBimGisApi.Controllers
                   // new Claim(ClaimTypes.Role, user.RoleId.ToString())
                };
                 //sign the token using a secret key.This secret will be shared between your API and anything that needs to check that the token is legit.
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecurityKey"]));
+                //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecurityKey"]));
+                var securitykey= AppSettingsHelper.app(new string[] { "JWTConfigurations", "SecurityKey" }); 
+                var key= new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securitykey));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
                 /**
                  * Claims (Payload)
@@ -205,7 +207,7 @@ namespace CesiumBimGisApi.Controllers
                     issuer: _JWToption.Issuer,
                     audience: _JWToption.Audience,
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(120),
+                    expires: DateTime.Now.AddMinutes(1200),
                     signingCredentials: creds);
 
                 var accessToken = new JwtSecurityTokenHandler().WriteToken(token);
@@ -215,7 +217,7 @@ namespace CesiumBimGisApi.Controllers
                 {
                     username = model.username,
                     token = accessToken,
-                    expires_in = 1800
+                    expires_in = 1200 * 60
                 };
 
                 result.isSuccess = true;
