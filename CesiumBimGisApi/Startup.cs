@@ -32,6 +32,7 @@ namespace CesiumBimGisApi
             services.Configure<DbOption>("DbOption", Configuration.GetSection("DbOption"));
             services.Configure<JWTOption>("JWTOption", Configuration.GetSection("JWTConfigurations"));
 
+            services.AddAutoMapperSet();
             services.AddRabbitMQSet();
             services.AddAuthentication_JWTSet();
 
@@ -61,7 +62,7 @@ namespace CesiumBimGisApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CesiumBimGisApi v1"));
             }
 
-            app.UseCustomExceptionMiddleware();//自定义全局异常中间件
+            app.UseCustomExceptionMiddleware();
 
             app.UseStaticFiles(new StaticFileOptions
             {

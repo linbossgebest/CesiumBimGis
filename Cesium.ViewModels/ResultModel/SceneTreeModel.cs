@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cesium.ViewModels
 {
+    /// <summary>
+    /// 构件树模型
+    /// </summary>
     public class SceneTreeModel
     {
         public class Rootobject

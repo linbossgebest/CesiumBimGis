@@ -136,7 +136,7 @@
             <param name="pageSize">每页数量</param>
             <returns></returns>
         </member>
-        <member name="M:CesiumBimGisApi.Controllers.AccountController.SetSysLogVis(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,Cesium.Core.CustomEnum.LoginType,Cesium.Models.System.SysUser)">
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.SetSysLogVis(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,Cesium.Models.LoginType,Cesium.Models.System.SysUser)">
             <summary>
             设置访问日志类容
             </summary>
@@ -347,6 +347,13 @@
             <summary>
             自定义异常中间件扩展类
             </summary>
+        </member>
+        <member name="M:CesiumBimGisApi.CustomMiddleware.CustomExceptionMiddlewareExtensions.UseCustomExceptionMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            自定义异常中间件
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
         </member>
         <member name="T:CesiumBimGisApi.Filters.RequestActionFilter">
             <summary>

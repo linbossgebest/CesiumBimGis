@@ -69,14 +69,12 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.IRepository.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.IServices.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Models.dll
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Respository.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Services.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.ViewModels.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Core.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.IRepository.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.IServices.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Models.pdb
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Respository.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Services.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.ViewModels.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.csproj.AssemblyReference.cache
@@ -95,3 +93,5 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\ref\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.genruntimeconfig.cache
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Respository.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Respository.pdb

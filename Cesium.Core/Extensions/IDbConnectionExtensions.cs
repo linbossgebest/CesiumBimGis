@@ -1,13 +1,11 @@
-﻿using Cesium.Core.CustomEnum;
-using Cesium.Core.Models;
+﻿using Cesium.Core.Models;
+using Cesium.Models;
 using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlTypes;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cesium.Core.Extensions
 {

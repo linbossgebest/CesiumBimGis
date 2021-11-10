@@ -31,7 +31,14 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj": {
+                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj"
+              },
+              "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj": {
+                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -44,6 +51,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "Autofac": {
               "target": "Package",
               "version": "[6.2.0, )"
@@ -168,6 +183,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj": {
+                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj"
+              },
               "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj": {
                 "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj"
               },
@@ -233,6 +251,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj": {
+                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj"
+              },
               "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj": {
                 "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj"
               },
@@ -297,11 +318,7 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {
-              "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj": {
-                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -313,6 +330,16 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.90, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -569,23 +596,11 @@
               "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj": {
                 "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj"
               },
-              "E:\\CesiumApi\\CesiumBimGis\\Cesium.IRepository\\Cesium.IRepository.csproj": {
-                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.IRepository\\Cesium.IRepository.csproj"
-              },
-              "E:\\CesiumApi\\CesiumBimGis\\Cesium.IServices\\Cesium.IServices.csproj": {
-                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.IServices\\Cesium.IServices.csproj"
-              },
-              "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj": {
-                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj"
-              },
               "E:\\CesiumApi\\CesiumBimGis\\Cesium.Respository\\Cesium.Respository.csproj": {
                 "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Respository\\Cesium.Respository.csproj"
               },
               "E:\\CesiumApi\\CesiumBimGis\\Cesium.Services\\Cesium.Services.csproj": {
                 "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Services\\Cesium.Services.csproj"
-              },
-              "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj": {
-                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj"
               }
             }
           }

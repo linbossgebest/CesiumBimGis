@@ -78,6 +78,11 @@ namespace CesiumBimGisApi.CustomMiddleware
     /// </summary>
     public static class CustomExceptionMiddlewareExtensions
     {
+        /// <summary>
+        /// 自定义异常中间件
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseCustomExceptionMiddleware(this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<CustomExceptionMiddleware>();

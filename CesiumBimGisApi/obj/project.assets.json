@@ -2060,7 +2060,11 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "AutoMapper": "10.1.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Autofac": "6.2.0",
+          "Cesium.Models": "1.0.0",
+          "Cesium.ViewModels": "1.0.0",
           "Dapper": "2.0.90",
           "Dapper.SimpleCRUD": "2.3.0",
           "DotNetCore.NPOI": "1.2.3",
@@ -2091,6 +2095,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Cesium.Core": "1.0.0",
           "Cesium.Models": "1.0.0",
           "Cesium.ViewModels": "1.0.0"
         },
@@ -2105,6 +2110,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
+          "Cesium.Core": "1.0.0",
           "Cesium.Models": "1.0.0",
           "Cesium.ViewModels": "1.0.0"
         },
@@ -2119,7 +2125,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "Cesium.Core": "1.0.0"
+          "Dapper": "2.0.90",
+          "Newtonsoft.Json": "13.0.1"
         },
         "compile": {
           "bin/placeholder/Cesium.Models.dll": {}
@@ -7227,12 +7234,8 @@
       "Autofac >= 6.2.0",
       "Autofac.Extensions.DependencyInjection >= 7.1.0",
       "Cesium.Core >= 1.0.0",
-      "Cesium.IRepository >= 1.0.0",
-      "Cesium.IServices >= 1.0.0",
-      "Cesium.Models >= 1.0.0",
       "Cesium.Respository >= 1.0.0",
       "Cesium.Services >= 1.0.0",
-      "Cesium.ViewModels >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.9",
       "Microsoft.Extensions.DependencyModel >= 5.0.0",
       "Microsoft.Extensions.PlatformAbstractions >= 1.1.0",
@@ -7277,23 +7280,11 @@
             "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj": {
               "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj"
             },
-            "E:\\CesiumApi\\CesiumBimGis\\Cesium.IRepository\\Cesium.IRepository.csproj": {
-              "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.IRepository\\Cesium.IRepository.csproj"
-            },
-            "E:\\CesiumApi\\CesiumBimGis\\Cesium.IServices\\Cesium.IServices.csproj": {
-              "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.IServices\\Cesium.IServices.csproj"
-            },
-            "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj": {
-              "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Models\\Cesium.Models.csproj"
-            },
             "E:\\CesiumApi\\CesiumBimGis\\Cesium.Respository\\Cesium.Respository.csproj": {
               "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Respository\\Cesium.Respository.csproj"
             },
             "E:\\CesiumApi\\CesiumBimGis\\Cesium.Services\\Cesium.Services.csproj": {
               "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Services\\Cesium.Services.csproj"
-            },
-            "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj": {
-              "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.ViewModels\\Cesium.ViewModels.csproj"
             }
           }
         }

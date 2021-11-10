@@ -1,16 +1,11 @@
-E:\CesiumApi\CesiumBimGis\Cesium.Models\bin\Debug\net5.0\NOTICE.TXT
 E:\CesiumApi\CesiumBimGis\Cesium.Models\bin\Debug\net5.0\Cesium.Models.deps.json
 E:\CesiumApi\CesiumBimGis\Cesium.Models\bin\Debug\net5.0\Cesium.Models.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Models\bin\Debug\net5.0\ref\Cesium.Models.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Models\bin\Debug\net5.0\Cesium.Models.pdb
-E:\CesiumApi\CesiumBimGis\Cesium.Models\bin\Debug\net5.0\Cesium.Core.dll
-E:\CesiumApi\CesiumBimGis\Cesium.Models\bin\Debug\net5.0\Cesium.Core.pdb
-E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.csproj.AssemblyReference.cache
 E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.GeneratedMSBuildEditorConfig.editorconfig
 E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.AssemblyInfoInputs.cache
 E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.AssemblyInfo.cs
 E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.csproj.CoreCompileInputs.cache
-E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.csproj.CopyComplete
 E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\ref\Cesium.Models.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Models\obj\Debug\net5.0\Cesium.Models.pdb

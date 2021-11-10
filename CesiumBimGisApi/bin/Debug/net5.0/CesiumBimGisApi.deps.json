@@ -38,12 +38,8 @@
           "Autofac": "6.2.0",
           "Autofac.Extensions.DependencyInjection": "7.1.0",
           "Cesium.Core": "1.0.0",
-          "Cesium.IRepository": "1.0.0",
-          "Cesium.IServices": "1.0.0",
-          "Cesium.Models": "1.0.0",
           "Cesium.Respository": "1.0.0",
           "Cesium.Services": "1.0.0",
-          "Cesium.ViewModels": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.9",
           "Microsoft.Extensions.DependencyModel": "5.0.0",
           "Microsoft.Extensions.PlatformAbstractions": "1.1.0",
@@ -1750,7 +1746,11 @@
       },
       "Cesium.Core/1.0.0": {
         "dependencies": {
+          "AutoMapper": "10.1.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Autofac": "6.2.0",
+          "Cesium.Models": "1.0.0",
+          "Cesium.ViewModels": "1.0.0",
           "Dapper": "2.0.90",
           "Dapper.SimpleCRUD": "2.3.0",
           "DotNetCore.NPOI": "1.2.3",
@@ -1779,6 +1779,7 @@
       },
       "Cesium.IRepository/1.0.0": {
         "dependencies": {
+          "Cesium.Core": "1.0.0",
           "Cesium.Models": "1.0.0",
           "Cesium.ViewModels": "1.0.0"
         },
@@ -1791,6 +1792,7 @@
       },
       "Cesium.IServices/1.0.0": {
         "dependencies": {
+          "Cesium.Core": "1.0.0",
           "Cesium.Models": "1.0.0",
           "Cesium.ViewModels": "1.0.0"
         },
@@ -1803,7 +1805,8 @@
       },
       "Cesium.Models/1.0.0": {
         "dependencies": {
-          "Cesium.Core": "1.0.0"
+          "Dapper": "2.0.90",
+          "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "Cesium.Models.dll": {}

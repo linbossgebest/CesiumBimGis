@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cesium.Core.CustomEnum
+namespace Cesium.Models
 {
     /// <summary>
-    /// 构件类型
+    /// 构件施工状态
     /// </summary>
-    public enum ComponentType
+    public enum ComponentStatus
     {
-        element,  //构件元素
-        node      //构件节点
+        InProgress,//施工进行中
+        Completed  //施工已完成
     }
 }

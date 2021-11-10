@@ -28,12 +28,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cesium.Core\Cesium.Core.csproj" />
-    <ProjectReference Include="..\Cesium.IRepository\Cesium.IRepository.csproj" />
-    <ProjectReference Include="..\Cesium.IServices\Cesium.IServices.csproj" />
-    <ProjectReference Include="..\Cesium.Models\Cesium.Models.csproj" />
     <ProjectReference Include="..\Cesium.Respository\Cesium.Respository.csproj" />
     <ProjectReference Include="..\Cesium.Services\Cesium.Services.csproj" />
-    <ProjectReference Include="..\Cesium.ViewModels\Cesium.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
