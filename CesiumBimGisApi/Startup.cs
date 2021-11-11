@@ -32,6 +32,7 @@ namespace CesiumBimGisApi
             services.Configure<DbOption>("DbOption", Configuration.GetSection("DbOption"));
             services.Configure<JWTOption>("JWTOption", Configuration.GetSection("JWTConfigurations"));
 
+            services.AddRedisCacheSet();
             services.AddAutoMapperSet();
             services.AddRabbitMQSet();
             services.AddAuthentication_JWTSet();
