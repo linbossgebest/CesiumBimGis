@@ -187,6 +187,11 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Connections.Abstractions/5.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.9"
+        }
+      },
       "Microsoft.AspNetCore.Http.Features/5.0.9": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.1",
@@ -196,6 +201,24 @@
           "lib/net5.0/Microsoft.AspNetCore.Http.Features.dll": {
             "assemblyVersion": "5.0.0.0",
             "fileVersion": "5.0.921.36503"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Common/5.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Connections.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Options": "5.0.0"
+        }
+      },
+      "Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson/5.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.SignalR.Common": "5.0.0",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.52605"
           }
         }
       },
@@ -689,6 +712,7 @@
           "DotNetCore.NPOI": "1.2.3",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.9",
           "Microsoft.AspNetCore.Http.Features": "5.0.9",
+          "Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson": "5.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
           "Microsoft.Extensions.DependencyModel": "5.0.0",
@@ -848,12 +872,33 @@
       "path": "microsoft.aspnetcore.authentication.jwtbearer/5.0.9",
       "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.5.0.9.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Connections.Abstractions/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QtkKe/18G3nonSPeWfvOk9bnh5OzaogVu7JuIf7W1ghdnANfCaCUKjHbHVYlOCdFeo04PlA6rto2Y6zGaakXRw==",
+      "path": "microsoft.aspnetcore.connections.abstractions/5.0.0",
+      "hashPath": "microsoft.aspnetcore.connections.abstractions.5.0.0.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Http.Features/5.0.9": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-6CiMPjR7yjnQ2dzSNOY88FMWeNRDmmiPKn9hM23bBO0mCUDdPUCEpFhaGfog/mpa/t+y6sMBFL5Mcqd4AKdMfw==",
       "path": "microsoft.aspnetcore.http.features/5.0.9",
       "hashPath": "microsoft.aspnetcore.http.features.5.0.9.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Common/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g7rh49VNRJusjJpOZhKEVptQt9KXLqBIQPjs6V8De9Ju3fSEu/SDRIxnGcVTU4FuNTELlvEwcU32TVIvIgT2Xw==",
+      "path": "microsoft.aspnetcore.signalr.common/5.0.0",
+      "hashPath": "microsoft.aspnetcore.signalr.common.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RS03Ix0zXYZm+SrdV+Nl4uQN5g0SoqZq1Bt46HpdeyWCXCz3JV160t4OOmMe76B8O+m1nTitCbvNeJ4+qsfZJg==",
+      "path": "microsoft.aspnetcore.signalr.protocols.newtonsoftjson/5.0.0",
+      "hashPath": "microsoft.aspnetcore.signalr.protocols.newtonsoftjson.5.0.0.nupkg.sha512"
     },
     "Microsoft.CSharp/4.7.0": {
       "type": "package",

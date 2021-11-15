@@ -99,3 +99,4 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Pipelines.Sockets.Uno
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\StackExchange.Redis.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson.dll

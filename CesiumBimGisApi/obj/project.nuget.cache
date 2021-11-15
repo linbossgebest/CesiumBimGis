@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fO/hVKqznYQkHrmWtiE9XccL8EWDkxXaF7EWaCSO3wKouRofBEvhoEr0Q5h+wRKj47LidgMI/JKeBmZzgBn6fA==",
+  "dgSpecHash": "UyriN/f1rJBRQkKdEMMVTUkELuB1mRLztxyUAfJn4XBQhkSu0PFO6ja0IRh+CvftuSK5TXR0rED6ZRNN6NZzDQ==",
   "success": true,
   "projectFilePath": "E:\\CesiumApi\\CesiumBimGis\\CesiumBimGisApi\\CesiumBimGisApi.csproj",
   "expectedPackageFiles": [
@@ -20,7 +20,10 @@
     "C:\\Users\\linyong\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\k4os.hash.xxhash\\1.0.6\\k4os.hash.xxhash.1.0.6.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.9\\microsoft.aspnetcore.authentication.jwtbearer.5.0.9.nupkg.sha512",
+    "C:\\Users\\linyong\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\5.0.0\\microsoft.aspnetcore.connections.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.9\\microsoft.aspnetcore.http.features.5.0.9.nupkg.sha512",
+    "C:\\Users\\linyong\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\5.0.0\\microsoft.aspnetcore.signalr.common.5.0.0.nupkg.sha512",
+    "C:\\Users\\linyong\\.nuget\\packages\\microsoft.aspnetcore.signalr.protocols.newtonsoftjson\\5.0.0\\microsoft.aspnetcore.signalr.protocols.newtonsoftjson.5.0.0.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

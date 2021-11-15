@@ -3,6 +3,7 @@ using Cesium.Core;
 using Cesium.Core.Extensions;
 using Cesium.Core.Extensions.ServiceExtensions;
 using Cesium.Core.Helper;
+using Cesium.Core.Hubs;
 using Cesium.Core.Options;
 using CesiumBimGisApi.CustomMiddleware;
 using CesiumBimGisApi.Filters;
@@ -44,7 +45,7 @@ namespace CesiumBimGisApi
 
             services.AddSwaggerSet();
             services.AddCorsSet();
-
+            services.AddSignalR().AddNewtonsoftJsonProtocol();//防止SignalR乱码
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -84,6 +85,8 @@ namespace CesiumBimGisApi
             app.UseEndpoints(endpoints =>
                {
                    endpoints.MapControllers();
+
+                   endpoints.MapHub<ChatHub>("/api/chatHub");//配置集线器路由地址
                });
         }
     }
