@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cesium.Respository", "Cesiu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E8A64FA5-BC69-4A26-83EF-D9FEC941327A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CesiumBimGis.Tests", "CesiumBimGis.Tests\CesiumBimGis.Tests.csproj", "{23FE2C83-8AAD-4B62-BB67-F01700111BF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{D377D38E-0698-4F31-B2A5-15A78F586D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D377D38E-0698-4F31-B2A5-15A78F586D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D377D38E-0698-4F31-B2A5-15A78F586D3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23FE2C83-8AAD-4B62-BB67-F01700111BF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23FE2C83-8AAD-4B62-BB67-F01700111BF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23FE2C83-8AAD-4B62-BB67-F01700111BF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23FE2C83-8AAD-4B62-BB67-F01700111BF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{2B7E7F8E-9169-4784-BC87-69286D797688} = {3942AFDC-0899-4A98-A9F3-02BEEC3FB212}
 		{ED2FF087-49D2-418A-A3C5-FF9AB503E639} = {A1B7DA6A-D4EA-4FC6-B11F-0180BB5EAFBD}
 		{D377D38E-0698-4F31-B2A5-15A78F586D3B} = {3942AFDC-0899-4A98-A9F3-02BEEC3FB212}
+		{23FE2C83-8AAD-4B62-BB67-F01700111BF1} = {E8A64FA5-BC69-4A26-83EF-D9FEC941327A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7AD904F7-EF59-44BF-B22F-25DC7FEE25D0}
