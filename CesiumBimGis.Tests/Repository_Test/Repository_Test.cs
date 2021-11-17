@@ -23,7 +23,7 @@ namespace CesiumBimGis.Tests.Repository_Test
         }
 
         [Fact]
-        public void GetSysUserTest_ShouldNotNull()
+        public void GetSysUsersTest_ShouldNotNull()
         {
             var data = _sysUserRepository.GetList();
             Assert.NotNull(data);
