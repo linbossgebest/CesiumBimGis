@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Cesium.ViewModels.ResultModel
 {
-    public class BaseResult
+    /// <summary>
+    /// API 响应消息
+    /// </summary>
+    public class ResponseResult
     {
         /// <summary>
         /// 是否操作成功

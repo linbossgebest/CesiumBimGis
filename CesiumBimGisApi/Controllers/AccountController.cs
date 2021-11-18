@@ -70,7 +70,6 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddUser")]
-        [AllowAnonymous]
         public async Task<string> AddOrModifyUser([FromBody] UserModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
@@ -92,9 +91,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetUserList")]
-        public async Task<BaseResult> GetUserInfoList(int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetUserInfoList(int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var users = await _userService.GetUsersAsync();
             var total = users.Count();
 
@@ -121,7 +120,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteUser")]
-        public async Task<BaseResult> DeleteUserInfo(int userId)
+        public async Task<ResponseResult> DeleteUserInfo(int userId)
         {
             return await _userService.DeleteUserInfo(userId);
         }
@@ -132,9 +131,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetUserInfo")]
-        public async Task<BaseResult> GetUserInfo()
+        public async Task<ResponseResult> GetUserInfo()
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var claimInfo = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             var userId = Int32.Parse(claimInfo.FirstOrDefault(f => f.Type.Equals("UserId")).Value);
             //var roleId = Int32.Parse(claimInfo.FirstOrDefault(f => f.Type.Equals(ClaimTypes.Role)).Value);
@@ -177,9 +176,9 @@ namespace CesiumBimGisApi.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("Login")]
-        public async Task<BaseResult> Login([FromBody] LoginModel model)
+        public async Task<ResponseResult> Login([FromBody] LoginModel model)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var user = await _userService.SignInAsync(model);
             if (user != null)
             {
@@ -252,9 +251,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("Logout")]
-        public async Task<BaseResult> Logout()
+        public async Task<ResponseResult> Logout()
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
 
             result.isSuccess = true;
             result.code = ResultCodeMsg.CommonSuccessCode;
@@ -276,9 +275,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetUserRoleList")]
-        public async Task<BaseResult> GetUserRoleInfoList()
+        public async Task<ResponseResult> GetUserRoleInfoList()
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var userRoles = await _sysUserRoleService.GetUserRoleListAsync();
 
             if (userRoles != null)
@@ -312,9 +311,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetUserRoleListById")]
-        public async Task<BaseResult> GetUserRoleInfoByUserId(int userId)
+        public async Task<ResponseResult> GetUserRoleInfoByUserId(int userId)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var userRoles = await _sysUserRoleService.GetUserRoleListAsync(userId);
 
             if (userRoles != null)
@@ -350,9 +349,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetRoleList")]
-        public async Task<BaseResult> GetRoleInfoList()
+        public async Task<ResponseResult> GetRoleInfoList()
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var roles = await _roleService.GetRolesAsync();
 
             if (roles != null)
@@ -386,14 +385,14 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteRole")]
-        public async Task<BaseResult> DeleteRoleInfo(int roleId)
+        public async Task<ResponseResult> DeleteRoleInfo(int roleId)
         {
             return await _roleService.DeleteRoleInfo(roleId);
         }
 
         [HttpPost]
         [Route("AddRole")]
-        public async Task<BaseResult> AddOrUpdateSysRole(RoleModel model)
+        public async Task<ResponseResult> AddOrUpdateSysRole(RoleModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             TokenInfo tokenInfo = new()
@@ -417,7 +416,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddMenu")]
-        public async Task<BaseResult> AddOrModifyMenuInfo([FromBody] SysAuthMenu model)
+        public async Task<ResponseResult> AddOrModifyMenuInfo([FromBody] SysAuthMenu model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息
             TokenInfo tokenInfo = new()
@@ -437,7 +436,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteMenu")]
-        public async Task<BaseResult> DeleteMenuInfo(int menuId)
+        public async Task<ResponseResult> DeleteMenuInfo(int menuId)
         {
             return await _sysAuthMenuService.DelelteMenuInfo(menuId);
         }
@@ -448,9 +447,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetMenuInfo")]
-        public async Task<BaseResult> GetMenuInfo()
+        public async Task<ResponseResult> GetMenuInfo()
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
 
             var menu = await _sysAuthMenuService.GetMenuInfo();
 
@@ -483,9 +482,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetMenuTreeByRole")]
-        public async Task<BaseResult> GetMenuTreeByRole(int roleId)
+        public async Task<ResponseResult> GetMenuTreeByRole(int roleId)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             List<int> menuIds = new List<int>();
             List<MenuTree> menuTree = new List<MenuTree>();
 
@@ -522,9 +521,9 @@ namespace CesiumBimGisApi.Controllers
         [HttpGet]
         [Route("GetMenuTree")]
         [AllowAnonymous]
-        public async Task<BaseResult> GetMenuTree()
+        public async Task<ResponseResult> GetMenuTree()
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
 
             var menu = await _sysAuthMenuService.GetMenuInfo();
             var menuTree = await _sysAuthMenuService.GetMenuTree(menu.ToList());
@@ -554,9 +553,9 @@ namespace CesiumBimGisApi.Controllers
         [HttpGet]
         [Route("GetAppMenu")]
         [AllowAnonymous]
-        public async Task<BaseResult> GetAppMenuList(int type)
+        public async Task<ResponseResult> GetAppMenuList(int type)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
 
             var menu = await _sysAppMenuService.GetSysAppMenu(type);
 
@@ -591,9 +590,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetAllAppMenu")]
-        public async Task<BaseResult> GetAllAppMenuList(int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetAllAppMenuList(int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
 
             var menus = await _sysAppMenuService.GetAllSysAppMenu();
             var total = menus.Count();
@@ -640,9 +639,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetOptionLogs")]
-        public async Task<BaseResult> GetOptionLogs(string logName, string requestMethod, int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetOptionLogs(string logName, string requestMethod, int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var logs = await _sysLogOpService.GetLogs(logName, requestMethod);
             var total = logs.Count();
 
@@ -681,9 +680,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetExceptionLogs")]
-        public async Task<BaseResult> GetExceptionLogs(string className, string methodName, int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetExceptionLogs(string className, string methodName, int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var logs = await _sysLogExService.GetLogs(className, methodName);
             var total = logs.Count();
 
@@ -722,9 +721,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetVisitLogs")]
-        public async Task<BaseResult> GetVisitLogs(string logName, int? visType, int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetVisitLogs(string logName, int? visType, int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var logs = await _sysLogVisService.GetLogs(logName, visType);
             var total = logs.Count();
 

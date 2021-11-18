@@ -17,14 +17,14 @@ namespace Cesium.IServices
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<BaseResult> AddCommentAsync(CommentModel model);
+        Task<ResponseResult> AddCommentAsync(CommentModel model);
 
         /// <summary>
         /// 删除模型构件评论
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<BaseResult> DeleteCommentInfo(int id);
+        Task<ResponseResult> DeleteCommentInfo(int id);
 
         /// <summary>
         /// 获取所有评论信息

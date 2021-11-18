@@ -27,7 +27,7 @@ namespace Cesium.Core.Extensions.ServiceExtensions
                     .SelectMany(x => x.Errors
                     .Select(p => p.ErrorMessage))
                     .ToList();
-                    var result = new BaseResult
+                    var result = new ResponseResult
                     {
                         code = ResultCodeMsg.CommonFailCode,
                         data = null,

@@ -25,13 +25,13 @@ namespace Cesium.IServices
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        Task<BaseResult> AddOrModifyComponentTypeAsync(ComponentTypeModel model, TokenInfo tokenInfo);
+        Task<ResponseResult> AddOrModifyComponentTypeAsync(ComponentTypeModel model, TokenInfo tokenInfo);
 
         /// <summary>
         /// 通过类型编号删除构件类型信息
         /// </summary>
         /// <param name="typeId"></param>
         /// <returns></returns>
-        Task<BaseResult> DeleteComponentType(int typeId);
+        Task<ResponseResult> DeleteComponentType(int typeId);
     }
 }

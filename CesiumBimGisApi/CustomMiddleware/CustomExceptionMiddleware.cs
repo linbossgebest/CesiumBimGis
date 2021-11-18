@@ -61,7 +61,7 @@ namespace CesiumBimGisApi.CustomMiddleware
 
             //异常后,接口返回失败数据
             HttpResponse response = context.Response;
-            BaseResult result = new BaseResult
+            ResponseResult result = new ResponseResult
             {
                 isSuccess = false,
                 code = ResultCodeMsg.CommonExceptionCode,

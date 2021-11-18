@@ -54,9 +54,9 @@ namespace Cesium.Services.System
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public async Task<BaseResult> DeleteRoleInfo(int roleId)
+        public async Task<ResponseResult> DeleteRoleInfo(int roleId)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             
             if (await _sysRoleRepository.DeleteAsync(roleId) > 0)
             {
@@ -75,9 +75,9 @@ namespace Cesium.Services.System
             return result;
         }
 
-        public async Task<BaseResult> AddOrModifyRoleAsync(RoleModel model, TokenInfo tokenInfo)
+        public async Task<ResponseResult> AddOrModifyRoleAsync(RoleModel model, TokenInfo tokenInfo)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _sysRoleRepository.AddOrUpdate(model, tokenInfo))
             {
                 result.isSuccess = true;

@@ -35,13 +35,13 @@ namespace Cesium.IServices.System
         /// 添加或修改菜单信息
         /// </summary>
         /// <returns></returns>
-        Task<BaseResult> AddOrModifyMenuAsync(SysAuthMenu model, TokenInfo tokenInfo);
+        Task<ResponseResult> AddOrModifyMenuAsync(SysAuthMenu model, TokenInfo tokenInfo);
 
         /// <summary>
         /// 通过菜单编号删除菜单以及关联的子菜单
         /// </summary>
         /// <param name="menuId"></param>
         /// <returns></returns>
-        Task<BaseResult> DelelteMenuInfo(int menuId);
+        Task<ResponseResult> DelelteMenuInfo(int menuId);
     }
 }

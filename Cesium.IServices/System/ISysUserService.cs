@@ -26,7 +26,7 @@ namespace Cesium.IServices
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        Task<BaseResult> AddOrModifyUserAsync(UserModel model, TokenInfo tokenInfo);
+        Task<ResponseResult> AddOrModifyUserAsync(UserModel model, TokenInfo tokenInfo);
 
         /// <summary>
         /// 通过用户编号获取用户信息
@@ -46,7 +46,7 @@ namespace Cesium.IServices
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<BaseResult> DeleteUserInfo(int userId);
+        Task<ResponseResult> DeleteUserInfo(int userId);
 
     }
 }

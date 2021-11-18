@@ -31,14 +31,14 @@ namespace Cesium.IServices
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        Task<BaseResult> AddOrModifyComponentDataSourceAsync(ComponentMenuModel model, TokenInfo tokenInfo);
+        Task<ResponseResult> AddOrModifyComponentDataSourceAsync(ComponentMenuModel model, TokenInfo tokenInfo);
 
         /// <summary>
         /// 通过编号删除模型构件菜单数据资源信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<BaseResult> DeleteComponentDataSource(int id);
+        Task<ResponseResult> DeleteComponentDataSource(int id);
 
         /// <summary>
         /// 通过componentId 获取模型构件菜单数据资源

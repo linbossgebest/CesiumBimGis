@@ -22,9 +22,9 @@ namespace Cesium.Services
             _modelComponentTypeRepository = modelComponentTypeRepository;
         }
 
-        public async Task<BaseResult> AddOrModifyComponentTypeAsync(ComponentTypeModel model, TokenInfo tokenInfo)
+        public async Task<ResponseResult> AddOrModifyComponentTypeAsync(ComponentTypeModel model, TokenInfo tokenInfo)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             ModelComponentType typeInfo;
             if (model.Id == 0)
             {
@@ -82,9 +82,9 @@ namespace Cesium.Services
             return result;
         }
 
-        public async Task<BaseResult> DeleteComponentType(int typeId)
+        public async Task<ResponseResult> DeleteComponentType(int typeId)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentTypeRepository.DeleteAsync(typeId) > 0)
             {
                 result.isSuccess = true;

@@ -24,21 +24,21 @@ namespace Cesium.IServices
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<BaseResult> AddModelComponentFileInfoAsync(ModelComponentFileInfo model);
+        Task<ResponseResult> AddModelComponentFileInfoAsync(ModelComponentFileInfo model);
 
         /// <summary>
         /// 修改构件文件信息
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<BaseResult> UpdateModelComponentFileInfoAsync(ComponentFileModel model);
+        Task<ResponseResult> UpdateModelComponentFileInfoAsync(ComponentFileModel model);
 
         /// <summary>
         /// 删除构件文件信息
         /// </summary>
         /// <param name="fileId">文件Id</param>
         /// <returns></returns>
-        Task<BaseResult> DeleteComponentFileInfoAsync(int fileId);
+        Task<ResponseResult> DeleteComponentFileInfoAsync(int fileId);
 
         /// <summary>
         /// 通过文件编号获取文件信息

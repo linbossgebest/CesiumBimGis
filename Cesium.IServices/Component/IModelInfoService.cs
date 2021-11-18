@@ -12,6 +12,6 @@ namespace Cesium.IServices
 {
     public interface IModelInfoService : IDependency
     {
-        Task<BaseResult> AddModelInfoAsync(ModelInfo model, TokenInfo tokenInfo);
+        Task<ResponseResult> AddModelInfoAsync(ModelInfo model, TokenInfo tokenInfo);
     }
 }

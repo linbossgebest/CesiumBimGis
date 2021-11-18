@@ -40,9 +40,9 @@ namespace Cesium.Services.System
         }
 
 
-        public async Task<BaseResult> AddSysRoleMenuListAsync(List<SysRoleMenu> list)
+        public async Task<ResponseResult> AddSysRoleMenuListAsync(List<SysRoleMenu> list)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
 
             var roleId = list.FirstOrDefault().RoleId;
             //先删除信息 再添加信息

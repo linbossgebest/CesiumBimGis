@@ -58,10 +58,10 @@ namespace CesiumBimGisApi.Controllers
         [HttpGet]
         [Route("GetComponentMenu")]
         [AllowAnonymous]
-        public async Task<BaseResult> GetComponentDataSourceList(string componentId)
+        public async Task<ResponseResult> GetComponentDataSourceList(string componentId)
         {
             //var s = new DirectoryInfo(_hostingEnvironment.ContentRootPath).Parent.FullName;
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
 
             var component = await _modelComponentService.GetComponentInfoAsync(componentId);//获取构件信息
 
@@ -107,9 +107,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetAllComponentMenu")]
-        public async Task<BaseResult> GetAllComponentDataSourceList(int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetAllComponentDataSourceList(int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
 
             var list = await _modelComponentDataSourceService.GetAllComponentDataSourceListAsync();
             var total = list.Count();
@@ -164,7 +164,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteComponentMenu")]
-        public async Task<BaseResult> DeleteComponentDataSource(int id)
+        public async Task<ResponseResult> DeleteComponentDataSource(int id)
         {
             return await _modelComponentDataSourceService.DeleteComponentDataSource(id);
         }
@@ -176,9 +176,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetComponentDataSourceByComponentId")]
-        public async Task<BaseResult> GetComponentDataSourceByComponentId(string componentId)
+        public async Task<ResponseResult> GetComponentDataSourceByComponentId(string componentId)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var sources = await _modelComponentDataSourceService.GetComponentDataSourceListByComponentIdAsync(componentId);
             if (sources != null)
             {
@@ -232,9 +232,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetComponentTypes")]
-        public async Task<BaseResult> GetComponentTypeList(int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetComponentTypeList(int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var types = await _modelComponentTypeService.GetComponentTypesAsync();
             var total = types.Count();
 
@@ -262,7 +262,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteComponentType")]
-        public async Task<BaseResult> DeleteComponentTypeInfo(int typeId)
+        public async Task<ResponseResult> DeleteComponentTypeInfo(int typeId)
         {
             return await _modelComponentTypeService.DeleteComponentType(typeId);
         }
@@ -281,9 +281,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetComments")]
-        public async Task<BaseResult> GetCommentList(string componentId, string componentName,int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetCommentList(string componentId, string componentName,int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var comments = await _modelComponentCommentService.GetCommentsAsync(componentId, componentName);
             var total = comments.Count();
 
@@ -324,7 +324,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteComment")]
-        public async Task<BaseResult> DeleteComment(int commentId)
+        public async Task<ResponseResult> DeleteComment(int commentId)
         {
             return await _modelComponentCommentService.DeleteCommentInfo(commentId);
         }
@@ -340,7 +340,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddComponent")]
-        public async Task<BaseResult> AddComponentInfo([FromBody] ModelComponent model)
+        public async Task<ResponseResult> AddComponentInfo([FromBody] ModelComponent model)
         {
             return await _modelComponentService.AddModelComponentAsync(model);
         }
@@ -352,7 +352,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("UpdateComponent")]
-        public async Task<BaseResult> UpdateComponentInfo([FromBody] ModelComponent model)
+        public async Task<ResponseResult> UpdateComponentInfo([FromBody] ModelComponent model)
         {
             return await _modelComponentService.UpdateModelComponentAsync(model);
         }
@@ -364,7 +364,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteComponent")]
-        public async Task<BaseResult> DeleteComponentInfo(string componentId)
+        public async Task<ResponseResult> DeleteComponentInfo(string componentId)
         {
             return await _modelComponentService.DeleteModelComponent(componentId);
         }
@@ -380,9 +380,9 @@ namespace CesiumBimGisApi.Controllers
         [HttpGet]
         [Route("GetComponents")]
         [AllowAnonymous]
-        public async Task<BaseResult> GetAllComponents(string componentId, string componentName, int pageIndex, int pageSize)
+        public async Task<ResponseResult> GetAllComponents(string componentId, string componentName, int pageIndex, int pageSize)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var components = await _modelComponentService.GetComponentsAsync(componentId, componentName);
             var total = components.Count();
 
@@ -417,9 +417,9 @@ namespace CesiumBimGisApi.Controllers
         [HttpGet]
         [Route("GetCompletedComponents")]
         [AllowAnonymous]
-        public async Task<BaseResult> GetCompletedComponents()
+        public async Task<ResponseResult> GetCompletedComponents()
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var components = await _modelComponentService.GetCompletedComponentsAsync();
 
             var data = new
@@ -443,9 +443,9 @@ namespace CesiumBimGisApi.Controllers
         [HttpGet]
         [Route("GetProperties")]
         [AllowAnonymous]
-        public async Task<BaseResult> GetAddtionalProperties(string componentId)
+        public async Task<ResponseResult> GetAddtionalProperties(string componentId)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var properties = await _modelComponentService.GetAddtionalProperties(componentId);
             var list = JsonHelper.JSONToObject<List<PropertyModel>>(properties);
 
@@ -531,9 +531,9 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("GetComponentFiles")]
-        public async Task<BaseResult> GetComponentFileList(int pageIndex, int pageSize, string componentId)
+        public async Task<ResponseResult> GetComponentFileList(int pageIndex, int pageSize, string componentId)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var files = await _modelComponentFileInfoService.GetComponentFilesAsync(componentId);
             var total = files.Count();
 
@@ -563,7 +563,7 @@ namespace CesiumBimGisApi.Controllers
         [HttpPost]
         [Route("UploadComponentFile")]
         [AllowAnonymous]
-        public async Task<BaseResult> UploadComponentFile(IFormFile file, int modelId, string componentId)
+        public async Task<ResponseResult> UploadComponentFile(IFormFile file, int modelId, string componentId)
         {
             #region 上传文件到静态服务器
 
@@ -620,7 +620,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteComponentFile")]
-        public async Task<BaseResult> DeleteComponentFileInfo(int fileId)
+        public async Task<ResponseResult> DeleteComponentFileInfo(int fileId)
         {
             var fileInfo = await _modelComponentFileInfoService.GetModelComponentFileById(fileId);
 
@@ -644,7 +644,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("UpdateComponentFile")]
-        public async Task<BaseResult> UpdateModelComponentFileInfoAsync([FromBody] ComponentFileModel model)
+        public async Task<ResponseResult> UpdateModelComponentFileInfoAsync([FromBody] ComponentFileModel model)
         {
             return await _modelComponentFileInfoService.UpdateModelComponentFileInfoAsync(model);
         }
@@ -658,9 +658,9 @@ namespace CesiumBimGisApi.Controllers
         [HttpGet]
         [Route("GetComponentFile")]
         [AllowAnonymous]
-        public async Task<BaseResult> GetComponentFile(string componentId, string menuName)
+        public async Task<ResponseResult> GetComponentFile(string componentId, string menuName)
         {
-            BaseResult result = new BaseResult();
+            ResponseResult result = new ResponseResult();
             var fileInfo=  await _modelComponentFileInfoService.GetModelComponentFileByComponentIdAndMenuName(componentId, menuName);
 
             if (fileInfo != null)

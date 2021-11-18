@@ -22,9 +22,9 @@ namespace Cesium.Services
             _modelComponentDataSourceRepository = modelComponentDataSourceRepository;
         }
 
-        public async Task<BaseResult> AddOrModifyComponentDataSourceAsync(ComponentMenuModel model, TokenInfo tokenInfo)
+        public async Task<ResponseResult> AddOrModifyComponentDataSourceAsync(ComponentMenuModel model, TokenInfo tokenInfo)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             ModelComponentDataSource source;
             if (model.Id == 0)//新增
             {
@@ -82,9 +82,9 @@ namespace Cesium.Services
             return result;
         }
 
-        public async Task<BaseResult> DeleteComponentDataSource(int id)
+        public async Task<ResponseResult> DeleteComponentDataSource(int id)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentDataSourceRepository.DeleteAsync(id) > 0)
             {
                 result.isSuccess = true;

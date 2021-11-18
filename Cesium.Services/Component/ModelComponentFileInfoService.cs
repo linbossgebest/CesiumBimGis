@@ -20,9 +20,9 @@ namespace Cesium.Services
         {
             _modelComponentFileInfoRepository = modelComponentFileInfoRepository;
         }
-        public async Task<BaseResult> AddModelComponentFileInfoAsync(ModelComponentFileInfo model)
+        public async Task<ResponseResult> AddModelComponentFileInfoAsync(ModelComponentFileInfo model)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentFileInfoRepository.InsertAsync(model) > 0)
             {
                 result.isSuccess = true;
@@ -39,9 +39,9 @@ namespace Cesium.Services
             return result;
         }
 
-        public async Task<BaseResult> DeleteComponentFileInfoAsync(int fileId)
+        public async Task<ResponseResult> DeleteComponentFileInfoAsync(int fileId)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentFileInfoRepository.DeleteAsync(fileId)>0)
             {
                 result.isSuccess = true;
@@ -83,9 +83,9 @@ namespace Cesium.Services
             return await _modelComponentFileInfoRepository.GetAsync(fileId);
         }
 
-        public async Task<BaseResult> UpdateModelComponentFileInfoAsync(ComponentFileModel model)
+        public async Task<ResponseResult> UpdateModelComponentFileInfoAsync(ComponentFileModel model)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             var fileModel = await _modelComponentFileInfoRepository.GetAsync(model.Id);
             fileModel.ModelId = model.ModelId;
             fileModel.ComponentId = model.ComponentId;

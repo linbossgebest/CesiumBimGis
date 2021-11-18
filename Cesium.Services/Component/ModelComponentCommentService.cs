@@ -25,9 +25,9 @@ namespace Cesium.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<BaseResult> AddCommentAsync(CommentModel model)
+        public async Task<ResponseResult> AddCommentAsync(CommentModel model)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (model.Id == 0)
             {
                 ModelComponentComment comment = new ModelComponentComment();
@@ -56,9 +56,9 @@ namespace Cesium.Services
             return result;
         }
 
-        public async Task<BaseResult> DeleteCommentInfo(int id)
+        public async Task<ResponseResult> DeleteCommentInfo(int id)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentCommentRepository.DeleteAsync(id) > 0)
             {
                 result.isSuccess = true;

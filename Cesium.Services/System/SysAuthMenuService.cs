@@ -22,9 +22,9 @@ namespace Cesium.Services.System
             _sysAuthMenuRepository = sysAuthMenuRepository;
         }
 
-        public async Task<BaseResult> AddOrModifyMenuAsync(SysAuthMenu model, TokenInfo tokenInfo)
+        public async Task<ResponseResult> AddOrModifyMenuAsync(SysAuthMenu model, TokenInfo tokenInfo)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _sysAuthMenuRepository.AddOrUpdate(model, tokenInfo))
             {
                 result.isSuccess = true;
@@ -41,9 +41,9 @@ namespace Cesium.Services.System
             return result;
         }
 
-        public async Task<BaseResult> DelelteMenuInfo(int menuId)
+        public async Task<ResponseResult> DelelteMenuInfo(int menuId)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
 
             if (await _sysAuthMenuRepository.DeleteMenuInfo(menuId))
             {

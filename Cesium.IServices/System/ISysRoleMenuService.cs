@@ -29,6 +29,6 @@ namespace Cesium.IServices.System
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        Task<BaseResult> AddSysRoleMenuListAsync(List<SysRoleMenu> list);
+        Task<ResponseResult> AddSysRoleMenuListAsync(List<SysRoleMenu> list);
     }
 }

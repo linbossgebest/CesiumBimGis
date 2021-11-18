@@ -21,7 +21,7 @@ namespace Cesium.Services.System
         }
 
 
-        public Task<BaseResult> AddUserRoleInfo(int userId)
+        public Task<ResponseResult> AddUserRoleInfo(int userId)
         {
             throw new NotImplementedException();
         }
@@ -31,9 +31,9 @@ namespace Cesium.Services.System
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<BaseResult> DeleteUserRoleInfo(int userId)
+        public async Task<ResponseResult> DeleteUserRoleInfo(int userId)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _sysUserRoleRepository.DeleteListAsync(new { UserId = userId }) > 0)
             {
                 result.isSuccess = true;

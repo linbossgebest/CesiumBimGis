@@ -57,9 +57,9 @@ namespace Cesium.Services
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        public async Task<BaseResult> AddOrModifyUserAsync(UserModel model, TokenInfo tokenInfo)
+        public async Task<ResponseResult> AddOrModifyUserAsync(UserModel model, TokenInfo tokenInfo)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _sysUserRepository.AddOrUpdate(model, tokenInfo))
             {
                 result.isSuccess = true;
@@ -92,9 +92,9 @@ namespace Cesium.Services
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns></returns>
-        public async Task<BaseResult> DeleteUserInfo(int userId)
+        public async Task<ResponseResult> DeleteUserInfo(int userId)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _sysUserRepository.DeleteUserInfo(userId))
             {
                 result.isSuccess = true;

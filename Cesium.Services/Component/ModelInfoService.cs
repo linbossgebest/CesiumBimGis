@@ -27,9 +27,9 @@ namespace Cesium.Services
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        public async Task<BaseResult> AddModelInfoAsync(ModelInfo model, TokenInfo tokenInfo)
+        public async Task<ResponseResult> AddModelInfoAsync(ModelInfo model, TokenInfo tokenInfo)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             model.CreateTime = DateTime.Now;
             model.CreatorId = tokenInfo.UserId;
             model.CreatorName = tokenInfo.UserName;

@@ -29,13 +29,13 @@ namespace Cesium.IServices.System
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<BaseResult> AddUserRoleInfo(int userId);
+        Task<ResponseResult> AddUserRoleInfo(int userId);
 
         /// <summary>
         /// 根据用户编号删除用户角色信息
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<BaseResult> DeleteUserRoleInfo(int userId);
+        Task<ResponseResult> DeleteUserRoleInfo(int userId);
     }
 }

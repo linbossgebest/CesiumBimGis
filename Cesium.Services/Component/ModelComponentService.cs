@@ -27,9 +27,9 @@ namespace Cesium.Services
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public async Task<BaseResult> AddModelComponentListAsync(List<ModelComponent> list)
+        public async Task<ResponseResult> AddModelComponentListAsync(List<ModelComponent> list)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentRepository.AddListAsync(list))
             {
                 result.isSuccess = true;
@@ -87,9 +87,9 @@ namespace Cesium.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<BaseResult> AddModelComponentAsync(ModelComponent model)
+        public async Task<ResponseResult> AddModelComponentAsync(ModelComponent model)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             var existComponent =await _modelComponentRepository.GetAsync(model.ComponentId);
 
             if (existComponent != null)
@@ -123,9 +123,9 @@ namespace Cesium.Services
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<BaseResult> UpdateModelComponentAsync(ModelComponent model)
+        public async Task<ResponseResult> UpdateModelComponentAsync(ModelComponent model)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentRepository.UpdateAsync(model) > 0)
             {
                 result.isSuccess = true;
@@ -147,9 +147,9 @@ namespace Cesium.Services
         /// </summary>
         /// <param name="componentId"></param>
         /// <returns></returns>
-        public async Task<BaseResult> DeleteModelComponent(string componentId)
+        public async Task<ResponseResult> DeleteModelComponent(string componentId)
         {
-            var result = new BaseResult();
+            var result = new ResponseResult();
             if (await _modelComponentRepository.DeleteAsync(componentId) > 0)
             {
                 result.isSuccess = true;

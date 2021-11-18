@@ -31,13 +31,13 @@ namespace Cesium.IServices.System
         /// <param name="model"></param>
         /// <param name="tokenInfo"></param>
         /// <returns></returns>
-        Task<BaseResult> AddOrModifyRoleAsync(RoleModel model, TokenInfo tokenInfo);
+        Task<ResponseResult> AddOrModifyRoleAsync(RoleModel model, TokenInfo tokenInfo);
 
         /// <summary>
         /// 删除角色信息
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        Task<BaseResult> DeleteRoleInfo(int roleId);
+        Task<ResponseResult> DeleteRoleInfo(int roleId);
     }
 }
