@@ -75,6 +75,10 @@
               "target": "Package",
               "version": "[1.2.3, )"
             },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.4, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[5.0.9, )"
@@ -601,9 +605,6 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj": {
-                "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj"
-              },
               "E:\\CesiumApi\\CesiumBimGis\\Cesium.Respository\\Cesium.Respository.csproj": {
                 "projectPath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Respository\\Cesium.Respository.csproj"
               },

@@ -70,6 +70,7 @@ namespace CesiumBimGisApi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("AddUser")]
+        [AllowAnonymous]
         public async Task<string> AddOrModifyUser([FromBody] UserModel model)
         {
             var info = HttpContext.AuthenticateAsync().Result.Principal.Claims;//获取用户身份信息

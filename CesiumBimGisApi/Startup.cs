@@ -7,11 +7,16 @@ using Cesium.Core.Hubs;
 using Cesium.Core.Options;
 using CesiumBimGisApi.CustomMiddleware;
 using CesiumBimGisApi.Filters;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace CesiumBimGisApi
 {
@@ -41,13 +46,25 @@ namespace CesiumBimGisApi
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(RequestActionFilter));
-            });
+            }).AddFluentValidation(options =>
+               {
+                   options.DisableDataAnnotationsValidation = true;
+                   var validatorList = FluentValidationSetExtension.GetFluentValidationValidator("Cesium.Core");
+                   foreach (var item in validatorList)
+                   {
+                       //ÅúÁ¿×¢ÈëValidators
+                       options.RegisterValidatorsFromAssemblyContaining(item);
+                   }
+               });
+
+            services.AddFluentValidationErrorMessage();
 
             services.AddSwaggerSet();
             services.AddCorsSet();
             services.AddSignalR().AddNewtonsoftJsonProtocol();//·ÀÖ¹SignalRÂÒÂë
         }
 
+    
         public void ConfigureContainer(ContainerBuilder builder)
         {
             Services.AddModule(builder, Configuration);

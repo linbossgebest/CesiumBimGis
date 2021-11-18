@@ -32,6 +32,12 @@ namespace CesiumBimGisApi.Filters
             _logger = logger;
         }
 
+        /// <summary>
+        /// 异步执行 Action完成后记录操作日志
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var sw = new Stopwatch();

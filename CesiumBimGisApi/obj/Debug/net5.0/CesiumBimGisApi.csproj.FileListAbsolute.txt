@@ -100,3 +100,6 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\ref\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.genruntimeconfig.cache
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll

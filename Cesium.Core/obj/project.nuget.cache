@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "V2vJFBUv3l5v4XO2l/t/Z9vK8QO4jqVSK0JD5ZBlirdNkeVARf4FKjtSs0LKfQ2EpH+fTT9poMvb2uDUyTQiSg==",
+  "dgSpecHash": "h0STLF+bnvkJ5GeqV30C0aSzuqvxctqX3UXwch4LEtVWzKTs3yWNbN0VhsOQlhEenYzF5/WR9k8Xc3Y39JFKSA==",
   "success": true,
   "projectFilePath": "E:\\CesiumApi\\CesiumBimGis\\Cesium.Core\\Cesium.Core.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,9 @@
     "C:\\Users\\linyong\\.nuget\\packages\\dotnetcore.npoi.core\\1.2.3\\dotnetcore.npoi.core.1.2.3.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\dotnetcore.npoi.openxml4net\\1.2.3\\dotnetcore.npoi.openxml4net.1.2.3.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\dotnetcore.npoi.openxmlformats\\1.2.3\\dotnetcore.npoi.openxmlformats.1.2.3.nupkg.sha512",
+    "C:\\Users\\linyong\\.nuget\\packages\\fluentvalidation\\10.3.4\\fluentvalidation.10.3.4.nupkg.sha512",
+    "C:\\Users\\linyong\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.4\\fluentvalidation.aspnetcore.10.3.4.nupkg.sha512",
+    "C:\\Users\\linyong\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.4\\fluentvalidation.dependencyinjectionextensions.10.3.4.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
     "C:\\Users\\linyong\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",

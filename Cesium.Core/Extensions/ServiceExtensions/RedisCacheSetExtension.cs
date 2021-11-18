@@ -3,10 +3,6 @@ using Cesium.Core.Redis;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cesium.Core.Extensions.ServiceExtensions
 {
@@ -36,5 +32,7 @@ namespace Cesium.Core.Extensions.ServiceExtensions
             });
 
         }
+
+       
     }
 }
