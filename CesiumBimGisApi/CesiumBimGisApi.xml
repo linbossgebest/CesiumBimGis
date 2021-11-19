@@ -367,13 +367,5 @@
             <param name="sysLogOpService"></param>
             <param name="logger"></param>
         </member>
-        <member name="M:CesiumBimGisApi.Filters.RequestActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
-            <summary>
-            异步执行 Action完成后记录操作日志
-            </summary>
-            <param name="context"></param>
-            <param name="next"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>
