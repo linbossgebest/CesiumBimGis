@@ -239,7 +239,6 @@ namespace CesiumBimGisApi.Controllers
                 result.code = ResultCodeMsg.SignInPasswordOrUserNameErrorCode;
                 result.message = ResultCodeMsg.SignInPasswordOrUserNameErrorMsg;
             }
-            //return JsonHelper.ObjectToJSON(result);
             return result;
         }
 
