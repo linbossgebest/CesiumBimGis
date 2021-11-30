@@ -22,6 +22,9 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NPOI.OOXML.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NPOI.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NPOI.OpenXml4Net.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\NPOI.OpenXmlFormats.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Google.Protobuf.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\K4os.Compression.LZ4.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\K4os.Compression.LZ4.Streams.dll
@@ -77,9 +80,9 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Models.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Respository.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Services.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.ViewModels.dll
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Core.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Respository.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Services.pdb
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Core.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.IRepository.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.IServices.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\Cesium.Models.pdb
@@ -100,6 +103,3 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\ref\CesiumBimGisApi.dll
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Debug\net5.0\CesiumBimGisApi.genruntimeconfig.cache
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.dll
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
-E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll

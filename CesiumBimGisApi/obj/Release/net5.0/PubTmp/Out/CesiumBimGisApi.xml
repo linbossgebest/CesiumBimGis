@@ -136,7 +136,7 @@
             <param name="pageSize">每页数量</param>
             <returns></returns>
         </member>
-        <member name="M:CesiumBimGisApi.Controllers.AccountController.SetSysLogVis(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,Cesium.Core.CustomEnum.LoginType,Cesium.Models.System.SysUser)">
+        <member name="M:CesiumBimGisApi.Controllers.AccountController.SetSysLogVis(Microsoft.AspNetCore.Http.IHttpContextAccessor,System.String,Cesium.Models.LoginType,Cesium.Models.System.SysUser)">
             <summary>
             设置访问日志类容
             </summary>
@@ -264,6 +264,12 @@
             <param name="componentName">构件名称</param>
             <returns></returns>
         </member>
+        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetCompletedComponents">
+            <summary>
+            获取已完成的构件
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetAddtionalProperties(System.String)">
             <summary>
             通过构件编号获取构件的额外属性
@@ -342,6 +348,13 @@
             自定义异常中间件扩展类
             </summary>
         </member>
+        <member name="M:CesiumBimGisApi.CustomMiddleware.CustomExceptionMiddlewareExtensions.UseCustomExceptionMiddleware(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            自定义异常中间件
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
         <member name="T:CesiumBimGisApi.Filters.RequestActionFilter">
             <summary>
             Action操作过滤器 记录操作日志
@@ -353,6 +366,14 @@
             </summary>
             <param name="sysLogOpService"></param>
             <param name="logger"></param>
+        </member>
+        <member name="M:CesiumBimGisApi.Filters.RequestActionFilter.OnActionExecutionAsync(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext,Microsoft.AspNetCore.Mvc.Filters.ActionExecutionDelegate)">
+            <summary>
+            异步执行 Action完成后记录操作日志
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

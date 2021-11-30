@@ -11,3 +11,8 @@ E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\ref\Cesium.Core.dll
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.pdb
 E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.csproj.AssemblyReference.cache
+E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Release\net5.0\Cesium.Models.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Release\net5.0\Cesium.ViewModels.dll
+E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Release\net5.0\Cesium.Models.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.Core\bin\Release\net5.0\Cesium.ViewModels.pdb
+E:\CesiumApi\CesiumBimGis\Cesium.Core\obj\Release\net5.0\Cesium.Core.csproj.CopyComplete

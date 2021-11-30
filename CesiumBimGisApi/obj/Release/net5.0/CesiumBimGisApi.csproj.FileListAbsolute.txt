@@ -90,3 +90,16 @@ E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\ref\CesiumBimGisApi
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\CesiumBimGisApi.pdb
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\obj\Release\net5.0\CesiumBimGisApi.genruntimeconfig.cache
 E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\UAParser.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\FluentValidation.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\FluentValidation.AspNetCore.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\Pipelines.Sockets.Unofficial.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\Polly.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\RabbitMQ.Client.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\Scrutor.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\StackExchange.Redis.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Filters.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\System.Diagnostics.PerformanceCounter.dll
+E:\CesiumApi\CesiumBimGis\CesiumBimGisApi\bin\Release\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
