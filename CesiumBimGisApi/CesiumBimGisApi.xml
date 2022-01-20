@@ -151,11 +151,250 @@
             抽象基类控制器
             </summary>
         </member>
-        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetComponentDataSourceList(System.String)">
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Cesium.IServices.DataCollection.IDataCollectionQuantityDicService,Cesium.IServices.DataCollection.IDataCollectionMaterialDicService,Cesium.IServices.DataCollection.IDataCollectionPositionDicService,Cesium.IServices.DataCollection.IDataCollectionOperationDicService,Cesium.IServices.DataCollection.IDataCollectionTypeDicService,Cesium.IServices.DataCollection.IDataCollectionStandingBookService,Cesium.IServices.DataCollection.IDataCollectionSubItemService)">
             <summary>
-            根据构件编号获取构件菜单
+            数据采集Controller构造函数
             </summary>
+            <param name="httpContextAccessor"></param>
+            <param name="dataCollectionQuantityDicService"></param>
+            <param name="dataCollectionMaterialDicService"></param>
+            <param name="dataCollectionPositionDicService"></param>
+            <param name="dataCollectionOperationDicService"></param>
+            <param name="dataCollectionTypeDicService"></param>
+            <param name="dataCollectionStandingBookService"></param>
+            <param name="dataCollectionSubItemService"></param>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.AddSubItemInfo(Cesium.Models.DataCollection.DataCollectionSubItem)">
+            <summary>
+            添加分项信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.UpdateSubItemInfo(Cesium.Models.DataCollection.DataCollectionSubItem)">
+            <summary>
+            修改分项信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.DeleteSubItemInfo(System.Int32)">
+            <summary>
+            删除分项信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.UploadSubItemFileExcel(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传分享信息Excel文件
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetAllSubItems(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            查询所有分项信息
+            </summary>
+            <param name="name">分项名称</param>
             <param name="componentId">构件编号</param>
+            <param name="pageIndex">第几页</param>
+            <param name="pageSize">每页的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetSubItemListByComponentId(System.String)">
+            <summary>
+            根据构件编号获取到范围的分项列表信息
+            </summary>
+            <param name="componentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetSubItemByComponentId(System.String)">
+            <summary>
+            根据构件编号获取分项信息
+            </summary>
+            <param name="componentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetSubItemTemplateBySubItemId(System.Int32)">
+            <summary>
+            根据分项编号获取分项模板
+            </summary>
+            <param name="subItemId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.AddStandingBookItem(Cesium.ViewModels.DataCollection.StandingBookViewModel)">
+            <summary>
+            添加台账信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetAllStandingBooks(System.String,System.Int32,System.Int32)">
+            <summary>
+            查询台账信息
+            </summary>
+            <param name="subItemId">分项编号</param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.AddTypeDicInfo(Cesium.Models.DataCollection.DataCollectionTypeDic)">
+            <summary>
+            添加类型字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.UpdateTypeDicInfo(Cesium.Models.DataCollection.DataCollectionTypeDic)">
+            <summary>
+            修改类型字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.DeleteTypeDicInfo(System.Int32)">
+            <summary>
+            删除类型字典信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetAllTypeDics(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取类型字典信息
+            </summary>
+            <param name="name"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.AddMaterialDicInfo(Cesium.Models.DataCollection.DataCollectionMaterialDic)">
+            <summary>
+            添加材质字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.UpdateMaterialDicInfo(Cesium.Models.DataCollection.DataCollectionMaterialDic)">
+            <summary>
+            修改材质字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.DeleteMaterialDicInfo(System.Int32)">
+            <summary>
+            删除材质字典信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetAllMaterialDics(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取材质字典信息
+            </summary>
+            <param name="name"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.AddPositionDicInfo(Cesium.Models.DataCollection.DataCollectionPositionDic)">
+            <summary>
+            添加定位字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.UpdatePositionDicInfo(Cesium.Models.DataCollection.DataCollectionPositionDic)">
+            <summary>
+            修改定位字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.DeletePositionDicInfo(System.Int32)">
+            <summary>
+            删除定位字典信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetAllPositionDics(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取位置字典信息
+            </summary>
+            <param name="name"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.AddOperationDicInfo(Cesium.Models.DataCollection.DataCollectionOperationDic)">
+            <summary>
+            添加工序字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.UpdateOperationDicInfo(Cesium.Models.DataCollection.DataCollectionOperationDic)">
+            <summary>
+            修改工序字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.DeleteOperationDicInfo(System.Int32)">
+            <summary>
+            删除工序字典信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetAllOperationDics(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取工序字典信息
+            </summary>
+            <param name="name"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.AddQuantityDicInfo(Cesium.Models.DataCollection.DataCollectionQuantityDic)">
+            <summary>
+            添加数量属性字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.UpdateQuantityDicInfo(Cesium.Models.DataCollection.DataCollectionQuantityDic)">
+            <summary>
+            修改数量属性字典信息
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.DeleteQuantityDicInfo(System.Int32)">
+            <summary>
+            删除数量属性字典信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.GetAllQuantityDics(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取数量属性字典信息
+            </summary>
+            <param name="name"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CesiumBimGisApi.Controllers.DataCollectionController.CommonDicResponse(System.Collections.Generic.IEnumerable{Cesium.Models.DataCollection.DataCollectionBaseDic},System.Int32)">
+            <summary>
+            公共字典返回信息
+            </summary>
+            <param name="res"></param>
+            <param name="total"></param>
             <returns></returns>
         </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetAllComponentDataSourceList(System.Int32,System.Int32)">
@@ -178,13 +417,6 @@
             删除构件菜单信息
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetComponentDataSourceByComponentId(System.String)">
-            <summary>
-            通过构件编号获取菜单信息
-            </summary>
-            <param name="componentId"></param>
             <returns></returns>
         </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.AddOrModifyComponentType(Cesium.ViewModels.ComponentTypeModel)">
@@ -268,13 +500,6 @@
             <summary>
             获取已完成的构件
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.GetAddtionalProperties(System.String)">
-            <summary>
-            通过构件编号获取构件的额外属性
-            </summary>
-            <param name="componentId"></param>
             <returns></returns>
         </member>
         <member name="M:CesiumBimGisApi.Controllers.ModelComponentController.UploadComponentFile(Microsoft.AspNetCore.Http.IFormFile)">

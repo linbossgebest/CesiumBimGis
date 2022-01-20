@@ -42,7 +42,7 @@ namespace CesiumBimGisApi
                 }).ConfigureLogging(logging =>
                 {
                     //logging.ClearProviders();
-                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
                 }).UseServiceProviderFactory(new AutofacServiceProviderFactory()).UseNLog();
     }
 }
